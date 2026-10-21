@@ -1,7 +1,9 @@
 "use client";
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link";
+import { ChevronDown } from "lucide-react"
 import { CASE_STUDIES } from "../data/caseStudiesData"
+import { NAV_MENUS, MOBILE_LINKS } from "../data/navMenus"
 
 const BLOG_PREVIEWS = [
     {
@@ -35,14 +37,7 @@ const BLOG_PREVIEWS = [
     },
 ]
 
-const NAV_LINKS = [
-    // {label:"Services", href:"/services"},
-    {label: "Solutions", href:"/solutions"},
-     {label:"Portfolio", href:"/portfolio"},
-      {label:"About us", href:"/about-us"},
-      {label:"Case Studies", href:"/work"}
-    ]
-
+// Burger (full-screen) menu on desktop — unchanged
 const DESKTOP_MENU = [
     {
         id: "impact",
@@ -120,57 +115,22 @@ const DESKTOP_MENU = [
     },
 ]
 
-const MOBILE_MENU = [
-    
-    // {
-    //     id: "Case Studies",
-    //     title: "Case Studies",
-    //     heading: "Case Studies",
-    //     desc:
-    //         "Know about what were the challanges and how we tackled them in each projects",
-
-    //         logos:[
-    //             "/images/clients/logos/Drisya.webp",
-    //             "/images/clients/logos/Visat algon.webp",
-    //             "/images/clients/logos/Corewood algon.webp",
-
-    //         ],
-    //         button: "Explore Impact",
-    //         href:"/work",
-            
-    // },
-
-     {
-        id: "Careers",
-        href: "/careers",
-        title: "Careers",
-        heading: "Join our team",
-        desc:
-            "If you think you've got what it takes to join our team, just contact us, we are always interested in prodigies",
-    
-    },
-    
-
-    {
-        id: "insights",
-        title: "Insights",
-        href: "/blogs",
-        heading: "Insights & Thinking",
-        desc:
-            "Perspectives, research and stories from the frontlines of digital innovation.",
-            button: "Explore Blogs",
-            
-    },
-]
-
 export default function Navbar({ phase }) {
     const [menuOpen, setMenuOpen] = useState(false)
     const [active, setActive] = useState("impact")
     const [scrolled, setScrolled] = useState(false)
 
+    // Top-bar mega menu (desktop) + accordions (mobile)
+    const [openMenu, setOpenMenu] = useState(null)
+    const [mobileOpen, setMobileOpen] = useState(null)
+    const lastMenuRef = useRef(NAV_MENUS[0].id) // keeps content mounted while the panel fades out
+    if (openMenu) lastMenuRef.current = openMenu
+    const panelOpen = openMenu !== null && !menuOpen
+    const panelData = NAV_MENUS.find((m) => m.id === lastMenuRef.current)
+
     const [navTheme, setNavTheme] = useState("light")
 
-    const effectiveTheme = menuOpen ? "light" : navTheme
+    const effectiveTheme = menuOpen || panelOpen ? "light" : navTheme
 
 useEffect(() => {
   const sections = document.querySelectorAll("[data-navbar]")
@@ -407,9 +367,6 @@ useEffect(() => {
 
                     <div className="mb-10 grid max-w-[760px] grid-cols-[0.95fr_1.05fr] gap-8">
                         <div>
-                            {/* <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-white/45">
-                                Start with
-                            </p> */}
                             <div className="flex flex-wrap gap-3">
                                 {[
                                     "• Web & SaaS",
@@ -430,9 +387,6 @@ useEffect(() => {
                         </div>
 
                         <div className="border-l border-white/15 pl-8">
-                            {/* <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-white/45">
-                                Contact
-                            </p> */}
                             <div className="flex flex-col gap-4 text-[16px] text-white/80">
                                 <a href="mailto:support@algonsolutions.com" className="transition hover:text-white">
                                     support@algonsolutions.com
@@ -504,26 +458,33 @@ useEffect(() => {
         )
     }
 
+    const toggleBurger = () => {
+        setOpenMenu(null)
+        setMenuOpen(!menuOpen)
+    }
+
     return (
         <>
             {/* NAVBAR */}
             <nav
+                onMouseLeave={() => setOpenMenu(null)}
+                onKeyDown={(e) => { if (e.key === "Escape") setOpenMenu(null) }}
                 className="fixed top-0 left-0 right-0 z-[997] flex items-center justify-between px-[5vw] h-[72px] transition-all duration-500 ease-out "
                 style={{
-                    background: menuOpen
+                    background: menuOpen || panelOpen
                         ? "#050508"
                         : scrolled
                             ? effectiveTheme === "dark"
                                 ? "rgba(252,252,247,1)"
                                 : "rgba(5,5,8,1)"
                             : "transparent",
-                    backdropFilter: menuOpen ? "none" : scrolled ? "blur(14px)" : "none",
+                    backdropFilter: menuOpen || panelOpen ? "none" : scrolled ? "blur(14px)" : "none",
                     boxShadow: scrolled
       ? "0 3px 7px rgba(0,0,0,0.03)"   // change 0.15 → your opacity
       : "none",
                 }}
             >
-                <Link href="/">
+                <Link href="/" onClick={() => setOpenMenu(null)}>
                 
                     <img src={
     effectiveTheme === "dark"
@@ -532,13 +493,30 @@ useEffect(() => {
   } className="h-6" />
                 </Link>
 
-                {/* Desktop nav */}
-                <div className="hidden lg:flex gap-10 text-[15px] tracking-[0.14em]">
-                    {NAV_LINKS.map((link) => (
-                        <Link key={link.label} href={link.href} className={`${effectiveTheme === "dark" ? "text-black hover:text-black/80" : "text-white hover:text-white/80"}`}>
-                            {link.label}
-                        </Link>
-                    ))}
+                {/* Desktop nav — dropdown triggers */}
+                <div className="hidden lg:flex gap-9 text-[15px] tracking-[0.14em]">
+                    {NAV_MENUS.map((menu) => {
+                        const isOpen = openMenu === menu.id
+                        return (
+                            <button
+                                key={menu.id}
+                                type="button"
+                                aria-haspopup="true"
+                                aria-expanded={isOpen}
+                                aria-controls="nav-mega-panel"
+                                onMouseEnter={() => setOpenMenu(menu.id)}
+                                onFocus={() => setOpenMenu(menu.id)}
+                                onClick={() => setOpenMenu(isOpen ? null : menu.id)}
+                                className={`flex items-center gap-1.5 bg-transparent font-light transition-colors ${effectiveTheme === "dark" ? "text-black  " : isOpen ? "text-white" : "text-white"}`}
+                            >
+                                {menu.label}
+                                <ChevronDown
+                                    size={14}
+                                    className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                                />
+                            </button>
+                        )
+                    })}
                 </div>
 
                 <div className="flex items-center gap-6">
@@ -548,7 +526,7 @@ useEffect(() => {
 
                     {/* UNIVERSAL BURGER */}
                     <button
-                        onClick={() => setMenuOpen(!menuOpen)}
+                        onClick={toggleBurger}
                         className="flex flex-col justify-center gap-[5px] p-1 bg-transparent border-none cursor-pointer w-8 h-8"
                         aria-label="Toggle menu"
                     >
@@ -566,10 +544,64 @@ useEffect(() => {
                         />
                     </button>
                 </div>
+
+                {/* ======================= */}
+                {/* TOP-BAR MEGA PANEL      */}
+                {/* Child of <nav> so hovering the panel keeps it open */}
+                {/* ======================= */}
+                <div
+                    id="nav-mega-panel"
+                    aria-hidden={!panelOpen}
+                    className={`absolute left-0 right-0 top-full hidden max-h-[calc(100vh-72px)] overflow-y-auto border-t border-white/10 bg-[#050508] transition-all duration-300 ease-out lg:block ${
+                        panelOpen
+                            ? "translate-y-0 opacity-100 pointer-events-auto"
+                            : "-translate-y-2 opacity-0 pointer-events-none"
+                    }`}
+                >
+{panelData && (() => {
+    const hasTitles = panelData.groups.some((g) => g.title)
+    return (
+        <div
+            className={`grid gap-x-14 gap-y-10 px-[5vw] ${hasTitles ? "py-12" : "py-10"}`}
+            style={{
+                gridTemplateColumns: `minmax(200px,0.8fr) repeat(${panelData.groups.length}, minmax(0,1fr))`,
+            }}
+        >
+            {panelData.groups.map((group, gi) => (
+                <div key={group.title || gi}>
+                    {group.title && (
+                        <p className="mb-6 text-[16px] tracking-[0.08em] text-white font-medium">
+                            {group.title}
+                        </p>
+                    )}
+                    <ul className={group.chips ? "flex flex-wrap gap-2" : "flex flex-col gap-6"}>
+                                        {group.items.map((item) => (
+                                            <li key={item.href}>
+                                                <Link
+                                                    href={item.href}
+                                                    tabIndex={panelOpen ? 0 : -1}
+                                                    onClick={() => setOpenMenu(null)}
+                                                    className={
+                                                        group.chips
+                                                            ? "inline-flex rounded-full border border-white/25 px-4 py-1.5 text-[16px] text-white/85 transition hover:border-white hover:bg-white hover:text-black"
+                                                            : "inline-block text-[16px] font-light leading-snug text-white/80 transition duration-300 hover:translate-x-1 hover:text-white"
+                                                    }
+                                                >
+                                                    {item.label}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                </div>
+            ))}
+        </div>
+    )
+})()}
+                </div>
             </nav>
 
             {/* ======================= */}
-            {/* DESKTOP MEGA MENU       */}
+            {/* DESKTOP BURGER MENU     */}
             {/* ======================= */}
             <div
                 className={`fixed inset-0 z-[995] hidden lg:block transition-all duration-500 ${menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
@@ -627,34 +659,78 @@ useEffect(() => {
                 <div className="flex-1 overflow-y-auto pt-[12vh] pb-[15vh] hide-scrollbar">
 
 <div className="flex flex-col gap-6">
-  {/* NAV LINKS */}
-  {NAV_LINKS.map((item, i) => (
-    <div key={item.label} className="flex flex-col gap-6">
-      <Link
-        href={item.href || "#"}
-        onClick={() => setMenuOpen(false)}
-        className="font-primary px-[8vw] font-light text-[20px] tracking-[0.07em] transition-all duration-300 hover:text-white/60"
-        style={{
-          transitionDelay: menuOpen ? `${i * 60}ms` : "0ms",
-          opacity: menuOpen ? 1 : 0,
-          transform: menuOpen ? "translateY(0)" : "translateY(10px)",
-        }}
-      >
-        {item.label}
-      </Link>
-
-      <div className="w-full h-[1px] bg-white/10" />
-    </div>
-  ))}
-
-  {/* MOBILE MENU */}
-  {MOBILE_MENU.map((item, i) => {
-    const index = NAV_LINKS.length + i;
+  {/* DROPDOWN MENUS (accordions) */}
+  {NAV_MENUS.map((menu, i) => {
+    const open = mobileOpen === menu.id
 
     return (
-      <div key={item.id} className="flex flex-col gap-6">
+      <div key={menu.id} className="flex flex-col">
+        <button
+          type="button"
+          aria-expanded={open}
+          onClick={() => setMobileOpen(open ? null : menu.id)}
+          className="font-primary flex w-full items-center justify-between px-[8vw] text-left text-[20px] tracking-[0.07em] transition-all duration-300"
+          style={{
+            transitionDelay: menuOpen ? `${i * 60}ms` : "0ms",
+            opacity: menuOpen ? 1 : 0,
+            transform: menuOpen ? "translateY(0)" : "translateY(10px)",
+          }}
+        >
+          {menu.label}
+          <ChevronDown
+            size={18}
+            className={`transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+          />
+        </button>
+
+        <div
+          className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+            open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          }`}
+        >
+          <div className="overflow-hidden">
+            <div className="flex flex-col gap-7 px-[8vw] pt-6">
+              {menu.groups.map((group) => (
+                <div key={group.title}>
+                  {/* <p className="mb-3 text-[13px] tracking-[0.08em] text-white/45">
+                    {group.title}
+                  </p> */}
+                  <div className={group.chips ? "flex flex-wrap gap-2" : "flex flex-col gap-3.5"}>
+                    {group.items.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        tabIndex={open ? 0 : -1}
+                        onClick={() => { setMenuOpen(false); setMobileOpen(null) }}
+                        className={
+                          group.chips
+                            ? "rounded-full border border-white/25 px-4 py-1.5 text-[14px] text-white/85"
+                            : "text-[17px] leading-snug font-light text-white/80 transition hover:text-white"
+                        }
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-6 h-[1px] w-full bg-white/10" />
+      </div>
+    )
+  })}
+
+  {/* OTHER LINKS */}
+  {MOBILE_LINKS.map((item, i) => {
+    const index = NAV_MENUS.length + i
+
+    return (
+      <div key={item.label} className="flex flex-col gap-6">
         <Link
-          href={item.href || "#"}
+          href={item.href}
           onClick={() => setMenuOpen(false)}
           className="font-primary px-[8vw] font-light text-[20px] tracking-[0.07em] transition-all duration-300 hover:text-white/60"
           style={{
@@ -663,7 +739,7 @@ useEffect(() => {
             transform: menuOpen ? "translateY(0)" : "translateY(10px)",
           }}
         >
-          {item.title}
+          {item.label}
         </Link>
 
         <div className="w-full h-[1px] bg-white/10" />

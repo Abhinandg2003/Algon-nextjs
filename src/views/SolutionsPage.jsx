@@ -2136,7 +2136,7 @@ export default function SolutionsPage() {
         .sl-sub-dark{font-weight:300;font-size:clamp(14px,1.1vw,16px);line-height:1.72;color:rgba(252,252,247,.6);max-width:50ch;margin:16px 0 0;}
         .sl-hero{position:relative;height:100vh;padding-top:40px;padding-bottom:70px; overflow:hidden}
         .sl-hero-ghost{position:absolute;bottom:5%;right:3vw;font-weight:700;font-size:clamp(80px,14vw,200px);line-height:1;letter-spacing:-0.05em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,0.04);pointer-events:none;z-index:0;user-select:none;}
-        .sl-hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 460px;gap:0 5vw;align-items:center;padding:30px 7vw 40px;max-width:1500px;}
+        .sl-hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 460px;gap:0 5vw;align-items:center;padding:30px 7vw 40px;}
         .neon-border{border:1px solid #ba41f2;box-shadow:0 0 8px #ba41f2,0 0 16px #ba41f2,0 0 32px #8b2fe1,inset 0 0 10px rgba(186,65,242,0.4);}
         .sl-hero-h1{font-weight:400;font-size:clamp(60px,7.5vw,100px);line-height:0.95;letter-spacing:-0.04em;color:#fcfcf7;margin:0 0 28px;}
         .sl-h1-neon{color:#8b2fe1;}
