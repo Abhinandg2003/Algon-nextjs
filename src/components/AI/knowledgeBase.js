@@ -125,20 +125,20 @@ A: All work is 100% yours. We sign NDAs before discussing sensitive system archi
 
 ## Our Portfolio / Case Studies
 
-### Visat — Website & Interactive Platform (2026, EdTech)
-An immersive college platform with 360° campus views and custom AI teacher agents representing faculty from each department to assist students. We also delivered responsive website development, SEO optimisation, and full CMS integration, over 16 weeks. Results: enhanced interactive UX, AI-assisted student engagement, improved SEO visibility. Testimonial from Raju Kurian, Founder: the AI agents and 360° view made a huge impact on student interaction.
+### Visat — Website & Interactive Platform (2024, EdTech)
+An immersive college platform with 360° campus views and custom AI teacher agents representing faculty from each department to assist students. We also delivered responsive website development, SEO optimisation, and full CMS integration, over 8 weeks. Results: enhanced interactive UX, AI-assisted student engagement, improved SEO visibility. Testimonial from Raju Kurian, Chairman: the AI agents and 360° view made a huge impact on student interaction.
 
 ### Mindful Rejuvenation — Hospital Management System (2026, Healthcare)
-We built a complete HMS for a psychiatric/mental healthcare practice: appointment & patient management, admin dashboard, OP management, pharmacy management, and a calming patient-facing website. 50+ modules, delivered in 3 months. Workflow fully digitized from a previously manual, offline system. 24/7 appointment accessibility achieved.
+We built a complete HMS for a psychiatric/mental healthcare practice: appointment & patient management, admin dashboard, OP management, pharmacy management, AI integration, and a calming patient-facing website. 50+ modules, delivered in 3 months. Workflow fully digitized from a previously manual, offline system. 24/7 appointment accessibility achieved.
 
 ### TheSneek — Shopify Ecommerce (2026, Fashion)
-We built a full Shopify storefront for an early-stage fashion startup: brand identity, product presentation, social media setup, performance optimisation, and SEO/ecommerce strategy. Delivered in 7 days. Sales infrastructure went from zero to fully operational and ready to scale. Founding team called it a complete transformation from idea to ecommerce brand.
+We built a full Shopify storefront for an early-stage fashion startup: brand identity, product presentation, social media setup, performance optimisation, and SEO/ecommerce strategy. Delivered in 8 weeks. Sales infrastructure went from zero to fully operational and ready to scale. Founding team called it a complete transformation from idea to ecommerce brand.
 
-### Corewood — Branding & Digital Ecosystem (2026, Furniture)
+### Corewood — Branding & Digital Ecosystem (2025, Furniture)
 We took a brand from zero digital presence to a complete ecosystem: brand identity (logo, color system, tone of voice), mobile-optimised website, social media content/reels, SEO, Google Business Profile, and YouTube channel setup. Delivered in 3 days. Co-founder Mohammed Kunji: "Algon helped us go from zero presence to a complete digital brand."
 
 ### QOT Interiors — Digital Marketing & Lead Generation (2025, Luxury Interiors)
-We built a structured growth system: Meta Ads, content creation (reels, before/after creatives), social media management, website optimisation, basic SEO, and brand positioning. Generated 1000+ leads with improved lead quality and reduced cost-per-lead. Founder Anoop John praised the structured mix of ads, content, and brand consistency.
+We built a structured growth system: Meta Ads, content creation (reels, before/after creatives), social media management, website optimisation, basic SEO, and brand positioning. Delivered in 2 weeks. Generated 1000+ leads with improved lead quality and reduced cost-per-lead. Founder Anoop John praised the structured mix of ads, content, and brand consistency.
 
 ### Desire Study Abroad — Website & Brand Visibility (2024, EdTech)
 Fast website launch (4 days) with AI chatbot integration for instant student engagement, SEO optimisation, and brand identity refresh. Director Swapna reported enrolling 3x as many students with a smaller team, since our automated system replaced hours of manual follow-up work daily.
@@ -147,7 +147,7 @@ Fast website launch (4 days) with AI chatbot integration for instant student eng
 We built a fully responsive portfolio website with contact form integration and SEO, delivered in 1 week. Site visits grew from 12/month to 44/month post-launch, per the Sales Director.
 
 ### Drisya Marble — Website & Brand Visibility (2026, B2B/Manufacturing)
-We built a CMS-powered website with a structured product catalogue (100+ products), enabling easy editing for products, blogs, and career listings. Included analytics, Google Tag Manager, domain setup, and on-page SEO. Delivered in 4 weeks. Founder Babu Peter: much easier catalogue and content management, big difference to visibility.
+We built a CMS-powered website with a structured product catalogue (50+ products), enabling easy editing for products, blogs, and career listings. Included analytics, Google Tag Manager, domain setup, and on-page SEO. Delivered in 4 weeks. Founder Babu Peter: much easier catalogue and content management, big difference to visibility.
 
 ##For full details Visit our case studies page.
 
@@ -155,7 +155,8 @@ We built a CMS-powered website with a structured product catalogue (100+ product
 ## Our Stats (as presented across our site)
 - 48+ projects delivered
 - 3 countries served
-- Several years in operation (founded 2023)
+- 3 years in operation (founded 2023)
+- 1000+ leads generated for clients
 - 100% on-time delivery rate (as claimed on site)
 - 6 core service disciplines
 `;

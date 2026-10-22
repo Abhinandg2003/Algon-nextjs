@@ -46,9 +46,9 @@ const DESKTOP_MENU = [
         desc:
             "Every innovation that happens here is out of a quest to get better at what we are already doing. We deliver ideas that make a difference, create experiences that transform lives and build ecosystems that foster progress.",
         stats: [
-            ["700+", "Projects launched successfully across the globe"],
-            ["10M", "Daily customer engagement through our projects"],
-            ["100+", "Digital transformation stories that made a difference"],
+            ["48+", "Projects launched successfully across 3 countries"],
+            ["1000+", "Leads generated for our clients"],
+            ["100%", "On-time delivery across every project"],
         ],
         button: "Explore Impact",
         url:"",

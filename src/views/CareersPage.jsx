@@ -264,9 +264,9 @@ function CareersHero({ onExplore }) {
       {/* Stats bar */}
       <div className=" grid mt-20 md:mt-7 grid-cols-2 md:grid-cols-4 md:cr-hero-stats">
         {[
-          { num: "3", label: "Open roles", labelLines: ["Open", "Roles"] },
-          { num: "3+", label: "Years building", labelLines: ["Years", "Building"] },
-          { num: "50+", label: "Projects shipped", labelLines: ["Projects", "Shipped"] },
+          { num: String(POSITIONS.length), label: "Open roles", labelLines: ["Open", "Roles"] },
+          { num: "3", label: "Years building", labelLines: ["Years", "Building"] },
+          { num: "48+", label: "Projects shipped", labelLines: ["Projects", "Shipped"] },
           { num: "100%", label: "Remote-friendly", labelLines: ["Remote", "Friendly"] },
         ].map((s) => (
           <div key={s.label} className="cr-stat flex  justify-center">

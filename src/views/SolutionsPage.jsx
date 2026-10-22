@@ -948,7 +948,7 @@ function SolHero() {
       </div>
 
       {/* <div className="sl-hero-stats">
-        {[["48+","Projects"],["8","Countries"],["4","Solution tracks"],["100%","On-time"]].map(([n,l]) => (
+        {[["48+","Projects"],["3","Countries"],["4","Solution tracks"],["100%","On-time"]].map(([n,l]) => (
           <div key={l} className="sl-hstat">
             <span className="sl-hstat-n">{n}</span>
             <span className="sl-hstat-l">{l}</span>

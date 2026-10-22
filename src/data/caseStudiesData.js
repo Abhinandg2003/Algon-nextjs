@@ -24,6 +24,7 @@ export const CASE_STUDIES = [
     "Admin Dashboard",
     "Modules Development",
     "OP Management system",
+    "AI Integration",
     "Software design and optimisation"
   ],
   duration: "3 months",
@@ -157,7 +158,7 @@ export const CASE_STUDIES = [
     "Performance Optimisation",
     "SEO & Ecommerce Strategy"
   ],
-  duration: "7 days",
+  duration: "8 weeks",
   accent: "#298dff",
   tags: ["Shopify", "Fashion", "Ecommerce"],
 
@@ -243,7 +244,7 @@ export const CASE_STUDIES = [
 
   stats: [
     { value: "100", suffix: "%", label: "Ecommerce launch completed" },
-    { value: "4", suffix: "Days", label: "Delivery" },
+    { value: "8", suffix: "wk", label: "Delivery" },
     { value: "1", suffix: "", label: "Shopify storefront built" },
     { value: "24", suffix: "/7", label: "Online store availability" },
   ],
@@ -272,7 +273,7 @@ export const CASE_STUDIES = [
     tagline: "A modern digital platform with immersive experience and intelligent interaction.",
     commonImg:"/images/clients/gallery/visat/common.webp",
     category: "Website & Interactive Platform",
-    year: "2026",
+    year: "2024",
     client: "Visat",
     services: [
   "Website Development",
@@ -281,7 +282,7 @@ export const CASE_STUDIES = [
   "3D Experience Integration",
   "AI Agent Integration"
 ],
-    duration: "16 weeks",
+    duration: "8 weeks",
     accent: "#298dff",
     tags: ["SaaS", "FinTech", "Product"],
 
@@ -344,7 +345,7 @@ stepsData: [
 ],
    stats: [
   { value: "360", suffix: "°", label: "Campus view" },
-  { value: "16", suffix: "wk", label: "Delivery" },
+  { value: "8", suffix: "wk", label: "Delivery" },
   { value: "1", suffix: "", label: "AI system" },
   { value: "100", suffix: "%", label: "Responsive" },
 ],
@@ -363,7 +364,7 @@ stepsData: [
    testimonial: {
   text: "The platform completely changed how students interact with us online. The AI agents and 360 view made a huge impact.",
   author: "Raju Kurian",
-  role: "Founder, Visat",
+  role: "Chairman, Visat",
 },
   },
 
@@ -378,7 +379,7 @@ stepsData: [
   tagline: "From zero presence to a complete digital brand ecosystem.",
   commonImg:"/images/clients/gallery/corewood/common.webp",
   category: "Branding & Digital Ecosystem",
-  year: "2026",
+  year: "2025",
   client: "Corewood",
   services: [
   "Brand Identity",
@@ -494,7 +495,7 @@ stats: [
 
  testimonial: {
   text: "Algon helped us go from zero presence to a complete digital brand. Today our online identity finally reflects the quality of our work.",
-  author: "Mohammmed Kunji",
+  author: "Mohammed Kunji",
   role: "Co-Founder, Corewood",
 },
 
@@ -517,7 +518,7 @@ stats: [
   "Basic SEO",
   "Brand Positioning"
 ],
-    duration: "8 weeks",
+    duration: "2 weeks",
     accent: "#298dff",
     tags: ["Web", "3D", "Luxury"],
 
@@ -865,7 +866,7 @@ stepsData: [
 
 
 pillars: [
-  { num: "01", title: "Digital Catalogue", text: "Built a structured product catalogue with detailed pages for 100+ products." },
+  { num: "01", title: "Digital Catalogue", text: "Built a structured product catalogue with detailed pages for 50+ products." },
   { num: "02", title: "CMS System", text: "Enabled easy editing for products, blogs, and career listings through a custom CMS." },
   { num: "03", title: "SEO Foundation", text: "Implemented analytics, GTM, domain setup, and on-page SEO for visibility." },
   { num: "04", title: "Brand Presence", text: "Created a stronger brand identity and improved online visibility." },
@@ -882,7 +883,7 @@ stepsData: [
   {
     phase: "Phase 01",
     title: "Inventory Mapping",
-    desc: "Structured 2,000+ SKUs into clean searchable taxonomy.",
+    desc: "Structured 50+ products into clean searchable taxonomy.",
     icon: (accent)=><svg width="48" height="48" viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" stroke={accent} strokeWidth="0.8"/></svg>,
   },
   {
@@ -914,15 +915,15 @@ stepsData: [
     challenge:
   "The brand lacked a structured product showcase, had no CMS for managing content, and had limited online visibility.",
     solution:
-  "We developed a website with CMS capabilities for managing 100+ products, blogs, and career listings, along with SEO setup including analytics, GTM, and domain configuration.",
+  "We developed a website with CMS capabilities for managing 50+ products, blogs, and career listings, along with SEO setup including analytics, GTM, and domain configuration.",
    results: [
-  { metric: "Product Showcase", before: "Unstructured", after: "100+ products", delta: "Organised system" },
+  { metric: "Product Showcase", before: "Unstructured", after: "50+ products", delta: "Organised system" },
   { metric: "Content Management", before: "Manual", after: "CMS enabled", delta: "Editable" },
   { metric: "Brand Visibility", before: "Low", after: "Improved", delta: "SEO enabled" },
 ],
 
    stats: [
-  { value: "100", suffix: "+", label: "Products listed" },
+  { value: "50", suffix: "+", label: "Products listed" },
   { value: "4", suffix: "wk", label: "Delivery" },
   { value: "1", suffix: "", label: "CMS system" },
   { value: "100", suffix: "%", label: "SEO setup" },

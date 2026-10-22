@@ -40,7 +40,7 @@ const FEATURED = [
     category: "Website & Interactive Platform",
     year: "2024",
     desc: "An immersive college platform featuring 360-degree campus views and intelligent AI teacher agents. Delivered with integrated CMS in 8 weeks.",
-    tags: ["Solidity", "React", "Ethers.js", "Hardhat"],
+    tags: ["HTML", "CSS", "Node.js", "CMS", "AI"],
     accent: "#fff",
     stat: "8 wks",
     statLabel: "Full delivery",
@@ -55,10 +55,10 @@ const FEATURED = [
     title: "Mindful Rejuvenation",
     category: "Hospital management system",
     year: "2026",
-    desc: "A comprehensive hospital management platform streamlining OP, pharmacy, and advanced healthcare workflows. Delivered with intelligent AI technologies in 8 weeks.",
+    desc: "A comprehensive hospital management platform streamlining OP, pharmacy, and advanced healthcare workflows. Delivered with intelligent AI technologies in 3 months.",
     tags: ["postgresql", "React", "Node.js"],
     accent: "#fff",
-    stat: "12 wks",
+    stat: "3 mos",
     statLabel: "Full delivery",
     bg: "linear-gradient(135deg, #01040d 0%, #020517 50%, #010107 100%)",
     image: "/images/clients/gallery/hms/hero.webp",
@@ -149,7 +149,7 @@ const GRID_PROJECTS = [
     id: "06",
     title: "Drisya Marble",
     cat: "Web + Brand",
-    year: "2023",
+    year: "2026",
     pic: "/images/clients/gallery/drisya/thumbnail.webp",
     accent: "#e82727",
     tags: ["React", "GSAP", "CMS"],
@@ -159,7 +159,7 @@ const GRID_PROJECTS = [
     id: "07",
     title: "Corewood",
     cat: "Portfolio + Branding",
-    year: "2024",
+    year: "2025",
     pic: "/images/clients/gallery/corewood/thumbnail.webp",
     accent: "#f07829",
     tags: ["HTML", "Branding", "CSS"],
@@ -169,7 +169,7 @@ const GRID_PROJECTS = [
     id: "09",
     title: "VISAT",
     cat: "College + SaaS",
-    year: "2023",
+    year: "2024",
     pic: "/images/clients/gallery/visat/thumbnail.webp",
     accent: "#de078b",
     tags: ["HTML","CSS", "Node.js","CMS", "AI"],
@@ -179,17 +179,17 @@ const GRID_PROJECTS = [
 
 const STATS = [
   "48+ Projects",
-  "4 Years",
-  "10M Daily Users",
-  "8 Countries",
+  "3 Years",
+  "3 Countries",
+  "6 Core Services",
   "100% On-time",
-  "$2M+ Revenue Generated",
+  "1000+ Leads Generated",
   "48+ Projects",
-  "4 Years",
-  "10M Daily Users",
-  "8 Countries",
+  "3 Years",
+  "3 Countries",
+  "6 Core Services",
   "100% On-time",
-  "$2M+ Revenue Generated",
+  "1000+ Leads Generated",
 ];
 
 function ArrowRight({ size = 14 }) {
@@ -397,15 +397,15 @@ function PortfolioHero() {
           </h1>
 
           {/* <p ref={subRef} className="pf-hero-sub">
-            48 projects across 8 countries. From SaaS platforms to Web3
+            48 projects across 3 countries. From SaaS platforms to Web3
             infrastructure — built with obsession.
           </p> */}
 
           <div ref={numRef} className="pf-hero-counts justify-center lg:justify-start">
             {[
               ["48+", "Projects"],
-              ["8", "Countries"],
-              ["4", "Years"],
+              ["3", "Countries"],
+              ["3", "Years"],
             ].map(([n, l]) => (
               <div key={l} className="pf-hcount">
                 <span className="pf-hcount-num text-center">{n}</span>

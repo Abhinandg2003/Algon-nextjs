@@ -51,7 +51,7 @@ const TESTIMONIALS = [
     role: "",
     company: "TheSneek",
     logo: "/images/clients/logos/Thesneek.png",
-    metric: "4 Days",
+    metric: "8 wks",
     metricLabel: "Delivery",
     accent: "#0050d4",
     accent1: "#298dff",
@@ -72,9 +72,9 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "We came to Algon with a vision nobody else could execute. They built our entire Web3 infrastructure from scratch — smart contracts, dApp, and brand — in 8 weeks. Absolute technical mastery paired with genuine creative ambition.",
-    author: "Management",
-    role: "",
+      "The platform completely changed how students interact with us online. The AI agents and 360 view made a huge impact.",
+    author: "Raju Kurian",
+    role: "Chairman",
     company: "Visat Group of Institutions",
     logo: "/images/clients/logos/Visat algon.png",
     metric: "8 wks",

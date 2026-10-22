@@ -271,8 +271,8 @@ function AboutHero() {
             </span> */}
           </h1>
           {/* <p ref={subRef} className="ab-hero-sub">
-            Founded in 2024, Algon is a digital studio at the intersection of
-            technology, motion, and human experience. Three years. 24 projects.
+            Founded in 2023, Algon is a digital studio at the intersection of
+            technology, motion, and human experience. Three years. 48+ projects.
             One relentless standard.
           </p> */}
         </div>
@@ -445,7 +445,7 @@ function StorySection() {
           <p className="ab-eyebrow">Our story</p>
 
           <h2 className="ab-section-title">
-            Four years of <br /> building obsessively.
+            Three years of <br /> building obsessively.
             <br />
             {/* <span
               style={{
@@ -1110,17 +1110,17 @@ const NUMBERS = [
     svg: "",
   },
   {
-    end: 6,
+    end: 3,
     suffix: "",
     label: "Years in operation",
     accent: "#00d4aa",
     svg: "",
   },
-  { end: 8, suffix: "", label: "Countries served", accent: "#f59e0b", svg: "" },
+  { end: 3, suffix: "", label: "Countries served", accent: "#f59e0b", svg: "" },
   {
-    end: 10,
-    suffix: "M+",
-    label: "Daily active users on our products",
+    end: 1000,
+    suffix: "+",
+    label: "Leads generated for clients",
     accent: "#f43f5e",
     svg: "",
   },
@@ -1132,7 +1132,7 @@ const NUMBERS = [
     svg: "",
   },
   {
-    end: 9,
+    end: 6,
     suffix: "",
     label: "Core service categories",
     accent: "#22d3ee",
