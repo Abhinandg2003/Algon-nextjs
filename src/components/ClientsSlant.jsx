@@ -13,7 +13,7 @@ const clientData = [
     logoText: "LS",
     accent: "#803511",
     figure: "🏛️",
-    logo: "/images/clients/logos/Corewood algon.webp",
+    logo: "/images/clients/logos/Corewood-algon.webp",
     url: "https://www.corewood.in/",
     pic: "/images/clients/cutouts/corewood2.webp"
   },
@@ -52,7 +52,7 @@ const clientData = [
     logoText: "SB",
     accent: "#187f13",
     figure: "✦",
-    logo: "/images/clients/logos/mark white.webp",
+    logo: "/images/clients/logos/mark-white.webp",
     url: "https://www.mapmybusiness.online/",
     pic: "/images/clients/cutouts/mark.webp"
   },
@@ -65,7 +65,7 @@ const clientData = [
     logoText: "PW",
     accent: "#1a1a1a",
     figure: "◈",
-    logo: "/images/clients/logos/qot algon.webp",
+    logo: "/images/clients/logos/qot-algon.webp",
     url: "https://qotinteriors.com/",
     pic: "/images/clients/cutouts/qot2.webp"
   },
@@ -78,7 +78,7 @@ const clientData = [
     logoText: "ZA",
     accent: "#007482",
     figure: "⬡",
-    logo: "/images/clients/logos/UH algon.webp",
+    logo: "/images/clients/logos/UH-algon.webp",
     url: "https://www.unityheights.org/",
     pic: "/images/clients/cutouts/unity.webp"
   },
@@ -91,20 +91,20 @@ const clientData = [
     logoText: "CH",
     accent: "#5a004c",
     figure: "◉",
-    logo: "/images/clients/logos/Visat algon.webp",
+    logo: "/images/clients/logos/Visat-algon.webp",
     url: "https://visat.in/",
     pic: "/images/clients/cutouts/visat.webp"
   },
 ];
 
 const logoMarquee = [
-  { name: "Corewood",     text: "LS", color: "#e91e63", pic: "/images/clients/logos/Corewood algon black.webp" },
-  { name: "Desire",       text: "VL", color: "#43a047", pic: "/images/clients/logos/desire black.webp" },
-  { name: "Drisya Marble",text: "AC", color: "#1e88e5", pic: "/images/clients/logos/Drisya blak.webp" },
-  { name: "MapMyBusiness",   text: "MB", color: "#f9a825", pic: "/images/clients/logos/mark black.webp" },
-  { name: "QOT",          text: "PW", color: "#7b1fa2", pic: "/images/clients/logos/qot algon black.webp" },
-  { name: "Unity Heights",text: "ZA", color: "#00838f", pic: "/images/clients/logos/UH algon black.webp" },
-  { name: "Visat",        text: "CH", color: "#e64a19", pic: "/images/clients/logos/Visat algon black.webp" },
+  { name: "Corewood",     text: "LS", color: "#e91e63", pic: "/images/clients/logos/Corewood-algon-black.webp" },
+  { name: "Desire",       text: "VL", color: "#43a047", pic: "/images/clients/logos/desire-black.webp" },
+  { name: "Drisya Marble",text: "AC", color: "#1e88e5", pic: "/images/clients/logos/Drisya-blak.webp" },
+  { name: "MapMyBusiness",   text: "MB", color: "#f9a825", pic: "/images/clients/logos/mark-black.webp" },
+  { name: "QOT",          text: "PW", color: "#7b1fa2", pic: "/images/clients/logos/qot-algon-black.webp" },
+  { name: "Unity Heights",text: "ZA", color: "#00838f", pic: "/images/clients/logos/UH-algon-black.webp" },
+  { name: "Visat",        text: "CH", color: "#e64a19", pic: "/images/clients/logos/Visat-algon-black.webp" },
 ];
 
 /* ─── Responsive hook ───────────────────────────────────────────────────── */

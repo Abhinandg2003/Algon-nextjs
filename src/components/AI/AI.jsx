@@ -103,7 +103,7 @@ export default function AIAssistant() {
             aria-hidden="true"
             className="ai-video"
           >
-            <source src="/videos/ai video mayamblue2.mp4" type="video/mp4" />
+            <source src="/videos/ai-video-mayamblue2.mp4" type="video/mp4" />
           </video>
 
           <motion.div

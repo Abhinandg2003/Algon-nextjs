@@ -380,7 +380,7 @@ function PortfolioHero() {
           {/* <p className="pf-eyebrow">Selected Work</p> */}
 
           <h1 ref={h1Ref} className="pf-hero-h1 z-20 text-center lg:text-start bg-[#265eed]/0">
-            Works that <br /> <span className="font-normal bg-[#265eed] px-2 pb-2 text-center lg:text-start"  style={{fontSize: "clamp(50px, 7.5vw, 105px)"}}> speaks for itself. </span>
+            Work that <br /> <span className="font-normal bg-[#265eed] px-2 pb-2 text-center lg:text-start"  style={{fontSize: "clamp(50px, 7.5vw, 105px)"}}> speaks for itself. </span>
             <br />
             {/* <span
               style={{

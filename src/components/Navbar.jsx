@@ -62,8 +62,8 @@ const DESKTOP_MENU = [
 
             logos:[
                 "/images/clients/logos/Drisya.webp",
-                "/images/clients/logos/Visat algon.webp",
-                "/images/clients/logos/Corewood algon.webp",
+                "/images/clients/logos/Visat-algon.webp",
+                "/images/clients/logos/Corewood-algon.webp",
 
             ],
             button: "Explore Impact",
@@ -77,12 +77,12 @@ const DESKTOP_MENU = [
         desc:
             "Trusted by visionary founders and enterprise leaders alike: Meet the global companies, startups, and institutions that rely on us to power their digital infrastructure.",
         logos: [
-            { src: "/images/clients/logos/Corewood algon.webp", name: "Corewood" },
+            { src: "/images/clients/logos/Corewood-algon.webp", name: "Corewood" },
             { src: "/images/clients/logos/desire.webp", name: "Desire Study Abroad" },
             { src: "/images/clients/logos/Drisya.webp", name: "Drisya Marble" },
-            { src: "/images/clients/logos/pass algon.webp", name: "MakeMyPass" },
-            { src: "/images/clients/logos/qot algon.webp", name: "QOT Interiors" },
-            { src: "/images/clients/logos/Visat algon.webp", name: "Visat" },
+            { src: "/images/clients/logos/pass-algon.webp", name: "MakeMyPass" },
+            { src: "/images/clients/logos/qot-algon.webp", name: "QOT Interiors" },
+            { src: "/images/clients/logos/Visat-algon.webp", name: "Visat" },
         ],
     },
 
@@ -491,8 +491,8 @@ useEffect(() => {
                 
                     <img src={
     effectiveTheme === "dark"
-      ? "/images/logo black.webp"
-      : "/images/logo white.webp"
+      ? "/images/logo-black.webp"
+      : "/images/logo-white.webp"
   } alt="Algon Solutions" className="h-6" fetchPriority="high" />
                 </Link>
 

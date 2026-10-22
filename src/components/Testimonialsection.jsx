@@ -76,7 +76,7 @@ const TESTIMONIALS = [
     author: "Raju Kurian",
     role: "Chairman",
     company: "Visat Group of Institutions",
-    logo: "/images/clients/logos/Visat algon.png",
+    logo: "/images/clients/logos/Visat-algon.png",
     metric: "8 wks",
     metricLabel: "Full delivery",
     accent: "#0050d4",

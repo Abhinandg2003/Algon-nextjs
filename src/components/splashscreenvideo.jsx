@@ -35,8 +35,8 @@ export default function SplashScreen({ onFinish, onReady, play }) {
         onEnded={handleEnd}
         style={{ width: "100%", height: "100%", objectFit: "cover" }}
       >
-        <source src="/algon intro black mb.mp4" media="(max-width: 768px)" type="video/mp4" />
-        <source src="/algon intro black.mp4" media="(min-width: 769px)" type="video/mp4" />
+        <source src="/algon-intro-black-mb.mp4" media="(max-width: 768px)" type="video/mp4" />
+        <source src="/algon-intro-black.mp4" media="(min-width: 769px)" type="video/mp4" />
       </video>
 
       {play && (

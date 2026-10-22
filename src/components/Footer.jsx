@@ -251,7 +251,7 @@ export default function Footer() {
           <div className="max-w-[480px]">
             <Link href="/">
             <img
-              src="/images/logo white.webp"
+              src="/images/logo-white.webp"
               alt="Algon Solutions logo"
               className="block h-25 max-w-full"
               loading="lazy"
@@ -292,12 +292,12 @@ export default function Footer() {
               </a>
             </div>
 
-            <div className=" gap-5 mt-5 hidden md:flex">
+            {/* <div className=" gap-5 mt-5 hidden md:flex">
               <img className="h-20 w-auto" src="/images/hippa.webp" alt="HIPAA compliant" loading="lazy" decoding="async" />
               <img className="h-20 w-auto" src="/images/gdpr.webp" alt="GDPR compliant" loading="lazy" decoding="async" />
               <img className="h-20 w-auto" src="/images/aicpa.svg" alt="AICPA SOC certified" loading="lazy" decoding="async" />
 
-            </div>
+            </div> */}
 
             <div className="hidden md:block">
               <p className="mb-5 text-base font-semibold tracking-[0.1em] mt-[28px] text-white">

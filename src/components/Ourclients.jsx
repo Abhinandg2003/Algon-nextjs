@@ -7,12 +7,12 @@ gsap.registerPlugin(ScrollTrigger)
 
 // --- Client data — replace src with your real logos ---
 const clients = [
-  { id: 1, name: "Visat", bg: "#ff310d", text: "#fff", abbr: "St", image: "/images/clients/logos/Visat algon.webp", link: "https://visat.in/" },
-  { id: 2, name: "MakeMyPass", bg: "#ffea00", text: "#fff", abbr: "No", image: "/images/clients/logos/pass algon.webp", link: "https://makemypass.com/" },
+  { id: 1, name: "Visat", bg: "#ff310d", text: "#fff", abbr: "St", image: "/images/clients/logos/Visat-algon.webp", link: "https://visat.in/" },
+  { id: 2, name: "MakeMyPass", bg: "#ffea00", text: "#fff", abbr: "No", image: "/images/clients/logos/pass-algon.webp", link: "https://makemypass.com/" },
   { id: 3, name: "Desire", bg: "#aaff0d", text: "#000", abbr: "Ve", image: "/images/clients/logos/desire.webp", link: "https://desirestudyabroad.com/" },
-  { id: 4, name: "Unity Heights", bg: "#0085ff", text: "#fff", abbr: "Li", image: "/images/clients/logos/UH algon.webp", link: "https://www.unityheights.org/" },
-  { id: 5, name: "Corewood", bg: "#aaff0d", text: "#fff", abbr: "Fi", image: "/images/clients/logos/Corewood algon.webp", link: "https://www.corewood.in/" },
-  { id: 6, name: "QOT", bg: "#ff0de7", text: "#fff", abbr: "Lo", image: "/images/clients/logos/qot algon.webp", link: "https://qotinteriors.com/" },
+  { id: 4, name: "Unity Heights", bg: "#0085ff", text: "#fff", abbr: "Li", image: "/images/clients/logos/UH-algon.webp", link: "https://www.unityheights.org/" },
+  { id: 5, name: "Corewood", bg: "#aaff0d", text: "#fff", abbr: "Fi", image: "/images/clients/logos/Corewood-algon.webp", link: "https://www.corewood.in/" },
+  { id: 6, name: "QOT", bg: "#ff0de7", text: "#fff", abbr: "Lo", image: "/images/clients/logos/qot-algon.webp", link: "https://qotinteriors.com/" },
   { id: 7, name: "Drisya Marble", bg: "#ff310d", text: "#fff", abbr: "Fr", image: "/images/clients/logos/Drisya.webp", link: "https://drisya-marble.web.app/" },
 ]
 

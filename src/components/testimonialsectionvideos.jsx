@@ -24,9 +24,9 @@ const TESTIMONIALS = [
   {
     id: "t1",
     video:
-      "/videos/desire testi2.mp4",
+      "/videos/desire-testi2.mp4",
     thumbnail:
-      "/images/desire thumb3.jpg",
+      "/images/desire-thumb3.jpg",
     logo: "/images/clients/logos/desire.png",
     statValue: "100%",
     statLabel: "Brand presence",
@@ -40,10 +40,10 @@ const TESTIMONIALS = [
   {
     id: "t2",
     video:
-      "/videos/visat testi site2.mp4",
+      "/videos/visat-testi-site2.mp4",
     thumbnail:
-      "/images/visat thumb2.jpg",
-    logo: "/images/clients/logos/Visat algon.png",
+      "/images/visat-thumb2.jpg",
+    logo: "/images/clients/logos/Visat-algon.png",
     statValue: "AI",
     statLabel: "Teacher Agents",
     quote:
@@ -57,9 +57,9 @@ const TESTIMONIALS = [
   {
     id: "t5",
     video:
-      "/videos/desire testi.mp4",
+      "/videos/desire-testi.mp4",
     thumbnail:
-      "/images/desire thumb2.jpg",
+      "/images/desire-thumb2.jpg",
     logo: "/images/clients/logos/desire.png",
     statValue: "9.7/10",
     statLabel: "Client satisfaction",
