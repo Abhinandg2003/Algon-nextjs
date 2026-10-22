@@ -690,8 +690,8 @@ useEffect(() => {
         >
           <div className="overflow-hidden">
             <div className="flex flex-col gap-7 px-[8vw] pt-6">
-              {menu.groups.map((group) => (
-                <div key={group.title}>
+              {menu.groups.map((group, gi) => (
+                <div key={group.title || gi}>
                   {/* <p className="mb-3 text-[13px] tracking-[0.08em] text-white/45">
                     {group.title}
                   </p> */}
