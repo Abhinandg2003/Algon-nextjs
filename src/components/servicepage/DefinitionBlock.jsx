@@ -10,7 +10,7 @@ export default function DefinitionBlock({ tone, eyebrow = "Overview", title, par
 
   return (
     <Section tone={tone}>
-      <div className="svp-reveal flex flex-col gap-6 lg:flex-row lg:justify-between lg:items-end lg:gap-20">
+      <div className="svp-reveal flex flex-col gap-6 lg:flex-row lg:justify-between  lg:items-end lg:gap-20">
         {/* <span className="svp-eyebrow">{eyebrow}</span> */}
         <h2 className="svp-title lg:max-w-[16ch]">{title}</h2>
         {abstract && <p className="svp-lead lg:max-w-[58ch]">{abstract}</p>}

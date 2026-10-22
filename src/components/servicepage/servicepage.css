@@ -93,35 +93,38 @@
   height: 1px;
   background: var(--svp-blue-2);
 }
+/* Weights match the rest of the site: section titles like .ab-section-title
+   (About/Careers), card titles like .sc-title (Services), body like .sc-desc /
+   .sl-ov-desc (Services/Solutions). */
 .svp-title {
   font-family: "DisplayFont", sans-serif;
-  font-weight: 300;
-  font-size: clamp(32px, 4.2vw, 62px);
-  line-height: 1.04;
-  letter-spacing: 0.01em;
+  font-weight: 400;
+  font-size: clamp(32px, 4.5vw, 66px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
   color: var(--svp-fg);
   margin: 0;
 }
 .svp-lead {
-  font-size: clamp(14px, 1.2vw, 17px);
+  font-size: clamp(15px, 1.25vw, 18px);
   font-weight: 300;
-  line-height: 1.75;
+  line-height: 1.72;
   color: var(--svp-strong);
   margin: 0;
 }
 .svp-body {
-  font-size: clamp(14px, 1vw, 16px);
+  font-size: clamp(15px, 1.1vw, 17px);
   font-weight: 300;
-  line-height: 1.75;
+  line-height: 1.72;
   color: var(--svp-muted);
   margin: 0;
 }
 .svp-h3 {
   font-family: "DisplayFont", sans-serif;
   font-weight: 400;
-  font-size: clamp(19px, 1.5vw, 23px);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
+  font-size: clamp(20px, 1.7vw, 26px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   color: var(--svp-fg);
   margin: 0;
 }
@@ -177,7 +180,7 @@ color: var(--svp-blue-2);;  padding: 0 0.12em 0.06em;
 .svp-h1-mark--text { color: var(--svp-brand); }
 .svp-tagline {
   font-family: "DisplayFont", sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   font-size: clamp(20px, 1.8vw, 27px);
   line-height: 1.3;
   letter-spacing: 0.02em;
@@ -187,7 +190,7 @@ color: var(--svp-blue-2);;  padding: 0 0.12em 0.06em;
 .svp-tagline em { font-style: normal; color: white; }
 .svp-hero-sub {
   font-size: clamp(14px, 1.05vw, 16px);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.75;
   color: var(--svp-muted);
   margin: 0;
@@ -288,7 +291,7 @@ a.svp-card:hover,
 }
 .svp-table th {
   text-align: left;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 14px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -301,14 +304,14 @@ a.svp-card:hover,
   vertical-align: top;
   color: var(--svp-strong);
   border-bottom: 1px solid var(--svp-line);
-  font-weight: 300;
+  font-weight: 400;
 }
 .svp-table tbody th {
   vertical-align: top;
   text-transform: none;
   letter-spacing: normal;
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--svp-fg);
   min-width: 150px;
 }
