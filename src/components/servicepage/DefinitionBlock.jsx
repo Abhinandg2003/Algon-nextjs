@@ -21,7 +21,7 @@ export default function DefinitionBlock({ tone, eyebrow = "Overview", title, par
           {rest.length > 0 && (
             <div className="svp-reveal flex flex-col gap-6">
               {rest.map((p, i) => (
-                <p key={i} className="svp-body">{p}</p>
+                <p key={i} className="svp-lead">{p}</p>
               ))}
             </div>
           )}
@@ -31,7 +31,7 @@ export default function DefinitionBlock({ tone, eyebrow = "Overview", title, par
               {points.map((pt) => (
                 <li key={pt.text} className="svp-point">
                   <span className="svp-icon shrink-0"><Icon name={pt.icon} /></span>
-                  <span className="svp-body pt-2.5">{pt.text}</span>
+                  <span className="svp-lead pt-2.5">{pt.text}</span>
                 </li>
               ))}
             </ul>
