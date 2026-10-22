@@ -1,10 +1,10 @@
 // Single source of truth for the top-bar dropdowns.
-// Navbar renders from NAV_MENUS, and app/p/[type]/[slug]/page.jsx reads the
-// same data, so a new menu item automatically gets a working placeholder page.
-//
-// URL shape: /p/[type]/[slug]   e.g. /p/ai-development/rag-development-services
+// Navbar renders from NAV_MENUS. Each item's page lives at /[type]/[slug]
+// (e.g. /ai-development/rag-development-services) and is rendered by
+// components/servicepage from the content in data/servicePages, so a new
+// menu item also needs an entry there.
 
-export const pageHref = (type, slug) => `/p/${type}/${slug}`
+export const pageHref = (type, slug) => `/${type}/${slug}`
 
 export const slugify = (s) =>
   s
@@ -144,19 +144,3 @@ export const MOBILE_LINKS = [
   { label: "Case Studies", href: "/work" },
   { label: "Insights", href: "/blogs" },
 ]
-
-// ── Helpers for the /p/[type]/[slug] route ──────────────────────────────
-export function findPage(type, slug) {
-  const menu = NAV_MENUS.find((m) => m.type === type)
-  if (!menu) return null
-  for (const group of menu.groups) {
-    const item = group.items.find((i) => i.slug === slug)
-    if (item) return { menu, group, item }
-  }
-  return null
-}
-
-export const allPageParams = () =>
-  NAV_MENUS.filter((m) => m.type).flatMap((m) =>
-    m.groups.flatMap((g) => g.items.map((i) => ({ type: m.type, slug: i.slug })))
-  )

@@ -1,0 +1,391 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   SERVICE PAGE — shared styles for every /healthcare, /ai-development and
+   /product-engineering page.
+
+   Hybrid approach: this file owns the visual language (tone colours, type
+   scale, card/table/accordion styling, motion). Layout (grids, gaps,
+   responsive columns) lives in Tailwind classes on the components, so a
+   section's layout can be changed without touching this file.
+──────────────────────────────────────────────────────────────────────────── */
+
+.svp {
+  --svp-ink: #050508;
+  --svp-paper: #fcfcf7;
+  --svp-blue: #0050d4;
+  --svp-blue-2: #298dff;
+  --svp-pad-x: 7vw;
+  background: var(--svp-ink);
+  color: #fff;
+}
+
+/* ── Section shell + tones ─────────────────────────────────────────────── */
+.svp-section {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(80px, 11vw, 140px);
+}
+.svp-inner {
+  position: relative;
+  z-index: 1;
+  padding-inline: var(--svp-pad-x);
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.svp-dark {
+  background: var(--svp-ink);
+  color: #fff;
+  --svp-fg: #fff;
+  --svp-muted: rgba(255, 255, 255, 0.62);
+  --svp-faint: rgba(255, 255, 255, 0.38);
+  --svp-line: rgba(255, 255, 255, 0.12);
+  --svp-card: rgba(255, 255, 255, 0.03);
+  --svp-card-hover: rgba(255, 255, 255, 0.06);
+}
+.svp-light {
+  background: var(--svp-paper);
+  color: var(--svp-ink);
+  --svp-fg: var(--svp-ink);
+  --svp-muted: rgba(5, 5, 8, 0.66);
+  --svp-faint: rgba(5, 5, 8, 0.42);
+  --svp-line: rgba(5, 5, 8, 0.12);
+  --svp-card: #fff;
+  --svp-card-hover: #fff;
+}
+
+.svp-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+.svp-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  width: 60vw;
+  height: 60vw;
+  max-width: 760px;
+  max-height: 760px;
+  background: radial-gradient(ellipse, rgba(41, 141, 255, 0.14) 0%, transparent 65%);
+}
+
+/* ── Type ───────────────────────────────────────────────────────────────── */
+.svp-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--svp-faint);
+}
+.svp-eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--svp-blue-2);
+}
+.svp-title {
+  font-family: "DisplayFont", sans-serif;
+  font-weight: 300;
+  font-size: clamp(32px, 4.2vw, 62px);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  color: var(--svp-fg);
+  margin: 0;
+}
+.svp-lead {
+  font-size: clamp(16px, 1.25vw, 19px);
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--svp-muted);
+  margin: 0;
+}
+.svp-body {
+  font-size: clamp(15px, 1.1vw, 17px);
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--svp-muted);
+  margin: 0;
+}
+.svp-h3 {
+  font-family: "DisplayFont", sans-serif;
+  font-weight: 400;
+  font-size: clamp(19px, 1.5vw, 23px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--svp-fg);
+  margin: 0;
+}
+
+/* ── Buttons ────────────────────────────────────────────────────────────── */
+.svp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 999px;
+  padding: 14px 28px;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.svp-btn--primary { background: var(--svp-blue); color: #fff; }
+.svp-btn--primary:hover { background: var(--svp-blue-2); }
+.svp-btn--ghost { border-color: var(--svp-line); color: var(--svp-fg); }
+.svp-btn--ghost:hover { border-color: var(--svp-fg); }
+.svp-btn:disabled { opacity: 0.6; cursor: wait; }
+
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+.svp-hero {
+  padding-top: clamp(130px, 16vh, 180px);
+  padding-bottom: clamp(70px, 9vw, 120px);
+}
+.svp-crumb {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--svp-faint);
+}
+.svp-crumb a:hover { color: var(--svp-fg); }
+.svp-h1 {
+  font-family: "DisplayFont", sans-serif;
+  font-weight: 300;
+  font-size: clamp(42px, 6vw, 96px);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+.svp-h1 em {
+  font-style: normal;
+  background: linear-gradient(135deg, #fff 0%, var(--svp-blue-2) 120%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.svp-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--svp-line);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 13px;
+  color: var(--svp-muted);
+  background: var(--svp-card);
+  white-space: nowrap;
+}
+
+/* ── Stats ──────────────────────────────────────────────────────────────── */
+.svp-stat {
+  border-top: 1px solid var(--svp-line);
+  padding-top: 22px;
+}
+.svp-stat-value {
+  font-family: "DisplayFont", sans-serif;
+  font-weight: 300;
+  font-size: clamp(44px, 5vw, 76px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--svp-fg);
+}
+
+/* ── Cards ──────────────────────────────────────────────────────────────── */
+.svp-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100%;
+  padding: clamp(24px, 2.2vw, 34px);
+  border: 1px solid var(--svp-line);
+  border-radius: 14px;
+  background: var(--svp-card);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s, background 0.35s;
+}
+a.svp-card:hover,
+.svp-card--hover:hover {
+  transform: translateY(-4px);
+  border-color: var(--svp-blue-2);
+  background: var(--svp-card-hover);
+}
+.svp-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  color: var(--svp-blue-2);
+  background: rgba(41, 141, 255, 0.1);
+}
+.svp-light .svp-icon { color: var(--svp-blue); background: rgba(0, 80, 212, 0.08); }
+.svp-num {
+  font-family: "DisplayFont", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  color: var(--svp-blue-2);
+}
+.svp-light .svp-num { color: var(--svp-blue); }
+.svp-arrow {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--svp-fg);
+}
+
+/* ── Definition list (icon-led points) ──────────────────────────────────── */
+.svp-point {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--svp-line);
+}
+.svp-point:first-child { border-top: 1px solid var(--svp-line); }
+
+/* ── Table ──────────────────────────────────────────────────────────────── */
+.svp-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--svp-line);
+  border-radius: 14px;
+  background: var(--svp-card);
+}
+.svp-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.svp-table th {
+  text-align: left;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--svp-faint);
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--svp-line);
+}
+.svp-table td {
+  padding: 18px 22px;
+  vertical-align: top;
+  color: var(--svp-muted);
+  border-bottom: 1px solid var(--svp-line);
+  font-weight: 300;
+}
+.svp-table tbody th {
+  vertical-align: top;
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--svp-fg);
+  min-width: 150px;
+}
+.svp-table tr:last-child td,
+.svp-table tr:last-child th { border-bottom: 0; }
+.svp-table--highlight-last td:last-child { color: var(--svp-fg); }
+
+/* ── Process ────────────────────────────────────────────────────────────── */
+.svp-step {
+  position: relative;
+  padding-top: 28px;
+  border-top: 1px solid var(--svp-line);
+}
+.svp-step::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--svp-blue-2);
+}
+
+/* ── FAQ accordion ──────────────────────────────────────────────────────── */
+.svp-faq-item { border-bottom: 1px solid var(--svp-line); }
+.svp-faq-item:first-child { border-top: 1px solid var(--svp-line); }
+.svp-faq-q {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 26px 0;
+  text-align: left;
+  font-family: "DisplayFont", sans-serif;
+  font-size: clamp(18px, 1.5vw, 22px);
+  font-weight: 400;
+  color: var(--svp-fg);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.svp-faq-toggle {
+  flex-shrink: 0;
+  transition: transform 0.35s ease;
+  color: var(--svp-blue-2);
+}
+.svp-faq-item[data-open="true"] .svp-faq-toggle { transform: rotate(45deg); }
+.svp-faq-a {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.svp-faq-item[data-open="true"] .svp-faq-a { grid-template-rows: 1fr; }
+.svp-faq-a > div { overflow: hidden; }
+
+/* ── Form ───────────────────────────────────────────────────────────────── */
+.svp-form {
+  border: 1px solid var(--svp-line);
+  border-radius: 18px;
+  padding: clamp(22px, 2.4vw, 36px);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(6px);
+}
+.svp-field {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--svp-line);
+  padding: 12px 0;
+  font-size: 15px;
+  color: var(--svp-fg);
+  outline: none;
+  transition: border-color 0.25s;
+}
+.svp-field::placeholder { color: var(--svp-faint); }
+.svp-field:focus { border-color: var(--svp-blue-2); }
+textarea.svp-field { resize: vertical; min-height: 84px; }
+
+/* ── Case study proof ───────────────────────────────────────────────────── */
+.svp-proof-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.svp-proof:hover .svp-proof-img { transform: scale(1.04); }
+
+/* ── Reveal on scroll (driven by Reveal.jsx) ────────────────────────────── */
+.svp-js .svp-reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.svp-js .svp-reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .svp-js .svp-reveal { opacity: 1; transform: none; transition: none; }
+}
