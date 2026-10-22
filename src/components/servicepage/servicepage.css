@@ -38,6 +38,7 @@
   color: #fff;
   --svp-fg: #fff;
   --svp-strong: rgba(255, 255, 255, 0.86); /* high-contrast body text: lead + table cells */
+  --svp-inverse: var(--svp-ink); /* the section's background colour, for inverted elements */
   --svp-muted: rgba(255, 255, 255, 0.8);
   --svp-faint: rgba(255, 255, 255, 0.38);
   --svp-line: rgba(255, 255, 255, 0.3);
@@ -49,6 +50,7 @@
   color: var(--svp-ink);
   --svp-fg: var(--svp-ink);
   --svp-strong: rgba(5, 5, 8, 0.86);
+  --svp-inverse: var(--svp-paper);
   --svp-muted: rgba(5, 5, 8, 0.66);
   --svp-faint: rgba(5, 5, 8, 0.42);
   --svp-line: rgba(5, 5, 8, 0.12);
@@ -298,6 +300,13 @@ a.svp-card:hover,
   color: var(--svp-fg); /* white on dark sections, black on light ones */
   padding: 18px 22px;
   border-bottom: 1px solid var(--svp-line);
+}
+/* Header row is inverted: black bar with white text on light sections,
+   white bar with black text on dark sections. */
+.svp-table thead th {
+  background: #88888820;
+  color: var(--svp-color);
+  border-bottom-color: var(--svp-fg);
 }
 .svp-table td {
   padding: 18px 22px;
