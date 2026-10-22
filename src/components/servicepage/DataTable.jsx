@@ -29,7 +29,7 @@ export default function DataTable({ tone, eyebrow, title, intro, columns = [], r
           </tbody>
         </table>
       </div>
-      {note && <p className="svp-body mt-6 max-w-[80ch]">{note}</p>}
+      {note && <p className="svp-body !mt-5 max-w-[80ch]">{note}</p>}
     </Section>
   )
 }
