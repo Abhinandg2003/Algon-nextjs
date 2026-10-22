@@ -38,9 +38,9 @@
   color: #fff;
   --svp-fg: #fff;
   --svp-strong: rgba(255, 255, 255, 0.86); /* high-contrast body text: lead + table cells */
-  --svp-muted: rgba(255, 255, 255, 0.62);
+  --svp-muted: rgba(255, 255, 255, 0.8);
   --svp-faint: rgba(255, 255, 255, 0.38);
-  --svp-line: rgba(255, 255, 255, 0.15);
+  --svp-line: rgba(255, 255, 255, 0.3);
   --svp-card: rgba(255, 255, 255, 0.03);
   --svp-card-hover: rgba(255, 255, 255, 0.06);
 }
@@ -249,7 +249,7 @@ a.svp-card:hover,
 .svp-light .svp-icon { color: var(--svp-blue); }
 .svp-num {
   font-family: "DisplayFont", sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   letter-spacing: 0.1em;
   color: var(--svp-blue-2);
 }

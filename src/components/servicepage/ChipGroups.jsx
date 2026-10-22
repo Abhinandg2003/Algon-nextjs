@@ -19,7 +19,7 @@ export default function ChipGroups({ tone, eyebrow, title, intro, groups, items,
           </div>
         ))}
       </div>
-      {note && <p className="svp-body mt-10 max-w-[80ch]">{note}</p>}
+      {note && <p className="svp-body mt-10 max-w-[80ch] !mt-5">{note}</p>}
     </Section>
   )
 }

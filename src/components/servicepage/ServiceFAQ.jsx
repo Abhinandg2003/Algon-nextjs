@@ -25,7 +25,7 @@ export default function ServiceFAQ({ items = [] }) {
             </button>
             <div id={`svp-faq-${i}`} className="svp-faq-a" role="region">
               <div>
-                <p className="svp-body pb-7 max-w-[80ch]">{f.a}</p>
+                <p className="svp-lead pb-7 max-w-[80ch]">{f.a}</p>
               </div>
             </div>
           </li>

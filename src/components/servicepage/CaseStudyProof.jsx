@@ -23,11 +23,11 @@ export default function CaseStudyProof({ tone, id, eyebrow = "Proof", title = "W
           />
         </div>
         <div className="flex  flex-col gap-6 p-8 md:p-12">
-          <span className="svp-eyebrow">{study.category}</span>
+          {/* <span className="svp-eyebrow">{study.category}</span> */}
           <h3 className="svp-title !text-[clamp(28px,3vw,44px)]">{study.title}</h3>
-          <p className="svp-body">{study.tagline}</p>
+          <p className="svp-lead">{study.tagline}</p>
           {stats.length > 0 && (
-            <dl className="grid grid-cols-3 gap-6 border-t border-[var(--svp-line)] pt-6">
+            <dl className="grid grid-cols-3 gap-6  pt-6">
               {stats.map((s) => (
                 <div key={s.label} className="flex flex-col gap-1">
                   <dd className="svp-stat-value !text-[clamp(28px,2.6vw,40px)]">{s.value}{s.suffix}</dd>

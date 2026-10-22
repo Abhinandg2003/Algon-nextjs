@@ -12,7 +12,7 @@ export default function ServiceCTA({
       <div className="svp-orb -bottom-[25%] -left-[10%]" aria-hidden="true" />
       <div className="svp-inner grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20 lg:items-center">
         <div className="svp-reveal flex flex-col gap-6">
-          <span className="svp-eyebrow">Start here</span>
+          {/* <span className="svp-eyebrow">Start here</span> */}
           <h2 className="svp-h1 !text-[clamp(40px,5vw,80px)]">{title}</h2>
           <p className="svp-lead max-w-[52ch]">{text}</p>
           <p className="svp-body">

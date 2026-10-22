@@ -9,8 +9,10 @@ export default function ProcessSteps({ tone, eyebrow = "How it runs", title, int
       <ol className={`grid gap-x-8 gap-y-12 sm:grid-cols-2 ${cols}`}>
         {steps.map((s, i) => (
           <li key={s.title} className="svp-step svp-reveal flex flex-col gap-3" style={{ transitionDelay: `${(i % 3) * 70}ms` }}>
-            <span className="svp-num">Step {String(i + 1).padStart(2, "0")}</span>
+            <div className="flex justify-between w-full ">
             <h3 className="svp-h3">{s.title}</h3>
+            <span className="svp-num">{String(i + 1).padStart(2, "0")}</span>
+            </div>
             <p className="svp-body">{s.text}</p>
           </li>
         ))}
