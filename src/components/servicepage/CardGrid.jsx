@@ -17,7 +17,7 @@ export default function CardGrid({ tone, id, eyebrow, title, intro, items = [], 
             <>
               <div className="flex items-center justify-between gap-4">
                 {item.icon ? <span className="svp-icon"><Icon name={item.icon} /></span> : <span />}
-                {numbered && <span className="svp-num">{String(i + 1).padStart(2, "0")}</span>}
+                {/* {numbered && <span className="svp-num">{String(i + 1).padStart(2, "0")}</span>} */}
               </div>
               <h3 className="svp-h3 pt-2">{item.title}</h3>
               <p className="svp-body">{item.text}</p>

@@ -39,7 +39,7 @@
   --svp-fg: #fff;
   --svp-muted: rgba(255, 255, 255, 0.62);
   --svp-faint: rgba(255, 255, 255, 0.38);
-  --svp-line: rgba(255, 255, 255, 0.12);
+  --svp-line: rgba(255, 255, 255, 0.15);
   --svp-card: rgba(255, 255, 255, 0.03);
   --svp-card-hover: rgba(255, 255, 255, 0.06);
 }
@@ -225,7 +225,7 @@ color: var(--svp-blue-2);;  padding: 0 0.12em 0.06em;
   height: 100%;
   padding: clamp(24px, 2.2vw, 34px);
   border: 1px solid var(--svp-line);
-  border-radius: 14px;
+  /* border-radius: 14px; */
   background: var(--svp-card);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s, background 0.35s;
 }
@@ -241,11 +241,10 @@ a.svp-card:hover,
   justify-content: center;
   width: 46px;
   height: 46px;
-  border-radius: 12px;
+  /* border-radius: 12px; */
   color: var(--svp-blue-2);
-  background: rgba(41, 141, 255, 0.1);
 }
-.svp-light .svp-icon { color: var(--svp-blue); background: rgba(0, 80, 212, 0.08); }
+.svp-light .svp-icon { color: var(--svp-blue); }
 .svp-num {
   font-family: "DisplayFont", sans-serif;
   font-size: 14px;

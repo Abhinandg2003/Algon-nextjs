@@ -28,7 +28,7 @@ export default function Section({
             }`}
           >
             <div className="flex flex-col gap-5">
-              {eyebrow && <span className="svp-eyebrow">{eyebrow}</span>}
+              {/* {eyebrow && <span className="svp-eyebrow">{eyebrow}</span>} */}
               {title && <h2 className="svp-title">{title}</h2>}
             </div>
             {intro && <p className="svp-lead">{intro}</p>}

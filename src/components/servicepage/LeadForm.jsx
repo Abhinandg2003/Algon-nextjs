@@ -34,7 +34,7 @@ export default function LeadForm({
 
   if (status === "sent") {
     return (
-      <div className="svp-form flex flex-col gap-3" role="status">
+      <div className="svp-form flex  flex-col gap-3" role="status">
         <p className="svp-h3">Thanks, we have it.</p>
         <p className="svp-body">
           Someone from the team will reply within one working day with a straight answer on what it needs.
