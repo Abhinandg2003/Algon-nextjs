@@ -14,7 +14,10 @@ import RelatedServices from "./RelatedServices"
 import ServiceFAQ from "./ServiceFAQ"
 import ServiceCTA from "./ServiceCTA"
 import Section from "./Section"
+import MediaBand from "./MediaBand"
+import StickyShowcase from "./StickyShowcase"
 import { getServicePage } from "@/data/servicePages"
+import { bannerImage, showcaseImages } from "@/lib/serviceImages"
 
 const SITE_URL = "https://algonsolutions.com"
 const RELATED_ICON = { healthcare: "Stethoscope", "ai-development": "Sparkles", "product-engineering": "Layers" }
@@ -81,12 +84,24 @@ export default function ServicePage({ type, slug }) {
   // Build the body sections in order, then alternate light/dark tones so
   // every page has the same rhythm whatever sections it uses. The stats strip
   // sits outside the rhythm: it is always a dark card under the hero.
+  // Blocks marked `untoned` (full-bleed image bands) sit outside that rhythm.
   const blocks = []
+  const banner = bannerImage(type, slug)
   if (page.definition) blocks.push((tone) => <DefinitionBlock key="def" tone={tone} {...page.definition} />)
+  if (banner)
+    blocks.push(
+      Object.assign(() => <MediaBand key="band" image={banner} alt={`${name} — Algon Solutions`} caption={page.media?.caption} />, {
+        untoned: true,
+      })
+    )
   if (page.problems)
     blocks.push((tone) => <CardGrid key="problems" tone={tone} eyebrow="Why it stalls" numbered {...page.problems} />)
-  if (page.services)
-    blocks.push((tone) => <CardGrid key="services" id="svp-services" tone={tone} eyebrow="What we build" {...page.services} />)
+  if (page.services) {
+    const images = showcaseImages(type, slug, page.services.items.length)
+    blocks.push((tone) => (
+      <StickyShowcase key="services" id="svp-services" tone={tone} eyebrow="What we build" images={images} {...page.services} />
+    ))
+  }
   ;(page.tables || []).forEach((t, i) =>
     blocks.push((tone) => <DataTable key={`table-${i}`} tone={tone} eyebrow={t.eyebrow || "In detail"} {...t} />)
   )
@@ -122,7 +137,10 @@ export default function ServicePage({ type, slug }) {
         crumbs={[{ label: "Home", href: "/" }, { label: menu.label, href: `/${type}` }, { label: group.title }, { label: name }]}
       />
       {page.stats?.length > 0 && <StatsStrip items={page.stats} />}
-      {blocks.map((render, i) => render(i % 2 === 0 ? "light" : "dark"))}
+      {(() => {
+        let n = 0
+        return blocks.map((render) => (render.untoned ? render() : render(n++ % 2 === 0 ? "light" : "dark")))
+      })()}
       <ServiceCTA serviceName={name} {...page.cta} />
       <Footer />
     </div>

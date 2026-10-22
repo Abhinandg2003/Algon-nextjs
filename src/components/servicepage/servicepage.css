@@ -344,6 +344,102 @@ a.svp-card:hover,
   border-radius: 50%;
   background: var(--svp-blue-2);
 }
+/* Horizontal pinned track (lg+): fixed-width step cards side by side */
+@media (min-width: 1024px) {
+  .svp-process-step { width: clamp(300px, 27vw, 420px); flex-shrink: 0; }
+}
+
+/* ── Media band (parallax image, MediaBand.jsx) ─────────────────────────── */
+.svp-band {
+  position: relative;
+  height: clamp(360px, 78vh, 840px);
+  background:#fcfcf7;
+}
+.svp-band-frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  will-change: clip-path;
+}
+.svp-band-img {
+  position: absolute;
+  left: 0;
+  top: -12%;
+  width: 100%;
+  height: 124%; /* extra height gives the parallax room to move */
+  object-fit: cover;
+  will-change: transform;
+}
+.svp-band-caption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 22vh var(--svp-pad-x) 7vh;
+  background: linear-gradient(to top, rgba(5, 5, 8, 0.8), transparent);
+}
+
+/* ── Sticky showcase (StickyShowcase.jsx) ───────────────────────────────── */
+/* The panel is held in place with a GSAP pin (see StickyShowcase.jsx), not
+   CSS sticky: index.css sets overflow on html and body, which disables
+   position:sticky site-wide. `clip` keeps the section clipped without
+   creating a scroll container; old browsers fall back to `visible`. */
+.svp-section.svp-sticky-ok { overflow: visible; overflow: clip; }
+
+.svp-show-item { border-bottom: 1px solid var(--svp-line); }
+@media (min-width: 1024px) {
+  .svp-show-item { opacity: 0.32; transition: opacity 0.5s ease; }
+  .svp-show-item[data-active="true"] { opacity: 1; }
+}
+.svp-show-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid var(--svp-line);
+  background: var(--svp-ink);
+}
+.svp-show-slide {
+  position: absolute;
+  inset: 0;
+  will-change: clip-path;
+}
+.svp-show-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 75% 20%, rgba(41, 141, 255, 0.35) 0%, transparent 60%),
+    radial-gradient(ellipse at 15% 90%, rgba(38, 94, 237, 0.28) 0%, transparent 55%),
+    var(--svp-ink);
+}
+.svp-show-fallback-icon {
+  display: inline-flex;
+  padding: 28px;
+  border-radius: 28px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.svp-show-fallback-num {
+  position: absolute;
+  right: 6%;
+  bottom: -4%;
+  font-family: "DisplayFont", sans-serif;
+  font-weight: 500;
+  font-size: clamp(120px, 14vw, 240px);
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.06);
+}
+.svp-show-counter {
+  position: absolute;
+  left: 24px;
+  bottom: 20px;
+  font-family: "DisplayFont", sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  color: #fff;
+  mix-blend-mode: difference;
+}
+.svp-show-counter span { opacity: 0.55; }
 
 /* ── FAQ accordion ──────────────────────────────────────────────────────── */
 .svp-faq-item { border-bottom: 1px solid var(--svp-line); }

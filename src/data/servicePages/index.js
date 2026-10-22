@@ -30,6 +30,12 @@
 //   related:    ["type/slug", ...],                   // up to 3 sibling pages
 //   faq:        [{ q, a }],                           // 6–8
 //   cta:        { title?, text? },
+//   media:      { caption? },                        // optional caption on the banner image
+//
+// Images are found by file name, not listed here (see src/lib/serviceImages.js):
+//   public/images/services/<type>/banner.webp            category banner, used by every page + hub
+//   public/images/services/<type>/<slug>/banner.webp     page banner (overrides the category one)
+//   public/images/services/<type>/<slug>/service-N.webp  N = 1…6, one per services.items entry
 // }
 //
 // Icon names must exist in components/servicepage/Icon.jsx.

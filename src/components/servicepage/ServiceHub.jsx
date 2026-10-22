@@ -5,8 +5,10 @@ import Reveal from "./Reveal"
 import ServiceHero from "./ServiceHero"
 import CardGrid from "./CardGrid"
 import ServiceCTA from "./ServiceCTA"
+import MediaBand from "./MediaBand"
 import { NAV_MENUS } from "@/data/navMenus"
 import { SERVICE_PAGES } from "@/data/servicePages"
+import { bannerImage } from "@/lib/serviceImages"
 
 // Category landing page (/healthcare, /ai-development, /product-engineering):
 // every service in the menu, grouped as in the navbar, each linking to its page.
@@ -36,6 +38,7 @@ export default function ServiceHub({ type }) {
   const copy = HUB_COPY[type]
   const pages = SERVICE_PAGES[type] || {}
   const rootId = `svp-hub-${type}`
+  const banner = bannerImage(type)
 
   return (
     <div id={rootId} className="svp">
@@ -47,6 +50,7 @@ export default function ServiceHub({ type }) {
         hero={{ ...copy, secondaryCta: "See all services" }}
         crumbs={[{ label: "Home", href: "/" }, { label: menu.label }]}
       />
+      {banner && <MediaBand image={banner} alt={`${menu.label} services — Algon Solutions`} />}
       {menu.groups.map((g, i) => (
         <CardGrid
           key={g.title}
