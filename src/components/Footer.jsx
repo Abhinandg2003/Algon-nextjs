@@ -252,8 +252,10 @@ export default function Footer() {
             <Link href="/">
             <img
               src="/images/logo white.webp"
-              alt="Algon"
+              alt="Algon Solutions logo"
               className="block h-25 max-w-full"
+              loading="lazy"
+              decoding="async"
             />
             </Link>
           </div>
@@ -291,9 +293,9 @@ export default function Footer() {
             </div>
 
             <div className=" gap-5 mt-5 hidden md:flex">
-              <img className="h-20 w-auto" src="/images/hippa.webp" alt="hippa logo" />
-              <img className="h-20 w-auto" src="/images/gdpr.webp" alt="gdpr logo" />
-                            <img className="h-20 w-auto" src="/images/aicpa.svg" alt="aicpa logo" />
+              <img className="h-20 w-auto" src="/images/hippa.webp" alt="HIPAA compliant" loading="lazy" decoding="async" />
+              <img className="h-20 w-auto" src="/images/gdpr.webp" alt="GDPR compliant" loading="lazy" decoding="async" />
+              <img className="h-20 w-auto" src="/images/aicpa.svg" alt="AICPA SOC certified" loading="lazy" decoding="async" />
 
             </div>
 
@@ -337,8 +339,8 @@ export default function Footer() {
         </div>
 
         <div className=" gap-5 mt-0 flex md:hidden justify-center mb-10">
-              <img className="h-20 w-auto" src="/images/hippa.webp" alt="hippa logo" />
-              <img className="h-20 w-auto" src="/images/gdpr.webp" alt="gdpr logo" />
+              <img className="h-20 w-auto" src="/images/hippa.webp" alt="HIPAA compliant" loading="lazy" decoding="async" />
+              <img className="h-20 w-auto" src="/images/gdpr.webp" alt="GDPR compliant" loading="lazy" decoding="async" />
             </div>
 
         {/* Bottom bar */}

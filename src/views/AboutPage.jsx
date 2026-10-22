@@ -1043,8 +1043,10 @@ function TeamSection() {
                 {person.pic ? (
                   <img
                     src={person.pic}
-                    alt={person.name}
+                    alt={`${person.name}, ${person.role} at Algon Solutions`}
                     className="ab-team-pic"
+                    loading="lazy"
+                    decoding="async"
                   />
                 ) : (
                   <span

@@ -26,7 +26,7 @@ const TESTIMONIALS = [
     video:
       "/videos/desire testi2.mp4",
     thumbnail:
-      "images/desire thumb3.jpg",
+      "/images/desire thumb3.jpg",
     logo: "/images/clients/logos/desire.png",
     statValue: "100%",
     statLabel: "Brand presence",
@@ -148,7 +148,7 @@ const VideoCard = memo(function VideoCard({ item, cardWidth }) {
       {/* thumbnail (first frame) — native lazy-loading, decoded off the main thread */}
       <img
         src={item.thumbnail}
-        alt=""
+        alt={`${item.name}, ${item.role} — video testimonial`}
         loading="lazy"
         decoding="async"
         className="absolute inset-0 h-full w-full object-cover transition-[opacity,filter] duration-500 ease-out"
@@ -165,6 +165,8 @@ const VideoCard = memo(function VideoCard({ item, cardWidth }) {
         <video
           ref={videoRef}
           src={item.video}
+          poster={item.thumbnail}
+          aria-label={`Video testimonial from ${item.name}, ${item.role}`}
           muted
           loop
           playsInline

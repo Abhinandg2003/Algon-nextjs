@@ -29,6 +29,7 @@ export default function SplashScreen({ onFinish, onReady, play }) {
         muted
         playsInline
         preload="auto"
+        aria-hidden="true"
         onCanPlayThrough={onReady}
         onError={() => { onReady?.(); handleEnd(); }}   // don't hang if the file is missing
         onEnded={handleEnd}

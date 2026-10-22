@@ -90,7 +90,7 @@ function FeaturedPost({ post, onRead }) {
   return (
     <div ref={ref} className="bl-featured" onClick={() => onRead(post)}>
       <div className="bl-featured-img-wrap">
-        <img src={post.image} alt={post.title} className="bl-featured-img" />
+        <img src={post.image} alt={post.title} className="bl-featured-img" decoding="async" />
         <div className="bl-featured-img-overlay" />
       </div>
       <div className="bl-featured-content">
@@ -139,7 +139,7 @@ function BlogCard({ post, index, onRead }) {
   return (
     <div ref={ref} className="bl-card" onClick={() => onRead(post)}>
       <div className="bl-card-img-wrap">
-        <img src={post.image} alt={post.title} className="bl-card-img" />
+        <img src={post.image} alt={post.title} className="bl-card-img" loading="lazy" decoding="async" />
         <div className="bl-card-img-overlay" />
         <span className="bl-cat-pill bl-cat-pill--card" style={{ "--cat": post.accent }}>{post.category}</span>
       </div>

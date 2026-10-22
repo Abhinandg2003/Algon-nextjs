@@ -749,8 +749,10 @@ function FeaturedReel() {
                   <a href={proj.href} target="_blank">
                     <img
                       src={proj.image}
-                      alt={proj.title}
+                      alt={`${proj.title} — ${proj.category}`}
                       className="pf-panel-img"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </a>
 
@@ -889,7 +891,7 @@ function GridCard({ proj, index }) {
         </svg>
         <div className="pf-gc-year">{proj.year}</div> */}
         <a href={proj.href} target="_blank">
-          <img src={proj.pic} alt={proj.title} />{" "}
+          <img src={proj.pic} alt={`${proj.title} — ${proj.cat}`} loading="lazy" decoding="async" />{" "}
         </a>
         {/* <div
           className="pf-panel-img-overlay"

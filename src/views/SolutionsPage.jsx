@@ -1114,7 +1114,10 @@ function SolOverview() {
                 <img
                   className={`hidden md:flex absolute h-[450px] w-[450px] -right-20 -bottom-20 ${i % 2 === 0 ? "animate-float-soft" : "animate-float-wide"}`}
                   src={sol.pic}
-                  alt={sol.desc}
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="sl-ov-bar" style={{ background: sol.accent }} />
@@ -1269,6 +1272,8 @@ function SolOverviewpc() {
                   ref={(el) => (imageRefs.current[i] = el)}
                   src={sol.picsticky}
                   alt={sol.title}
+                  loading="lazy"
+                  decoding="async"
                   className="absolute inset-0 w-full h-full object-cover"
                   style={{ willChange: "clip-path" }}
                 />
@@ -1456,6 +1461,7 @@ function DeepDive() {
                   playsInline
                   preload="metadata"
                   src="/videos/rocket.mp4"
+                  aria-hidden="true"
                 />
               </div>
             </div>
@@ -1635,7 +1641,10 @@ function Industries() {
           <div className="absolute right-[-10%] top-[-100%]">
             <img
               src={book}
-              alt="book svg"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
               className="h-[1000px] w-[1000px] rotate-180 opacity-10 book-rotate"
             />
           </div>
@@ -1649,12 +1658,17 @@ function Industries() {
               <img
                 src={ind.pic}
                 alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition brightness-200 duration-700 blur-2xl scale-105"
               />
               <div className="absolute inset-0 bg-black/40 hover:opacity-0 transition-all duration-300 m-2 z-[4] rounded-xl" />
               <img
                 src={ind.pic}
-                alt=""
+                alt={`${ind.name} industry solutions`}
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 w-full h-full object-cover group-hover:blur-lg transition duration-300 scale-100 p-2 z-[3] rounded-2xl"
               />
               <div className="absolute inset-0 rounded-2xl border border-white/10 z-[3]" />
@@ -1781,6 +1795,7 @@ function CaseCard({ cs, index }) {
           alt={cs.title}
           className={`cs2-img${hovered ? " cs2-img-hovered" : ""}`}
           loading="lazy"
+          decoding="async"
         />
         <div
           className="cs2-overlay"

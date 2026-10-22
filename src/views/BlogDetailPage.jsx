@@ -159,7 +159,7 @@ export default function BlogDetailPage() {
 
         {/* Hero image */}
         <div ref={heroRef} className="bd-hero bd-animate">
-          <img src={post.image} alt={post.title} className="bd-hero-img" />
+          <img src={post.image} alt={post.title} className="bd-hero-img" fetchPriority="high" />
           <div className="bd-hero-overlay" />
         </div>
 

@@ -116,6 +116,7 @@ export default function AlgonHero() {
             loop
             muted
             playsInline
+            aria-hidden="true"
           />
 
           {/* White overlay */}
@@ -130,8 +131,10 @@ export default function AlgonHero() {
             ref={maskRef}
             src={maskSrc}
             alt=""
+            aria-hidden="true"
+            fetchPriority="high"
             className="absolute inset-0 w-full h-full object-cover"
-            
+
             style={{
               zIndex          : 20,
               transformOrigin : "center center",

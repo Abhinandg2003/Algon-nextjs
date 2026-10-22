@@ -77,13 +77,12 @@ const DESKTOP_MENU = [
         desc:
             "Trusted by visionary founders and enterprise leaders alike: Meet the global companies, startups, and institutions that rely on us to power their digital infrastructure.",
         logos: [
-            "/images/clients/logos/Corewood algon.webp",
-            "/images/clients/logos/desire.webp",
-            "/images/clients/logos/Drisya.webp",
-            "/images/clients/logos/pass algon.webp",
-            "/images/clients/logos/qot algon.webp",
-            "/images/clients/logos/Visat algon.webp",
-            
+            { src: "/images/clients/logos/Corewood algon.webp", name: "Corewood" },
+            { src: "/images/clients/logos/desire.webp", name: "Desire Study Abroad" },
+            { src: "/images/clients/logos/Drisya.webp", name: "Drisya Marble" },
+            { src: "/images/clients/logos/pass algon.webp", name: "MakeMyPass" },
+            { src: "/images/clients/logos/qot algon.webp", name: "QOT Interiors" },
+            { src: "/images/clients/logos/Visat algon.webp", name: "Visat" },
         ],
     },
 
@@ -253,7 +252,9 @@ useEffect(() => {
                                 <div className="h-[135px] overflow-hidden bg-white/5">
                                     <img
                                         src={study.thumbnail || study.heroImage || study.commonImg}
-                                        alt={study.title}
+                                        alt={`${study.title} case study`}
+                                        loading="lazy"
+                                        decoding="async"
                                         className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                                     />
                                 </div>
@@ -320,6 +321,8 @@ useEffect(() => {
                                 <img
                                     src={latestBlog.image}
                                     alt={latestBlog.title}
+                                    loading="lazy"
+                                    decoding="async"
                                     className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                                 />
                             </div>
@@ -438,8 +441,8 @@ useEffect(() => {
                     <div className="-ml-[3vw]">
                         <div className="grid grid-cols-3 gap-10">
                             {current.logos.map((logo) => (
-                                <div key={logo} className="flex items-center justify-center">
-                                    <img src={logo} className="w-20" />
+                                <div key={logo.src} className="flex items-center justify-center">
+                                    <img src={logo.src} alt={`${logo.name} logo`} className="w-20" loading="lazy" decoding="async" />
                                 </div>
                             ))}
                         </div>
@@ -490,7 +493,7 @@ useEffect(() => {
     effectiveTheme === "dark"
       ? "/images/logo black.webp"
       : "/images/logo white.webp"
-  } className="h-6" />
+  } alt="Algon Solutions" className="h-6" fetchPriority="high" />
                 </Link>
 
                 {/* Desktop nav — dropdown triggers */}

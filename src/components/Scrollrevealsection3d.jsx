@@ -377,6 +377,8 @@ function MobileRow({ panel, index }) {
             src={panel.img}
             alt={panel.headline}
             className="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
 
           {/* Black Gradient */}

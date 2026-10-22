@@ -23,6 +23,7 @@ export default function MaskReveal({ onFinish }) {
       muted
       playsInline
       preload="auto"
+      aria-hidden="true"
     />
   )
 }

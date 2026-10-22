@@ -86,6 +86,8 @@ function ValueCard({ val, isActive, onEnter }) {
         src={val.image}
         alt={val.title}
         className="absolute inset-0 w-full h-full object-cover"
+        loading="lazy"
+        decoding="async"
       />
 
       {/* Overlay — fades in only once fully open */}
@@ -109,7 +111,7 @@ function ValueCard({ val, isActive, onEnter }) {
       >
         <div className="w-[50px] h-[50px] flex items-center justify-center ">
           {/* <Icon size={20} className="text-white" /> */}
-          <img src={val.iconimg} className="invert" alt={val.title} />
+          <img src={val.iconimg} className="invert" alt="" aria-hidden="true" loading="lazy" decoding="async" />
         </div>
         <span
           className="text-white text-[15px] tracking-wide text-center leading-tight"
@@ -148,6 +150,8 @@ function MobileValueRow({ val }) {
         src={val.image}
         alt={val.title}
         className="absolute inset-0 w-full h-full object-cover"
+        loading="lazy"
+        decoding="async"
       />
       <div className="absolute inset-0 bg-black/45" />
       <div className="relative z-[1] h-full flex items-center gap-3 px-5">

@@ -291,8 +291,9 @@ function DetailHero({ study }) {
         <img
           ref={imgRef}
           src={study.mockup}
-          alt={study.title}
+          alt={`${study.title} — ${study.category}`}
           className="csd-hero-img"
+          fetchPriority="high"
         />
         <div ref={overlayRef} className="csd-hero-overlay" />
       </div>
@@ -416,8 +417,10 @@ useEffect(() => {
         <img
   ref={imgRef}
   src={study.commonImg}
-  alt={study.title}
+  alt={`${study.title} project showcase`}
   className="w-full h-full object-cover"
+  loading="lazy"
+  decoding="async"
 />
 
         {/* dark overlay */}
@@ -659,7 +662,7 @@ function StrategySection({ study }) {
             <div className="csd-strategy-diagram" style={{ display: "inline-block" }}>
               {/* <StrategyDiagram accent={study.accent} /> */}
 
-              <img className="rounded-[10px]" src={study.heroImage} alt={study.id} />
+              <img className="rounded-[10px]" src={study.heroImage} alt={`${study.title} — ${study.category}`} loading="lazy" decoding="async" />
             </div>
           </div>
           <div className="csd-pillars">
@@ -979,7 +982,7 @@ function GallerySection({ study }) {
               ) : type === "tablet" ? (
                 <TabletMockup src={src} accent="#777" index={i} />
               ) : (
-                <BrowserMockup src={src} accent="#777" index={i} />
+                <BrowserMockup src={src} accent="#777" index={i} title={study.title} />
               )}
               
             </div>
@@ -1026,7 +1029,7 @@ function GallerySection({ study }) {
             <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M13 5H1M1 5L5 1M1 5L5 9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </button>
           <div className="csd-lb-content" onClick={(e) => e.stopPropagation()}>
-            <img src={study.gallery[light]} alt="" className="csd-lb-img" />
+            <img src={study.gallery[light]} alt={`${study.title} screenshot ${light + 1} of ${study.gallery.length}`} className="csd-lb-img" decoding="async" />
             <div className="csd-lb-meta">
               <span style={{ fontSize: 10, letterSpacing: ".2em", color: "rgba(255,255,255,.3)", textTransform: "uppercase" }}>
                 {study.title}
@@ -1045,7 +1048,7 @@ function GallerySection({ study }) {
   );
 }
 
-function BrowserMockup({ src, accent, index }) {
+function BrowserMockup({ src, accent, index, title }) {
   return (
     <div className="csd-mockup csd-mockup--browser">
       <div className="csd-browser-bar" style={{ borderColor: "rgba(5,5,8,.1)" }}>
@@ -1063,7 +1066,7 @@ function BrowserMockup({ src, accent, index }) {
         </div>
       </div>
       <div className="csd-mockup-img-wrap">
-        <img src={src} alt="" className="csd-mockup-img" loading="lazy" />
+        <img src={src} alt={`${title} screenshot ${index + 1}`} className="csd-mockup-img" loading="lazy" decoding="async" />
         <div className="csd-mockup-hover-overlay" style={{ background: `${accent}12` }}>
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style={{ opacity: 0 }} className="csd-mockup-hover-icon">
             <circle cx="16" cy="16" r="14" stroke="white" strokeWidth="0.8" />
@@ -1240,7 +1243,7 @@ function CTASection({ study, currentId }) {
         </Link>
 
         <div className="h-full w-full rounded-[10px] object-cover overflow-hidden">
-          <img className="hover:scale-105 transition-all duration-300 h-full w-full object-cover overflow-hidden" src={next.thumbnail} alt="" />
+          <img className="hover:scale-105 transition-all duration-300 h-full w-full object-cover overflow-hidden" src={next.thumbnail} alt={`${next.title} — next case study`} loading="lazy" decoding="async" />
         </div>
 
 

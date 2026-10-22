@@ -634,8 +634,10 @@ export default function TestimonialSection() {
                           r.logo.current = el;
                         }}
                         src={t.logo}
-                        alt={t.company}
+                        alt={`${t.company} logo`}
                         className="ts-logo"
+                        loading="lazy"
+                        decoding="async"
                       />
                       <div
                         ref={(el) => {

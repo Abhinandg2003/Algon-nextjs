@@ -241,6 +241,7 @@ useEffect(() => {
                 loop
                 disablePictureInPicture
                 disableRemotePlayback
+                aria-hidden="true"
                 // OPT: only the active slide eagerly buffers; the queued
                 // next slide just grabs enough to start cleanly, nothing else
                 preload={isActive ? "auto" : "metadata"}
@@ -527,7 +528,10 @@ function ServicesOverview() {
                     i % 2 === 0 ? "animate-float-soft" : "animate-float-wide"
                   }`}
                   src={sv.pic}
-                  alt={sv.desc}
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="sv-ov-bar" style={{ background: sv.accent }} />
@@ -684,6 +688,8 @@ function ServicesOverviewPC() {
                   ref={(el) => (imageRefs.current[i] = el)}
                   src={sv.picsticky}
                   alt={sv.title}
+                  loading="lazy"
+                  decoding="async"
                   className="absolute inset-0 w-full h-full object-cover"
                   style={{ willChange: "clip-path" }}
                 />

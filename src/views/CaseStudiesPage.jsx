@@ -348,7 +348,7 @@ function ProjectCard({ study }) {
       onMouseLeave={onLeave}
     >
       <div className="cs-card-img-wrap">
-        <img ref={imgRef} src={study.thumbnail} alt={study.title} className="cs-card-img" loading="lazy" />
+        <img ref={imgRef} src={study.thumbnail} alt={`${study.title} — ${study.category} case study`} className="cs-card-img" loading="lazy" decoding="async" />
 
       </div>
 

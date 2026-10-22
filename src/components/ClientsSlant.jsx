@@ -306,7 +306,7 @@ function ClientCard({ client, sizes }) {
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
             <a draggable={false} target="_blank" href={client.url} rel="noreferrer">
-              <img draggable={false}  style={{ width: LOGO_IMG_W, height: "auto" }} src={client.logo} alt={client.name} />
+              <img draggable={false}  style={{ width: LOGO_IMG_W, height: "auto" }} src={client.logo} alt={`${client.name} logo`} loading="lazy" decoding="async" />
             </a>
           </div>
 
@@ -317,7 +317,7 @@ function ClientCard({ client, sizes }) {
             transition: "transform 0.45s cubic-bezier(0.34,1.56,0.64,1)",
             userSelect: "none",
           }}>
-            <img draggable={false} style={{ height: CUTOUT_H, width: CUTOUT_W }} src={client.pic} alt={client.name} />
+            <img draggable={false} style={{ height: CUTOUT_H, width: CUTOUT_W }} src={client.pic} alt={`${client.name} project by Algon Solutions`} loading="lazy" decoding="async" />
           </div>
         </div>
       </div>
@@ -357,7 +357,7 @@ function LogoStrip({ sizes }) {
             <div style={{
               width: LOGO_IMG_SIZE, height: LOGO_IMG_SIZE, borderRadius: 7, opacity: 0.3,
             }}>
-              <img src={logo.pic} alt={logo.name} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+              <img src={logo.pic} alt={`${logo.name} logo`} loading="lazy" decoding="async" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
             </div>
           </div>
         ))}

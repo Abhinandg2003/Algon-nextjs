@@ -92,12 +92,15 @@ export default function AIAssistant() {
         <button
           className="ai-button"
           onClick={handleButtonClick}
+          aria-label={open ? "Close AI assistant" : "Open AI assistant"}
         >
           <video
             autoPlay
             muted
             loop
             playsInline
+            preload="metadata"
+            aria-hidden="true"
             className="ai-video"
           >
             <source src="/videos/ai video mayamblue2.mp4" type="video/mp4" />
@@ -113,7 +116,7 @@ export default function AIAssistant() {
               ease: [0.25,1,0.5,1]
             }}
           >
-            <img src={sparkleIcon} alt="" className="sparkle-icon p-3" />
+            <img src={sparkleIcon} alt="" aria-hidden="true" decoding="async" className="sparkle-icon p-3" />
           </motion.div>
         </button>
       </motion.div>

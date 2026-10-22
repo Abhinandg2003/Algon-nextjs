@@ -280,8 +280,8 @@ WebkitMaskImage: "radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 70%)"
                 color: client.text,
                 lineHeight: 1,
               }}>
-                <a href={client.link} target="_blank">
-                  <img className="h-[100px] md:h-[120px] aspect:square" src={client.image} alt="" />
+                <a href={client.link} target="_blank" rel="noopener noreferrer">
+                  <img className="h-[100px] md:h-[120px] aspect:square" src={client.image} alt={`${client.name} logo`} loading="lazy" decoding="async" />
                 </a>
               </span>
               {/* <span style={{
