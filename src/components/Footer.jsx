@@ -46,12 +46,12 @@ import Link from "next/link";
    ──────────────────────────────────────────────────────────────────── */
 
 const SERVICES = [
-  "AI & Automation",
-  "Web Development",
-  "SaaS Solutions",
-  "Managed Engineering",
-  "Blockchain & Web3",
   "Hospital Management Systems",
+  "AI & Automation",
+  "Managed Engineering",
+  "Web & SaaS Development",
+  "Clinic Automation",
+  "Dashboards & Internal Tools",
 ];
 
 const COMPANY = [
@@ -74,11 +74,11 @@ const SOCIALS = [
 ];
 
 const MARQUEE_ITEMS = [
-  "Web Development",
-  "SaaS Solutions",
-  "Blockchain & Web3",
-  "eCommerce",
-  "Marketing",
+  "Hospital Management Systems",
+  "AI & Automation",
+  "Managed Engineering",
+  "Web & SaaS Development",
+  "Workflow Automation",
   "Cybersecurity",
 ];
 
@@ -147,7 +147,7 @@ function Newsletter() {
   return (
     <div className="min-w-[280px] max-w-[380px]">
       <p className="mb-6 text-base font-light leading-[1.7] text-white/55">
-        Ideas, launches, and thinking from the studio — no spam, ever.
+        Notes on hospital systems, automation, and engineering. No spam, ever.
       </p>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
         <div className="flex border-b border-white/25 pb-[10px]">

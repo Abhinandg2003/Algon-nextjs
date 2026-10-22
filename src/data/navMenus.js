@@ -26,17 +26,51 @@ const build = (type, groups) =>
 
 export const NAV_MENUS = [
   {
+    id: "healthcare",
+    type: "healthcare",
+    label: "Healthcare",
+    blurb: "Hospital operating systems, clinic automation, and AI for hospitals, clinics and care providers.",
+    groups: build("healthcare", [
+      {
+        title: "Hospital & Clinic Systems",
+        items: [
+          "Hospital Management System",
+          "Clinic Automation",
+          "Patient Engagement",
+          "Patient Onboarding",
+        ],
+      },
+      {
+        title: "AI & Intelligence",
+        items: [
+          "AI Agents in Healthcare",
+          "Clinical Documentation AI",
+          "Natural Language Processing",
+        ],
+      },
+      {
+        title: "Technology",
+        items: [
+          "Healthcare Software Development Services",
+          "Healthcare Integration",
+          "Health Data Analysis",
+          "DevOps in Healthcare",
+        ],
+      },
+    ]),
+  },
+  {
     id: "ai-development",
     type: "ai-development",
     label: "AI Development",
-    blurb: "Agents, automation, and custom models built for production.",
+    blurb: "Workflow automation, AI agents, and RAG grounded in your own data.",
     groups: build("ai-development", [
       {
         title: "AI Agents and Automation",
         items: [
           "AI Development Services",
           "AI Agent Development",
-          "Robotic Process Automation",
+          "Workflow Automation",
         ],
       },
       {
@@ -53,7 +87,7 @@ export const NAV_MENUS = [
     id: "product-engineering",
     type: "product-engineering",
     label: "Product Engineering",
-    blurb: "From first release to long-term engineering support.",
+    blurb: "Web and SaaS builds, and dedicated engineering teams for a defined project.",
     groups: build("product-engineering", [
       {
         title: "Build and Launch",
@@ -79,40 +113,6 @@ export const NAV_MENUS = [
       },
     ]),
   },
-  {
-  id: "healthcare",
-  type: "healthcare",
-  label: "Healthcare",
-  blurb: "Software, data, and AI for hospitals and care providers.",
-  groups: build("healthcare", [
-    {
-      title: "Technology",
-      items: [
-        "Healthcare Integration",
-        "DevOps in Healthcare",
-        "Health Data Analysis",
-        "Healthcare Software Development Services",
-      ],
-    },
-    {
-      title: "AI & Intelligence",
-      items: [
-        "AI Agents in Healthcare",
-        "AI/ML",
-        "Natural Language Processing",
-      ],
-    },
-    {
-      title: "Services",
-      items: [
-        "Managed Care",
-        "Tech Support",
-        "Patient Engagement",
-        "Patient Onboarding",
-      ],
-    },
-  ]),
-},
   {
   id: "company",
   type: "company",

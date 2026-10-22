@@ -8,7 +8,11 @@ gsap.registerPlugin(ScrollTrigger);
 const FAQ = [
   {
     q: "What core services does Algon Solutions provide?",
-    a: "We specialize in three core engineering pillars: AI & Automation (AI agents, LLMs, and workflow automation), Software & SaaS Development (web apps, MVPs, and dashboards), and Managed Engineering Services (dedicated developers, DevOps, and cloud support).",
+    a: "We build the operational layer of a business through four core services: Hospital & Clinic Systems (hospital operating systems and clinic automation), AI & Automation (AI agents, workflow automation, and RAG on your own data), Managed Engineering Services (dedicated teams for a defined project and period), and Web & SaaS Development (web apps, SaaS platforms, and MVPs). Dashboards, internal tools, and secure-by-design engineering support all four.",
+  },
+  {
+    q: "Do you build hospital management systems?",
+    a: "Yes, healthcare is our priority sector. We build hospital operating systems covering front desk, OPD/IPD, nursing, pharmacy, OT, billing, discharge, and follow-up, with a named owner for every step. For clinics, we automate appointments, reminders, follow-ups, complaint tracking, and IVR patient triage. They're in daily use by doctors, nurses, front desk staff, and management.",
   },
   {
     q: "What is your typical project timeline?",
@@ -20,7 +24,7 @@ const FAQ = [
   },
   {
     q: "Can you provide ongoing engineering support or take over an existing system?",
-    a: "Absolutely. Through our Managed Engineering Services, we offer dedicated developers, DevOps setup, QA, and cloud support. Whether you need us to rescue an existing codebase or scale a newly launched product, we treat it as our own.",
+    a: "Yes. Through our Managed Engineering Services, we provide a dedicated Algon team for a defined project and period: architects, developers, QA, cloud and DevOps engineers, and a project lead, working inside your process. Whether you need us to rescue an existing codebase or scale a newly launched product, we treat it as our own.",
   },
   {
     q: "Do you work with early-stage startups?",

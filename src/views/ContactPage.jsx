@@ -36,16 +36,15 @@ const CONTACT_EMAIL = "support@algonsolutions.com";
    DATA
 ──────────────────────────────────────────────────────────────────────────── */
 const SERVICES = [
-  "Web Development",
-  "Mobile App Development",
-  "SaaS Product",
+  "Hospital Management System",
+  "Clinic Automation",
   "AI & Automation",
-  "UI/UX Design",
-  "E-commerce",
-  "Web3 / Blockchain",
+  "Workflow Automation",
+  "Managed Engineering Team",
+  "Web & SaaS Development",
+  "Mobile App Development",
+  "Dashboards & Internal Tools",
   "Cybersecurity",
-  "AR / VR",
-  "Digital Marketing",
   "Other",
 ];
 

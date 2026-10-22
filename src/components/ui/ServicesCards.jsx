@@ -22,11 +22,30 @@ gsap.registerPlugin(ScrollTrigger)
 /* ─────────────────────────────────────────────────────────────────────────────
    SERVICES DATA
 ──────────────────────────────────────────────────────────────────────────── */
+// Order: the four core services first (healthcare leads), then the two
+// supporting services. col/offsetY are layout slots, not tied to content.
 const SERVICES = [
   {
     id: 1,
+    title: "Hospital &\nClinic Systems",
+    desc: "Hospital operating systems covering front desk, OPD/IPD, nursing, pharmacy, OT, billing, discharge and follow-up, plus clinic automation for appointments, reminders and IVR triage.",
+    gradient: "linear-gradient(135deg, #fdf4ff 0%, #e9d5ff 50%, #d8b4fe 100%)",
+    accentColor: "#555",
+    rotate: true,
+    rotateFrom: "#fdf4ff",
+    rotateTo: "#56d5ff",
+    explode: true,
+    explodeColor: "#06b6d4",
+    col: 0,
+    offsetY: 0,
+    illustration: "health",
+    pic: "/images/stickers/null.png",
+    piclow: "/images/stickers/null.webp"
+  },
+  {
+    id: 2,
     title: "AI &\nAutomation",
-    desc: "AI agents, chatbots, LLM integrations, RAG flows, and custom AI assistants that plug into real business workflows.",
+    desc: "AI agents, clinical documentation, discharge summaries, owner-level insights, and RAG on your own records, so answers are grounded in your data and token costs stay controlled.",
     gradient: "linear-gradient(135deg, #eef2ff 0%, #c7d2fe 50%, #a5b4fc 100%)",
     accentColor: "#555",
     rotate: true,
@@ -34,44 +53,60 @@ const SERVICES = [
     rotateTo: "#ffdc52",
     explode: true,
     explodeColor: "#d48825",
-    col: 0,
-    offsetY: 0,
+    col: 1,
+    offsetY: 80,
     illustration: "ai",
     pic: "/images/stickers/null.png",
     piclow: "/images/stickers/null.webp"
   },
   {
-    id: 2,
-    title: "Workflow\nAutomation",
-    desc: "Tool integrations, trigger-based workflows, data sync, CRM automation, and business process automation that remove repetitive manual work.",
-    gradient: "linear-gradient(135deg, #e0f2fe 0%, #7dd3fc 50%, #38bdf8 100%)",
+    id: 3,
+    title: "Managed Engineering\nServices",
+    desc: "A dedicated Algon team for a defined project and period: architects, developers, QA, cloud and DevOps engineers, and a project lead, working inside your process.",
+    gradient: "linear-gradient(135deg, #fff1f2 0%, #fda4af 50%, #fb7185 100%)",
     accentColor: "#888",
-    rotate: false,
+    rotate: true,
+    rotateFrom: "#fff1f2",
+    rotateTo: "#49e581",
     explode: false,
-    col: 1,
-    offsetY: 80,
-    illustration: "devops",
+    col: 0,
+    offsetY: 60,
+    illustration: "security",
     pic: "/images/stickers/null.png",
     piclow: "/images/stickers/null.webp"
   },
   {
-    id: 3,
-    title: "Software &\nSaaS Development",
-    desc: "Web apps, SaaS platforms, MVP development, APIs, and product engineering for modern businesses that need reliable software.",
+    id: 4,
+    title: "Web &\nSaaS Development",
+    desc: "Web apps, SaaS platforms, MVPs and APIs for founders, education companies and growing businesses, built around how your organisation actually runs.",
     gradient: "linear-gradient(135deg, #9cffbb 0%, #85ffaf 50%, #63ff9c 100%)",
     accentColor: "#888",
     rotate: false,
     explode: false,
-    col: 0,
-    offsetY: 60,
+    col: 1,
+    offsetY: 140,
     illustration: "saas",
     pic: "/images/stickers/saas.png",
     piclow: "/images/stickers/saas.webp"
   },
   {
-    id: 4,
+    id: 5,
+    title: "Workflow\nAutomation",
+    desc: "n8n workflows, tool integrations, data sync and CRM automation that move information between departments, staff and customers without anyone chasing it.",
+    gradient: "linear-gradient(135deg, #e0f2fe 0%, #7dd3fc 50%, #38bdf8 100%)",
+    accentColor: "#888",
+    rotate: false,
+    explode: false,
+    col: 0,
+    offsetY: 120,
+    illustration: "devops",
+    pic: "/images/stickers/null.png",
+    piclow: "/images/stickers/null.webp"
+  },
+  {
+    id: 6,
     title: "Dashboards &\nInternal Tools",
-    desc: "Admin panels, reporting dashboards, workflow portals, approval systems, and internal tools that make operations easier to manage.",
+    desc: "Admin panels, reporting dashboards, approval systems and internal tools, secure by design, that give owners visibility and control over daily operations.",
     gradient: "linear-gradient(135deg, #ecfeff 0%, #67e8f9 50%, #22d3ee 100%)",
     accentColor: "#888",
     rotate: true,
@@ -80,41 +115,8 @@ const SERVICES = [
     explode: true,
     explodeColor: "#0284c7",
     col: 1,
-    offsetY: 140,
-    illustration: "code",
-    pic: "/images/stickers/null.png",
-    piclow: "/images/stickers/null.webp"
-  },
-  {
-    id: 5,
-    title: "Growth\nSystems",
-    desc: "Landing pages, CRM flows, lead funnels, analytics dashboards, and marketing automation systems designed to capture and convert demand.",
-    gradient: "linear-gradient(135deg, #fdf4ff 0%, #e9d5ff 50%, #d8b4fe 100%)",
-    accentColor: "#888",
-    rotate: true,
-    rotateFrom: "#fdf4ff",
-    rotateTo: "#56d5ff",
-    explode: true,
-    explodeColor: "#06b6d4",
-    col: 0,
-    offsetY: 120,
-    illustration: "marketing",
-    pic: "/images/stickers/null.png",
-    piclow: "/images/stickers/null.webp"
-  },
-  {
-    id: 6,
-    title: "Managed Engineering\nServices",
-    desc: "Dedicated developers, product maintenance, DevOps, QA, cloud support, and ongoing engineering capacity for products that need to keep moving.",
-    gradient: "linear-gradient(135deg, #fff1f2 0%, #fda4af 50%, #fb7185 100%)",
-    accentColor: "#888",
-    rotate: true,
-    rotateFrom: "#fff1f2",
-    rotateTo: "#49e581",
-    explode: false,
-    col: 1,
     offsetY: 200,
-    illustration: "security",
+    illustration: "code",
     pic: "/images/stickers/null.png",
     piclow: "/images/stickers/null.webp"
   },
@@ -347,6 +349,15 @@ function Illustration({ type, color }) {
         <line x1="42" y1="24" x2="48" y2="16" stroke={color} strokeWidth="0.8"/>
         <line x1="66" y1="16" x2="72" y2="28" stroke={color} strokeWidth="0.8"/>
         <line x1="42" y1="56" x2="48" y2="48" stroke={color} strokeWidth="0.8"/>
+      </svg>
+    </div>
+  )
+
+  if (type === "health") return (
+    <div style={{ position:"absolute", bottom:20, right:20, opacity:0.22, pointerEvents:"none" }}>
+      <svg width="200" height="200" viewBox="0 0 72 72" fill="none">
+        <path d="M28 8h16v20h20v16H44v20H28V44H8V28h20V8z" stroke={color} strokeWidth="1.5" strokeLinejoin="round"/>
+        <polyline points="4,62 20,62 26,52 32,68 38,56 44,62 68,62" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     </div>
   )

@@ -557,8 +557,8 @@ function ServicesOverviewPC() {
 
     {
     id: "01",
-    title: "Advanced Medical Softwares",
-    desc: "Advanced medical softwares and hospital management systems.",
+    title: "Hospital Management Systems",
+    desc: "Hospital operating systems and clinic automation, from front desk to discharge and follow-up.",
     accent: "#666",
     bg: "#0f0f14",
     pic: "/images/medical.jpg",
@@ -567,7 +567,7 @@ function ServicesOverviewPC() {
   {
     id: "02",
     title: "AI & Automation",
-    desc: "AI agents, workflow automation, chatbots, and LLM integrations.",
+    desc: "AI agents, n8n workflows, and RAG grounded in your own data.",
     accent: "#666",
     bg: "#0f0f14",
     pic: "/images/algon-ai.jpg",
@@ -575,21 +575,21 @@ function ServicesOverviewPC() {
   },
   {
     id: "03",
-    title: "Web Development & SaaS",
-    desc: "Custom web applications, dashboards, and scalable SaaS platforms.",
-    accent: "#666",
-    bg: "#0f0f14",
-    pic: "/images/100x.jpg",
-    picsticky: "/images/100x.jpg",
-  },
-  {
-    id: "04",
     title: "Managed Engineering",
-    desc: "Dedicated developers, DevOps, QA, and long-term engineering support.",
+    desc: "A dedicated team for a defined project: architects, developers, QA, DevOps, and a project lead.",
     accent: "#666",
     bg: "#0f0f14",
     pic: "/images/managed5.jpg",
     picsticky: "/images/managed5.jpg",
+  },
+  {
+    id: "04",
+    title: "Web & SaaS Development",
+    desc: "Web apps, SaaS platforms, and MVPs built around how your business runs.",
+    accent: "#666",
+    bg: "#0f0f14",
+    pic: "/images/100x.jpg",
+    picsticky: "/images/100x.jpg",
   },
 
 ];

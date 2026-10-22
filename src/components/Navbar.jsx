@@ -44,10 +44,10 @@ const DESKTOP_MENU = [
         title: "Impact",
         heading: "Our Impact",
         desc:
-            "Every innovation that happens here is out of a quest to get better at what we are already doing. We deliver ideas that make a difference, create experiences that transform lives and build ecosystems that foster progress.",
+            "We build the operational layer of a business: the workflows, software and automation that move information between departments, staff and customers without anyone chasing it. Healthcare is our priority sector.",
         stats: [
-            ["48+", "Projects launched successfully across 3 countries"],
-            ["1000+", "Leads generated for our clients"],
+            ["48+", "Projects delivered across the USA, India and the UAE"],
+            ["50+", "Hospital management modules in daily use"],
             ["100%", "On-time delivery across every project"],
         ],
         button: "Explore Impact",
@@ -92,7 +92,7 @@ const DESKTOP_MENU = [
         title: "Careers",
         heading: "Join our team",
         desc:
-            "Shape the future of automation and software engineering: Join a remote-first team of builders pushing the boundaries of AI, SaaS, and modern technology. ",
+            "Build systems people rely on every day: join the team behind hospital operating systems, AI automation, and the software that runs our clients' operations.",
     
     },
 
@@ -284,9 +284,9 @@ useEffect(() => {
                     </p>
                     <div className="mb-10 grid max-w-[720px] grid-cols-2 gap-x-10 gap-y-4">
                         {[
-                            "React, Three.js, GSAP, Node, and modern cloud tools",
+                            "React, Node, Python, n8n, and modern cloud tools",
                             "Remote-friendly workflows with ownership and clear communication",
-                            "Web, SaaS, ecommerce, AI automation, and immersive interfaces",
+                            "Hospital systems, AI automation, and web and SaaS platforms",
                             "Small team culture with space to learn, ship, and lead",
                         ].map((point) => (
                             <div key={point} className="flex gap-3 text-[15px] leading-relaxed text-white">
@@ -372,11 +372,11 @@ useEffect(() => {
                         <div>
                             <div className="flex flex-wrap gap-3">
                                 {[
+                                    "• Hospital Systems",
+                                    "• AI & Automation",
+                                    "• Engineering Teams",
                                     "• Web & SaaS",
-                                    "• AI Automation",
-                                    "• Ecommerce",
-                                    "• Brand Systems",
-                                    "• 3D / Motion",
+                                    "• Dashboards",
                                     "• Cybersecurity",
                                 ].map((service) => (
                                     <span

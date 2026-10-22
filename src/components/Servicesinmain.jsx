@@ -24,8 +24,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const SERVICES = [
   {
     id: "01",
-    title: "AI & Automation",
-    desc: "AI agents, workflow automation, chatbots, and LLM integrations.",
+    title: "Hospital Management Systems",
+    desc: "Hospital operating systems and clinic automation, from front desk to discharge and follow-up.",
     accent: "#666",
     bg: "#0f0f14",
     pic: "/images/services/service-1.png",
@@ -33,8 +33,8 @@ const SERVICES = [
   },
   {
     id: "02",
-    title: "Web Development & SaaS",
-    desc: "Custom web applications, dashboards, and scalable SaaS platforms.",
+    title: "AI & Automation",
+    desc: "AI agents, n8n workflows, and RAG grounded in your own data.",
     accent: "#666",
     bg: "#0f0f14",
     pic: "/images/services/service-2.png",
@@ -43,7 +43,7 @@ const SERVICES = [
   {
     id: "03",
     title: "Managed Engineering",
-    desc: "Dedicated developers, DevOps, QA, and long-term engineering support.",
+    desc: "A dedicated team for a defined project: architects, developers, QA, DevOps, and a project lead.",
     accent: "#666",
     bg: "#0f0f14",
     pic: "/images/services/service-3.png",
@@ -51,8 +51,8 @@ const SERVICES = [
   },
   {
     id: "04",
-    title: "Blockchain & Web3",
-    desc: "Smart contracts, decentralized applications, and Web3 infrastructure.",
+    title: "Web & SaaS Development",
+    desc: "Web apps, SaaS platforms, and MVPs built around how your business runs.",
     accent: "#666",
     bg: "#0f0f14",
     pic: "/images/services/service-4.png",

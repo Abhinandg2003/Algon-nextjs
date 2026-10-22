@@ -14,7 +14,11 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { type, slug } = await params
   const page = findPage(type, slug)
-  return { title: page ? page.item.label : "Page not found" }
+  if (!page) return { title: "Page not found" }
+  return {
+    title: page.item.label,
+    description: `${page.item.label} from Algon Solutions. ${page.menu.blurb}`,
+  }
 }
 
 export default async function MenuPage({ params }) {
