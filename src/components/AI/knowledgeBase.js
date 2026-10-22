@@ -17,7 +17,7 @@ How we work with clients: the client brings the domain knowledge; we bring the t
 
 Tagline: "We build the operational layer of your business."
 Contact: support@algonsolutions.com
-Have a process that depends on one person remembering to follow up? Write to amal@algonsolutions.com with the bottleneck, and our CEO will tell you whether it needs automation, software, a team, or none of these.
+Have a process that depends on one person remembering to follow up? Write to support@algonsolutions.com with the bottleneck, and our CEO will tell you whether it needs automation, software, a team, or none of these.
 
 Location: "ALGON SOLUTIONS PVT LTD BCG TOWER,11F1, opp. CSEZ, Kakkanad, Kochi, Kerala 682037"
 

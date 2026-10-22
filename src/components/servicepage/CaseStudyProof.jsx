@@ -36,7 +36,7 @@ export default function CaseStudyProof({ tone, id, eyebrow = "Proof", title = "W
               ))}
             </dl>
           )}
-          <span className="svp-arrow">Read the case study <ArrowUpRight size={15} /></span>
+          <span className="svp-arrow !rounded-full !px-5 !py-3 !border hover:!text-white !transition-all !duration-300 !border-black !w-fit !bg-black/0 hover:!bg-black">Read the case study <ArrowUpRight size={15} /></span>
         </div>
       </Link>
     </Section>

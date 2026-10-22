@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link";
-import { ChevronDown } from "lucide-react"
+import { ArrowRight, ChevronDown } from "lucide-react"
 import { CASE_STUDIES } from "../data/caseStudiesData"
 import { NAV_MENUS, MOBILE_LINKS } from "../data/navMenus"
 
@@ -36,6 +36,11 @@ const BLOG_PREVIEWS = [
         readTime: "7 min read",
     },
 ]
+
+// Width of the image + "View all" column in the desktop dropdown (shown from
+// lg / 1024px up; below that the burger menu has no image). Same for every
+// menu: 200px on small laptops, growing with the screen up to 340px.
+const MENU_IMAGE_COL = "clamp(200px, 19vw, 340px)"
 
 // Burger (full-screen) menu on desktop — unchanged
 const DESKTOP_MENU = [
@@ -470,6 +475,7 @@ useEffect(() => {
         <>
             {/* NAVBAR */}
             <nav
+                data-site-nav // used by lib/smoothScroll to offset anchor scrolling below the fixed bar
                 onMouseLeave={() => setOpenMenu(null)}
                 onKeyDown={(e) => { if (e.key === "Escape") setOpenMenu(null) }}
                 className="fixed top-0 left-0 right-0 z-[997] flex items-center justify-between px-[5vw] h-[72px] transition-all duration-500 ease-out "
@@ -567,9 +573,34 @@ useEffect(() => {
         <div
             className={`grid gap-x-14 gap-y-10 px-[5vw] ${hasTitles ? "py-12" : "py-10"}`}
             style={{
-                gridTemplateColumns: `minmax(200px,0.8fr) repeat(${panelData.groups.length}, minmax(0,1fr))`,
+                // First column (image + "View all") shares one width across every menu
+                gridTemplateColumns: `${MENU_IMAGE_COL} repeat(${panelData.groups.length}, minmax(0,1fr))`,
             }}
         >
+            {/* Intro column: category image + link to the category hub */}
+            <div className="flex flex-col justify-start gap-4 self-start" style={{ width: MENU_IMAGE_COL }}>
+                {panelData.image && (
+                    <img
+                        src={panelData.image}
+                        alt={`${panelData.label} at Algon Solutions`}
+                        loading="lazy"
+                        decoding="async"
+                        className="aspect-[4/3] w-full rounded-xl object-cover"
+                    />
+                )}
+                {panelData.hub && (
+                    <Link
+                        href={panelData.hub}
+                        tabIndex={panelOpen ? 0 : -1}
+                        onClick={() => setOpenMenu(null)}
+                        className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white px-4 py-2 text-[14px] tracking-[0.06em] text-white transition hover:bg-white hover:text-[#050508]"
+                    >
+                        View all
+                        <ArrowRight size={15} aria-hidden="true" />
+                    </Link>
+                )}
+            </div>
+
             {panelData.groups.map((group, gi) => (
                 <div key={group.title || gi}>
                     {group.title && (
@@ -693,6 +724,17 @@ useEffect(() => {
         >
           <div className="overflow-hidden">
             <div className="flex flex-col gap-7 px-[8vw] pt-6">
+              {menu.hub && (
+                <Link
+                  href={menu.hub}
+                  tabIndex={open ? 0 : -1}
+                  onClick={() => { setMenuOpen(false); setMobileOpen(null) }}
+                  className="inline-flex w-fit items-center gap-2 rounded-full border border-white/60 px-4 py-2 text-[15px] text-white transition hover:bg-white hover:text-[#050508]"
+                >
+                  View all
+                  <ArrowRight size={15} aria-hidden="true" />
+                </Link>
+              )}
               {menu.groups.map((group, gi) => (
                 <div key={group.title || gi}>
                   {/* <p className="mb-3 text-[13px] tracking-[0.08em] text-white/45">

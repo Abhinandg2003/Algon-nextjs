@@ -28,6 +28,8 @@ export const NAV_MENUS = [
   {
     id: "healthcare",
     type: "healthcare",
+    hub: "/healthcare", // category landing page, linked as "View all" in the menus
+    image: "/images/menu/healthcare.webp", // shown above "View all" in the desktop dropdown
     label: "Healthcare",
     blurb: "Hospital operating systems, clinic automation, and AI for hospitals, clinics and care providers.",
     groups: build("healthcare", [
@@ -62,6 +64,8 @@ export const NAV_MENUS = [
   {
     id: "ai-development",
     type: "ai-development",
+    hub: "/ai-development",
+    image: "/images/menu/ai-development.webp",
     label: "AI Development",
     blurb: "Workflow automation, AI agents, and RAG grounded in your own data.",
     groups: build("ai-development", [
@@ -86,6 +90,8 @@ export const NAV_MENUS = [
   {
     id: "product-engineering",
     type: "product-engineering",
+    hub: "/product-engineering",
+    image: "/images/menu/product-engineering.webp",
     label: "Product Engineering",
     blurb: "Web and SaaS builds, and dedicated engineering teams for a defined project.",
     groups: build("product-engineering", [
@@ -117,6 +123,7 @@ export const NAV_MENUS = [
   id: "company",
   type: "company",
   label: "Company",
+  image: "/images/menu/company.webp", // no hub page, so the image shows without "View all"
   blurb: "Who we are, what we have built, and how to reach us.",
   groups: [
     {
