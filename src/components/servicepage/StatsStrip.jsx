@@ -1,15 +1,17 @@
 import Section from "./Section"
 
-export default function StatsStrip({ tone, items }) {
+// Always dark: it's styled as a dark card, so it must also tell the navbar
+// to use its light (white) theme.
+export default function StatsStrip({ items }) {
   return (
-    <Section tone={tone} className="!py-16 md:!py-20">
+    <Section tone="dark" className="!py-16 md:!py-20 my-10 mb-20 !bg-[#07070A] border border-white/50 mx-auto rounded-3xl md:max-w-[90vw]">
       <dl className={`grid gap-10 sm:grid-cols-2 ${items.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
         {items.map((s) => (
           <div key={s.label} className="svp-stat svp-reveal flex flex-col gap-3">
-            <dt className="sr-only">{s.label}</dt>
-            <dd className="svp-stat-value">{s.value}</dd>
-            <dd className="svp-body">{s.label}</dd>
-          </div>
+            <dt className="sr-only !text-white">{s.label}</dt>
+            <dd className="svp-stat-value !text-white">{s.value}</dd>
+            <dd className="svp-body !text-white">{s.label}</dd>
+          </div> 
         ))}
       </dl>
     </Section>

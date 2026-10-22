@@ -20,6 +20,7 @@ const aiDevelopment = {
       ],
     },
     hero: {
+      highlight: "AI Development",
       title: "AI that earns its place, *added after the process works*",
       subtitle:
         "We add AI to a business once the workflow is mapped and the data is reliable. Applied first, it automates confusion. Applied last, it takes real work off your team, with a person signing off on what matters.",
@@ -176,6 +177,7 @@ const aiDevelopment = {
       ],
     },
     hero: {
+      highlight: "AI Agent",
       title: "AI agents with *a clear job and a named person behind them*",
       subtitle:
         "We build agents for work that has edges: answering from approved information, triaging requests, chasing follow-ups and preparing drafts. Every run is logged, and when the agent is unsure it hands over to a person.",
@@ -582,6 +584,7 @@ const aiDevelopment = {
       ],
     },
     hero: {
+      highlight: "LLM",
       title: "Large language models *inside the work your team already does*",
       subtitle:
         "We integrate LLMs into real workflows for drafting, summarising, extraction, classification and assistants. The right model for the job, tested on your own examples, with guardrails and costs you can see.",
@@ -729,6 +732,7 @@ const aiDevelopment = {
       ],
     },
     hero: {
+      highlight: "RAG",
       title: "AI that answers from *your own records, with sources*",
       subtitle:
         "Retrieval-augmented generation lets an assistant look up the relevant parts of your records, policies and manuals before it answers. Every answer shows where it came from, so your team can check it.",

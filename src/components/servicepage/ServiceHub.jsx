@@ -12,7 +12,7 @@ import { SERVICE_PAGES } from "@/data/servicePages"
 // every service in the menu, grouped as in the navbar, each linking to its page.
 export const HUB_COPY = {
   healthcare: {
-    title: "Healthcare *software and automation*",
+    title: "Systems that carry a patient from *front desk to follow-up*",
     subtitle:
       "Healthcare is our priority sector. We build systems that get a patient from the front desk to follow-up with every step owned, recorded and visible to management.",
     chips: ["Hospitals", "Clinics", "Diagnostic centres", "Healthcare product companies", "Medical distributors"],
@@ -43,6 +43,7 @@ export default function ServiceHub({ type }) {
       <Navbar />
       <ServiceHero
         serviceName={menu.label}
+        heading={`${menu.label} services`}
         hero={{ ...copy, secondaryCta: "See all services" }}
         crumbs={[{ label: "Home", href: "/" }, { label: menu.label }]}
       />

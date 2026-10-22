@@ -13,6 +13,7 @@
   --svp-paper: #fcfcf7;
   --svp-blue: #0050d4;
   --svp-blue-2: #298dff;
+  --svp-brand: #265eed; /* highlight colour used in the site's page heroes */
   --svp-pad-x: 7vw;
   background: var(--svp-ink);
   color: #fff;
@@ -95,19 +96,19 @@
   font-weight: 300;
   font-size: clamp(32px, 4.2vw, 62px);
   line-height: 1.04;
-  letter-spacing: -0.03em;
+  letter-spacing: 0.01em;
   color: var(--svp-fg);
   margin: 0;
 }
 .svp-lead {
-  font-size: clamp(16px, 1.25vw, 19px);
+  font-size: clamp(14px, 1.2vw, 17px);
   font-weight: 300;
   line-height: 1.75;
   color: var(--svp-muted);
   margin: 0;
 }
 .svp-body {
-  font-size: clamp(15px, 1.1vw, 17px);
+  font-size: clamp(14px, 1vw, 16px);
   font-weight: 300;
   line-height: 1.75;
   color: var(--svp-muted);
@@ -129,8 +130,8 @@
   align-items: center;
   gap: 10px;
   border-radius: 999px;
-  padding: 14px 28px;
-  font-size: 14px;
+  padding: 11px 22px;
+  font-size: 13px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   transition: background 0.3s, color 0.3s, border-color 0.3s;
@@ -141,11 +142,14 @@
 .svp-btn--primary:hover { background: var(--svp-blue-2); }
 .svp-btn--ghost { border-color: var(--svp-line); color: var(--svp-fg); }
 .svp-btn--ghost:hover { border-color: var(--svp-fg); }
+/* Matches the site's secondary buttons: outline on dark, fills white on hover */
+.svp-btn--outline { background: transparent; color: #fff; border-color: #fff; }
+.svp-btn--outline:hover { background: #fff; color: #050508; border-color: #fff; }
 .svp-btn:disabled { opacity: 0.6; cursor: wait; }
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
 .svp-hero {
-  padding-top: clamp(130px, 16vh, 180px);
+  padding-top: clamp(110px, 14vh, 150px);
   padding-bottom: clamp(70px, 9vw, 120px);
 }
 .svp-crumb {
@@ -154,20 +158,38 @@
   color: var(--svp-faint);
 }
 .svp-crumb a:hover { color: var(--svp-fg); }
+/* Same scale and treatment as the Contact / Solutions / Works heroes */
 .svp-h1 {
   font-family: "DisplayFont", sans-serif;
-  font-weight: 300;
-  font-size: clamp(42px, 6vw, 96px);
-  line-height: 0.98;
-  letter-spacing: -0.04em;
+  font-weight: 400;
+  font-size: clamp(46px, 6vw, 96px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: #fff;
   margin: 0;
 }
-.svp-h1 em {
-  font-style: normal;
-  background: linear-gradient(135deg, #fff 0%, var(--svp-blue-2) 120%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.svp-h1-mark {
+color: var(--svp-blue-2);;  padding: 0 0.12em 0.06em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.svp-h1-mark--text { color: var(--svp-brand); }
+.svp-tagline {
+  font-family: "DisplayFont", sans-serif;
+  font-weight: 300;
+  font-size: clamp(20px, 1.8vw, 27px);
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  color: #fff;
+  margin: 0;
+}
+.svp-tagline em { font-style: normal; color: white; }
+.svp-hero-sub {
+  font-size: clamp(14px, 1.05vw, 16px);
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--svp-muted);
+  margin: 0;
 }
 .svp-chip {
   display: inline-flex;
@@ -183,15 +205,14 @@
 
 /* ── Stats ──────────────────────────────────────────────────────────────── */
 .svp-stat {
-  border-top: 1px solid var(--svp-line);
   padding-top: 22px;
 }
 .svp-stat-value {
   font-family: "DisplayFont", sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(44px, 5vw, 76px);
   line-height: 1;
-  letter-spacing: -0.04em;
+  letter-spacing: 0.02em;
   color: var(--svp-fg);
 }
 
@@ -249,9 +270,7 @@ a.svp-card:hover,
   gap: 16px;
   align-items: flex-start;
   padding: 18px 0;
-  border-bottom: 1px solid var(--svp-line);
 }
-.svp-point:first-child { border-top: 1px solid var(--svp-line); }
 
 /* ── Table ──────────────────────────────────────────────────────────────── */
 .svp-table-wrap {

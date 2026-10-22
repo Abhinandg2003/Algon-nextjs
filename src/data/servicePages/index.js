@@ -11,7 +11,10 @@
 //
 // {
 //   seo:   { title, description, keywords: [] },
-//   hero:  { title,            // wrap a phrase in *asterisks* to highlight it
+//   hero:  { heading?,         // H1; defaults to the navbar label (best for SEO)
+//            highlight?,       // part of the H1 on the brand-colour block; default: last word
+//            highlightStyle?,  // "bg" (default) or "text"
+//            title,            // tagline under the H1; wrap a phrase in *asterisks* to colour it
 //            subtitle, chips: [], formTitle?, formMessageLabel? },
 //   stats: [{ value, label }],                       // 3–4, facts only
 //   definition: { title, paragraphs: [], points?: [{ icon, text }] },

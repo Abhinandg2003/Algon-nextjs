@@ -35,6 +35,7 @@ const technologies = {
       ],
     },
     hero: {
+      highlight: "React",
       title: "React interfaces that *staff use all day* without a workaround",
       subtitle:
         "We build React screens for the people who run the operation: front desk, wards, dispatch, finance and management. Fast to load, quick to fill in, and shaped around the step each person owns.",
@@ -165,6 +166,7 @@ const technologies = {
       ],
     },
     hero: {
+      highlight: "Node",
       title: "Node.js backends that *carry the work between systems*",
       subtitle:
         "APIs, background jobs and integrations that move information between departments, staff and customers without anyone chasing it. Built to be read, tested and handed over.",
@@ -296,6 +298,7 @@ const technologies = {
       ],
     },
     hero: {
+      highlight: "Next",
       title: "Next.js sites and apps that are *fast to load and easy to find*",
       subtitle:
         "Public pages that search engines can read, logged-in areas that feel instant, and content your team can edit without a developer. This site runs on Next.js too.",
@@ -662,6 +665,7 @@ const technologies = {
       ],
     },
     hero: {
+      highlight: "AWS",
       title: "Cloud setups that are *boring to run*, and that is the point",
       subtitle:
         "Hosting, deployments, monitoring and backups set up so releases are routine, problems are seen early and the monthly bill makes sense. In the public cloud, or on infrastructure you control.",

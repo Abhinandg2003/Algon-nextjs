@@ -20,6 +20,7 @@ const healthcareTech = {
       ],
     },
     hero: {
+      highlight: "Software Development",
       title: "Healthcare software built around *how your work really runs*",
       subtitle:
         "Custom software for hospitals, clinics, diagnostic centres, healthcare product companies and medical distributors. We map the work first, give every step an owner, then build the system that carries it.",

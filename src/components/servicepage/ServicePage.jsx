@@ -79,9 +79,9 @@ export default function ServicePage({ type, slug }) {
   const name = item.label
 
   // Build the body sections in order, then alternate light/dark tones so
-  // every page has the same rhythm whatever sections it uses.
+  // every page has the same rhythm whatever sections it uses. The stats strip
+  // sits outside the rhythm: it is always a dark card under the hero.
   const blocks = []
-  if (page.stats?.length) blocks.push((tone) => <StatsStrip key="stats" tone={tone} items={page.stats} />)
   if (page.definition) blocks.push((tone) => <DefinitionBlock key="def" tone={tone} {...page.definition} />)
   if (page.problems)
     blocks.push((tone) => <CardGrid key="problems" tone={tone} eyebrow="Why it stalls" numbered {...page.problems} />)
@@ -117,9 +117,11 @@ export default function ServicePage({ type, slug }) {
       <Navbar />
       <ServiceHero
         serviceName={name}
+        heading={page.hero.heading || name}
         hero={page.hero}
         crumbs={[{ label: "Home", href: "/" }, { label: menu.label, href: `/${type}` }, { label: group.title }, { label: name }]}
       />
+      {page.stats?.length > 0 && <StatsStrip items={page.stats} />}
       {blocks.map((render, i) => render(i % 2 === 0 ? "light" : "dark"))}
       <ServiceCTA serviceName={name} {...page.cta} />
       <Footer />

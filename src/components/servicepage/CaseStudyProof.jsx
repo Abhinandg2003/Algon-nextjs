@@ -22,7 +22,7 @@ export default function CaseStudyProof({ tone, id, eyebrow = "Proof", title = "W
             decoding="async"
           />
         </div>
-        <div className="flex flex-col gap-6 p-8 md:p-12">
+        <div className="flex  flex-col gap-6 p-8 md:p-12">
           <span className="svp-eyebrow">{study.category}</span>
           <h3 className="svp-title !text-[clamp(28px,3vw,44px)]">{study.title}</h3>
           <p className="svp-body">{study.tagline}</p>

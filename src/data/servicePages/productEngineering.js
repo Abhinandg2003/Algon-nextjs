@@ -20,6 +20,7 @@ const productEngineering = {
       ],
     },
     hero: {
+      highlight: "MVP",
       title: "A first version *built to be extended*, not rewritten",
       subtitle:
         "For founders taking an idea to first customers. We scope the smallest product that proves the idea, build it around how your users actually work, and leave you with code you own and can grow.",
@@ -789,6 +790,7 @@ const productEngineering = {
       ],
     },
     hero: {
+      highlight: "Managed Engineering",
       title: "A team for your project, *accountable for the outcome*",
       subtitle:
         "When you need a team for a defined project and period, not an agency on retainer, we provide a dedicated ALGON team that works inside your process and answers to your priorities.",
@@ -1551,6 +1553,7 @@ const productEngineering = {
       ],
     },
     hero: {
+      highlight: "CMS",
       title: "Content your team can update *without calling a developer*",
       subtitle:
         "Product catalogues, blogs, careers pages and multilingual content, managed by the people who own them. Set up with SEO foundations from launch, on a headless or traditional CMS.",
