@@ -59,7 +59,8 @@ export default function StickyShowcase({ tone, id, eyebrow, title, intro, items 
     slideRefs.current.forEach((el, j) => {
       if (!el) return
       const clip = j === active ? "inset(0% 0% 0% 0%)" : j < active ? "inset(0% 0% 100% 0%)" : "inset(100% 0% 0% 0%)"
-      gsap.to(el, { clipPath: clip, duration: reduce ? 0 : 0.85, ease: "power3.inOut", overwrite: true })
+      // expo.out: starts fast, settles slowly
+      gsap.to(el, { clipPath: clip, duration: reduce ? 0 : 1, ease: "expo.out", overwrite: true })
     })
   }, [active])
 
@@ -112,9 +113,9 @@ export default function StickyShowcase({ tone, id, eyebrow, title, intro, items 
                 {media(item, i, false)}
               </div>
             ))}
-            <div className="svp-show-counter" aria-hidden="true">
+            {/* <div className="svp-show-counter" aria-hidden="true">
               {String(active + 1).padStart(2, "0")} <span>/ {String(items.length).padStart(2, "0")}</span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

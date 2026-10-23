@@ -384,7 +384,6 @@ a.svp-card:hover,
    creating a scroll container; old browsers fall back to `visible`. */
 .svp-section.svp-sticky-ok { overflow: visible; overflow: clip; }
 
-.svp-show-item { border-bottom: 1px solid var(--svp-line); }
 @media (min-width: 1024px) {
   .svp-show-item { opacity: 0.32; transition: opacity 0.5s ease; }
   .svp-show-item[data-active="true"] { opacity: 1; }
@@ -392,8 +391,6 @@ a.svp-card:hover,
 .svp-show-panel {
   position: relative;
   overflow: hidden;
-  border-radius: 20px;
-  border: 1px solid var(--svp-line);
   background: var(--svp-ink);
 }
 .svp-show-slide {
