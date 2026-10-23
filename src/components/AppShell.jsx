@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { killOrphanTriggers, requestScrollRefresh } from "@/lib/scrollRefresh";
 import ScrollToTop from "./ScrollToTop";
 import SmoothAnchors from "./SmoothAnchors";
+import SamePageLinks from "./SamePageLinks";
 import AIAssistant from "./AI/AI";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -94,6 +95,7 @@ export default function AppShell({ children }) {
       <AIAssistant />
       <ScrollToTop lenisRef={lenisRef} />
       <SmoothAnchors lenisRef={lenisRef} />
+      <SamePageLinks lenisRef={lenisRef} />
       <div className="min-h-screen flex flex-col bg-[#000000] text-[#ffffff] font-display">
         <main>{children}</main>
       </div>
