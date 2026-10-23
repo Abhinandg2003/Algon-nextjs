@@ -126,7 +126,10 @@ export default function ServicePage({ type, slug }) {
   const rootId = `svp-${type}-${slug}`
 
   return (
-    <div id={rootId} className="svp">
+    // key: /healthcare/a → /healthcare/b reuses this route's components, so
+    // GSAP effects wouldn't re-run and pins would keep the old page's
+    // measurements. A new key per page remounts everything from scratch.
+    <div key={rootId} id={rootId} className="svp">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd(data)) }} />
       <Reveal rootId={rootId} />
       <Navbar />

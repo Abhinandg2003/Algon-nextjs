@@ -83,7 +83,10 @@ export default function AlgonHero() {
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      // Kill only this hero's timeline + trigger. (Killing ScrollTrigger.getAll()
+      // here also destroyed the next page's pins on client-side navigation.)
+      tl.scrollTrigger?.kill();
+      tl.kill();
     };
   }, []);
 

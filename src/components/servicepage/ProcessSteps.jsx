@@ -17,7 +17,13 @@ export default function ProcessSteps({ tone, eyebrow = "How it runs", title, int
   useEffect(() => {
     const mm = gsap.matchMedia()
     mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
-      const distance = () => Math.max(0, trackRef.current.scrollWidth - viewportRef.current.clientWidth)
+      // Null-safe: ScrollTrigger re-evaluates this on every refresh, and a
+      // refresh can land while the page is being swapped out.
+      const distance = () => {
+        const track = trackRef.current
+        const viewport = viewportRef.current
+        return track && viewport ? Math.max(0, track.scrollWidth - viewport.clientWidth) : 0
+      }
       if (distance() < 40) return // everything already fits: nothing to scroll
 
       gsap.to(trackRef.current, {
@@ -38,32 +44,37 @@ export default function ProcessSteps({ tone, eyebrow = "How it runs", title, int
   }, [steps.length])
 
   return (
-    <div ref={pinRef}>
-      <Section
-        tone={tone}
-        eyebrow={eyebrow}
-        title={title}
-        intro={intro}
-        className="lg:flex lg:min-h-screen lg:flex-col lg:justify-center lg:!py-20"
-      >
-        <div ref={viewportRef}>
-          <ol ref={trackRef} className="svp-process-track flex flex-col gap-10 sm:grid sm:grid-cols-2 lg:flex lg:w-max lg:flex-row lg:gap-6">
-            {steps.map((s, i) => (
-              <li
-                key={s.title}
-                className="svp-step svp-process-step svp-reveal flex flex-col gap-3"
-                style={{ transitionDelay: `${(i % 3) * 70}ms` }}
-              >
-                <div className="flex justify-between w-full ">
-                  <h3 className="svp-h3">{s.title}</h3>
-                  <span className="svp-num">{String(i + 1).padStart(2, "0")}</span>
-                </div>
-                <p className="svp-body">{s.text}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </Section>
+    // Outer wrapper is owned by React and never moves. GSAP wraps the pinned
+    // element (pinRef) in a pin-spacer *inside* it, so React can still remove
+    // this component cleanly on navigation.
+    <div>
+      <div ref={pinRef}>
+        <Section
+          tone={tone}
+          eyebrow={eyebrow}
+          title={title}
+          intro={intro}
+          className="lg:flex lg:min-h-screen lg:flex-col lg:justify-center lg:!py-20"
+        >
+          <div ref={viewportRef}>
+            <ol ref={trackRef} className="svp-process-track flex flex-col gap-10 sm:grid sm:grid-cols-2 lg:flex lg:w-max lg:flex-row lg:gap-6">
+              {steps.map((s, i) => (
+                <li
+                  key={s.title}
+                  className="svp-step svp-process-step svp-reveal flex flex-col gap-3"
+                  style={{ transitionDelay: `${(i % 3) * 70}ms` }}
+                >
+                  <div className="flex justify-between w-full ">
+                    <h3 className="svp-h3">{s.title}</h3>
+                    <span className="svp-num">{String(i + 1).padStart(2, "0")}</span>
+                  </div>
+                  <p className="svp-body">{s.text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </Section>
+      </div>
     </div>
   )
 }

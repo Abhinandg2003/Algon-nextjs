@@ -4,6 +4,7 @@ import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Section from "./Section"
 import Icon from "./Icon"
+import { requestScrollRefresh } from "@/lib/scrollRefresh"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -72,7 +73,7 @@ export default function StickyShowcase({ tone, id, eyebrow, title, intro, items 
         className="absolute inset-0 h-full w-full object-cover"
         loading="lazy"
         decoding="async"
-        onLoad={inline ? undefined : () => ScrollTrigger.refresh()}
+        onLoad={inline ? undefined : () => requestScrollRefresh()}
       />
     ) : (
       <div className="svp-show-fallback absolute inset-0">

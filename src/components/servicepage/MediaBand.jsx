@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { requestScrollRefresh } from "@/lib/scrollRefresh"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -37,8 +38,8 @@ export default function MediaBand({ image, alt, caption }) {
     return () => mm.revert()
   }, [])
 
-  // Layout can shift once the image decodes; re-measure triggers.
-  const onLoad = () => ScrollTrigger.refresh()
+  // Layout can shift once the image decodes; re-measure triggers (debounced).
+  const onLoad = () => requestScrollRefresh()
 
   return (
     <section ref={wrapRef} data-navbar="light" className="svp-band" aria-label={caption || alt}>
