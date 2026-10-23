@@ -105,6 +105,10 @@ const TRANSITION_MS = 900
 
 /* ───────────────────────── Hero ───────────────────────── */
 
+// Poster = the video's first frame, at /images/posters/<video file name>.webp
+// e.g. /videos/algonhero-4.mp4 → /images/posters/algonhero-4.webp
+const posterFor = (src) => `/images/posters/${src.split("/").pop().replace(/\.\w+$/, "")}.webp`
+
 function Hero() {
 
   const [isMobile, setIsMobile] = useState(false);
@@ -236,6 +240,8 @@ useEffect(() => {
               <video
                 ref={(el) => (videoRefs.current[i] = el)}
                 src={isMobile ? slide.videomob : slide.video}
+                // First frame shown until the video can play (see posterFor)
+                poster={posterFor(isMobile ? slide.videomob : slide.video)}
                 muted
                 playsInline
                 loop

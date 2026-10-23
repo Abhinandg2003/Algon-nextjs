@@ -143,8 +143,6 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preload" as="video" href="/algon-intro-black.mp4" />
-        <link rel="preload" as="video" href="/algon-intro-black-mb.mp4" />
       </head>
       <body>
         <script

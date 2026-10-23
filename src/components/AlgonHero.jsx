@@ -6,6 +6,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const VIDEO_SRC = "/videos/hitech.mp4";
+// First frame of VIDEO_SRC, shown until the video can play
+const VIDEO_POSTER = "/images/posters/hitech.webp";
 
 function getMaskSrc() {
   return window.innerWidth < 640
@@ -114,6 +116,7 @@ export default function AlgonHero() {
           preload="auto"
             ref={videoRef}
             src={VIDEO_SRC}
+            poster={VIDEO_POSTER}
             className="absolute inset-0 w-full h-full object-cover"
             autoPlay
             loop
