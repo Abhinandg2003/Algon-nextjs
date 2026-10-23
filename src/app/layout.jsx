@@ -139,7 +139,9 @@ const ORGANIZATION_JSON_LD = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    // suppressHydrationWarning: the home page adds a "splash-seen" class to
+    // <html> before hydration (see app/page.jsx) — expected, not a mismatch.
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

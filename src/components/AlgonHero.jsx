@@ -15,7 +15,9 @@ function getMaskSrc() {
     : "/images/maskhi.webp";
 }
 
-export default function AlgonHero() {
+// deferMedia: true while the home preloader overlay is up — the video stays
+// idle (poster shows) so the intro video gets the bandwidth.
+export default function AlgonHero({ deferMedia = false }) {
   const sectionRef = useRef(null);
   const stickyRef  = useRef(null);
   const whiteBgRef = useRef(null);
@@ -30,22 +32,31 @@ export default function AlgonHero() {
     return () => window.removeEventListener("resize", update);
   }, []);
 
-  const [maskSrc, setMaskSrc] = useState(getMaskSrc());
+  // Server render has no window: start with the desktop mask (this hero is
+  // desktop-only anyway) and correct it after mount.
+  const [maskSrc, setMaskSrc] = useState("/images/maskhi.webp");
 
   useEffect(() => {
     const handleResize = () => {
       setMaskSrc(getMaskSrc());
       ScrollTrigger.refresh(); // 🔥 important
     };
+    handleResize();
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Start the video once the preloader is gone
   useEffect(() => {
+    if (deferMedia) return;
     const video = videoRef.current;
-
+    if (!video) return;
+    if (video.readyState === 0) video.load();
     video.play().catch(() => {});
+  }, [deferMedia]);
+
+  useEffect(() => {
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -113,12 +124,12 @@ export default function AlgonHero() {
   willChange: "transform, opacity",
   backfaceVisibility: "hidden"
 }}
-          preload="auto"
+          preload={deferMedia ? "none" : "auto"}
             ref={videoRef}
             src={VIDEO_SRC}
             poster={VIDEO_POSTER}
             className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
+            autoPlay={!deferMedia}
             loop
             muted
             playsInline

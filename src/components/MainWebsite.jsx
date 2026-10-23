@@ -19,6 +19,8 @@ import { CASE_STUDIES } from "../data/caseStudiesData"
 import "../casestudies.css"
 import TestimonialCarousel from "./testimonialsectionvideos"
 import { ServicesOverviewMain } from "./Servicesinmain"
+import { LOADER_FADE_MS, LOADER_ONLY_MS, PRELOADER_SEEN_KEY, PRELOADER_VIDEO } from "@/config/preloader"
+import { requestScrollRefresh } from "@/lib/scrollRefresh"
 
 gsap.registerPlugin(ScrollTrigger)
 ScrollTrigger.config({ ignoreMobileResize: true }) // add this line
@@ -109,7 +111,9 @@ const TRANSITION_MS = 900
 // e.g. /videos/algonhero-4.mp4 → /images/posters/algonhero-4.webp
 const posterFor = (src) => `/images/posters/${src.split("/").pop().replace(/\.\w+$/, "")}.webp`
 
-function Hero() {
+// deferMedia: true while the preloader overlay is up — videos don't download
+// (posters show instead) so the intro video gets the bandwidth.
+function Hero({ deferMedia = false }) {
 
   const [isMobile, setIsMobile] = useState(false);
 
@@ -196,17 +200,22 @@ useEffect(() => {
 
   // Drives actual <video> playback for the active slide.
   useEffect(() => {
+    if (deferMedia) return // preloader still up: leave videos idle
     videoRefs.current.forEach((v, i) => {
       if (!v) return
       if (i === current) {
         const play = () => { if (isVisibleRef.current) v.play().catch(() => {}) }
         if (v.readyState >= 2) play()
-        else v.addEventListener("loadeddata", play, { once: true })
+        else {
+          v.addEventListener("loadeddata", play, { once: true })
+          // It was held at preload="none" during the preloader; start loading now
+          if (v.readyState === 0 && v.networkState !== HTMLMediaElement.NETWORK_LOADING) v.load()
+        }
       } else {
         v.pause()
       }
     })
-  }, [current])
+  }, [current, deferMedia])
 
   // ─── OPT: only ever 2-3 videos mounted at once — current, the next one
   // queued to preload, and (briefly, during crossfade) prev. Old slides are
@@ -250,7 +259,7 @@ useEffect(() => {
                 aria-hidden="true"
                 // OPT: only the active slide eagerly buffers; the queued
                 // next slide just grabs enough to start cleanly, nothing else
-                preload={isActive ? "auto" : "metadata"}
+                preload={deferMedia ? "none" : isActive ? "auto" : "metadata"}
                 className="h-full w-full object-cover"
               />
             )}
@@ -817,49 +826,78 @@ function ServicesOverviewPC() {
 
 /* ───────────────────────── Page shell ───────────────────────── */
 
+// The site is ALWAYS rendered (so the page HTML — what Google indexes — has
+// the full home page). The preloader is an overlay on top of it, shown once
+// per tab. See src/config/preloader.js for the PRELOADER_VIDEO toggle.
 export default function MainWebsite() {
   const [phase, setPhase] = useState("loading")   // "loading" | "site"
   const [ready, setReady] = useState(false)        // intro video buffered
+  const [loaderLeaving, setLoaderLeaving] = useState(false) // loader-only fade-out
+
+  const finishSplash = useCallback(() => {
+    sessionStorage.setItem(PRELOADER_SEEN_KEY, "true")
+    setPhase("site")
+    window.dispatchEvent(new Event("site-ready"))
+    requestScrollRefresh() // scrollbar returns → widths change → re-measure GSAP
+  }, [])
 
   // Returning visitors in this tab skip the intro
   useEffect(() => {
-    if (sessionStorage.getItem("loaded") === "true") setPhase("site")
+    if (sessionStorage.getItem(PRELOADER_SEEN_KEY) === "true") setPhase("site")
   }, [])
 
+  // Lock scrolling while the overlay is up
   useEffect(() => {
     const locked = phase !== "site"
     document.documentElement.style.overflow = locked ? "hidden" : ""
     document.body.style.overflow = locked ? "hidden" : ""
   }, [phase])
 
-  // Safety net: never stay on the loader longer than 8s
+  // Video preloader — safety net: never stay on the loader longer than 8s
   useEffect(() => {
-    if (phase !== "loading" || ready) return
+    if (!PRELOADER_VIDEO || phase !== "loading" || ready) return
     const t = setTimeout(() => setReady(true), 8000)
     return () => clearTimeout(t)
   }, [phase, ready])
 
-  const finishSplash = useCallback(() => {
-    sessionStorage.setItem("loaded", "true")
-    setPhase("site")
-    window.dispatchEvent(new Event("site-ready"))
-  }, [])
+  // No-video preloader: brief loader, quick fade, done.
+  useEffect(() => {
+    if (PRELOADER_VIDEO || phase !== "loading") return
+    const fade = setTimeout(() => setLoaderLeaving(true), LOADER_ONLY_MS)
+    const done = setTimeout(finishSplash, LOADER_ONLY_MS + LOADER_FADE_MS)
+    return () => {
+      clearTimeout(fade)
+      clearTimeout(done)
+    }
+  }, [phase, finishSplash])
 
-  if (phase === "loading") {
-    return (
-      <>
-        <SplashScreen onFinish={finishSplash} onReady={() => setReady(true)} play={ready} />
-        {!ready && <Loader />}
-      </>
-    )
-  }
+  // Hold back the hero videos while the overlay is up so they don't compete
+  // with the intro video for bandwidth (their posters still show).
+  const deferMedia = phase !== "site"
+
   return (
-    <div className="min-h-screen bg-[#050508] text-white">
+    <>
+      {phase === "loading" && (
+        <div data-splash>
+          {PRELOADER_VIDEO ? (
+            <>
+              <SplashScreen onFinish={finishSplash} onReady={() => setReady(true)} play={ready} />
+              {!ready && <Loader />}
+            </>
+          ) : (
+            <div style={{ opacity: loaderLeaving ? 0 : 1, transition: `opacity ${LOADER_FADE_MS}ms ease` }}>
+              <Loader />
+            </div>
+          )}
+        </div>
+      )}
+
+      <div className="min-h-screen bg-[#050508] text-white">
       <ScrollIndicator />
       <Navbar />
-      <Hero />
+      <Hero deferMedia={deferMedia} />
       <div className="hidden lg:block">
-        <AlgonHero />
+        <AlgonHero deferMedia={deferMedia} />
       </div>
       <ScrollRevealText />
       <ScrollRevealSection />
@@ -868,7 +906,8 @@ export default function MainWebsite() {
       <TestimonialCarousel />
       <CTASection />
       <Footer />
-    </div>
+      </div>
+    </>
   )
 }
 
