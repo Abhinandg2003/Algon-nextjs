@@ -1452,7 +1452,7 @@ export default function CaseStudyDetailPage() {
           display:grid;grid-template-columns:1fr 1fr;gap:0 8vw;align-items:start;
         }
         .csd-overview-text {
-          font-size:clamp(18px,1.8vw,30px);font-weight:200;
+          font-size:clamp(18px,1.4vw,20px);font-weight:200;
           line-height:1.55;letter-spacing:.05em;color:#050508;margin:0 0 36px;padding-right:10px;
         }
         .csd-services-row { display:flex;flex-wrap:wrap;gap:8px;margin-top:4px; }
@@ -1751,7 +1751,7 @@ export default function CaseStudyDetailPage() {
         }
         .csd-cta-next-link:hover { padding-left:20px; }
         .csd-cta-next-title {
-          font-size:clamp(36px,5.5vw,80px);font-weight:400;color:#050508;
+          font-size:clamp(26px,5vw,60px);font-weight:400;color:#050508;
           letter-spacing:-.04em;line-height:.95;margin:0;
           transition:color .3s;font-family:Displayfont;
         }
