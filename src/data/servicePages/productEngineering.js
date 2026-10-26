@@ -157,7 +157,7 @@ const productEngineering = {
       ],
     },
     caseStudy: {
-      id: "desire-study-abroad",
+      id: "admissions-follow-up-automation",
       title: "Scoped tight, launched in four days",
       intro: "A study-abroad consultancy needed to be live quickly. We cut the scope to what mattered and launched a website with an AI chatbot in four days.",
     },
@@ -352,7 +352,7 @@ const productEngineering = {
       ],
     },
     caseStudy: {
-      id: "mindful-rejuvenation",
+      id: "hospital-os-billing-admin-analytics",
       title: "Built around how a practice really works",
       intro: "A 50+ module hospital management system delivered in three months, shaped around the daily workflow of a psychiatric and mental healthcare practice.",
     },
@@ -1124,7 +1124,7 @@ const productEngineering = {
       ],
     },
     caseStudy: {
-      id: "visat",
+      id: "campus-cms-seo-platform",
       title: "A college platform in eight weeks",
       intro: "A web platform for a college, with a CMS its staff manage and AI teacher agents for students, built and launched in eight weeks.",
     },
@@ -1308,7 +1308,7 @@ const productEngineering = {
       ],
     },
     caseStudy: {
-      id: "unity-heights",
+      id: "real-estate-lead-website",
       title: "A responsive website in one week",
       intro: "Designed and built in one week for phones and desktops alike. Site visits grew from 12 to 44 a month.",
     },
@@ -1498,7 +1498,7 @@ const productEngineering = {
       ],
     },
     caseStudy: {
-      id: "mindful-rejuvenation",
+      id: "hospital-os-ipd-pharmacy-lab",
       title: "Built end to end in three months",
       intro: "A 50+ module hospital management system, from interface to database to deployment, delivered by one ALGON team.",
     },
@@ -1678,7 +1678,7 @@ const productEngineering = {
       ],
     },
     caseStudy: {
-      id: "drisya-marble",
+      id: "product-catalogue-cms",
       title: "A catalogue website the team runs itself",
       intro: "A CMS website with a 50+ product catalogue, and editable products, blogs and careers, delivered in four weeks.",
     },

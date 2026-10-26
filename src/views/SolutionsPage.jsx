@@ -14,7 +14,7 @@ const Lottie = lazy(() => import("lottie-react"));
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Robotics from "@/assets/Energy rocket optimised.json";
 import animationData from "@/assets/circleloop.json";
-import { CASE_STUDIES } from "../data/caseStudiesData";
+import { LEAD_STUDIES } from "../data/caseStudiesData";
 const book = "/svg/book.svg";
 import { useInView } from "react-intersection-observer";
 import ScrollIndicator from "../components/ui/ScrollIndicator";
@@ -486,7 +486,7 @@ const SOLUTIONS = [
     accent3: "#ddd",
 
     pic: "/images/stickers/softwareduo.webp",
-    picsticky: "/images/software.jpg",
+    picsticky: "/images/services/ai-development/rag-development-services/service-6.webp",
 
     gradient: "/images/stickers/gradientblue1.webp",
   },
@@ -519,7 +519,7 @@ const SOLUTIONS = [
     accent3: "#34d399",
 
     pic: "/images/stickers/webmobileduo.webp",
-    picsticky: "/images/web2.jpg",
+    picsticky: "/images/services/ai-development/rag-development-services/service-5.webp",
 
     gradient: "/images/stickers/gradientgreen.webp",
   },
@@ -552,7 +552,7 @@ const SOLUTIONS = [
     accent3: "#fbbf24",
 
     pic: "/images/stickers/blockchainduo.webp",
-    picsticky: "/images/block2.jpg",
+    picsticky: "/images/services/ai-development/rag-development-services/service-4.webp",
 
     gradient: "/images/stickers/gradientred.webp",
   },
@@ -585,7 +585,7 @@ const SOLUTIONS = [
     accent3: "#c084fc",
 
     pic: "/images/stickers/algon-ai.webp",
-    picsticky: "/images/algon-ai.jpg",
+    picsticky: "/images/services/ai-development/rag-development-services/service-3.webp",
 
     gradient: "/images/stickers/gradientpurple.webp",
   },
@@ -1262,10 +1262,10 @@ function SolOverviewpc() {
         {/* ── RIGHT: image column — GSAP will pin this to viewport top */}
         <div
           ref={imageColRef}
-          className="w-1/2 h-screen flex-shrink-0 overflow-hidden"
+          className="w-1/2 h-screen !rounded-none flex-shrink-0 overflow-hidden"
         >
           <div className="absolute inset-0 flex items-center justify-center p-12">
-            <div className="relative w-full h-full max-w-[520px] max-h-[380px] rounded-md overflow-hidden ">
+            <div className="relative w-full h-full max-w-[520px] max-h-[380px] rounded-none overflow-hidden ">
               {SOLUTIONS.map((sol, i) => (
                 <img
                   key={sol.id}
@@ -1936,7 +1936,7 @@ function CaseStudies() {
           </div>
         </div>
         <div className="cs2-grid">
-          {CASE_STUDIES.slice(0, 6).map((cs, i) => (
+          {LEAD_STUDIES.slice(0, 6).map((cs, i) => (
             <CaseCard key={cs.id} cs={cs} index={i} />
           ))}
         </div>
@@ -2064,7 +2064,7 @@ function CaseStudiesnew() {
     return () => ctx.revert();
   }, []);
 
-  const cases = useMemo(() => CASE_STUDIES.slice(0, 6), []);
+  const cases = useMemo(() => LEAD_STUDIES.slice(0, 6), []);
 
   return (
     <section data-navbar="light" ref={sectionRef} className="cs2-section">
@@ -2348,7 +2348,7 @@ export default function SolutionsPage() {
         <ScrollIndicator />
         <SolOverview />
         <SolOverviewpc />
-        <CaseStudiesnew />
+        {/* <CaseStudiesnew /> */}
 
         <DeepDive />
         <FAQ_Section />

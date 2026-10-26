@@ -231,7 +231,10 @@ function CaseStudiesHero() {
 }
 
 /* ─── FILTER BAR ─────────────────────────────────────────────────────────── */
-const ALL_CATS = ["All", ...new Set(CASE_STUDIES.map((s) => s.category.split(" ")[0]))];
+// Filter groups = the part of each category before " · "
+// ("Healthcare", "AI & Automation", "Web & SaaS").
+const catGroup = (category) => category.split(" · ")[0].trim();
+const ALL_CATS = ["All", ...new Set(CASE_STUDIES.map((s) => catGroup(s.category)))];
 
 function FilterBar({ active, onChange }) {
   const barRef = useRef();
@@ -369,7 +372,7 @@ function WorkGrid({ filter }) {
   const cursorRef = useRef();
   const visible = filter === "All"
     ? CASE_STUDIES
-    : CASE_STUDIES.filter(s => s.category.startsWith(filter));
+    : CASE_STUDIES.filter(s => catGroup(s.category) === filter);
 
   useEffect(() => {
   const el = gridRef.current;

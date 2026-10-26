@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react"
-import { CASE_STUDIES } from "../data/caseStudiesData"
+import { LEAD_STUDIES } from "../data/caseStudiesData"
 import { NAV_MENUS, MOBILE_LINKS } from "../data/navMenus"
 
 const BLOG_PREVIEWS = [
@@ -232,7 +232,9 @@ useEffect(() => {
     }, [menuOpen])
 
     const current = DESKTOP_MENU.find((i) => i.id === active)
-    const featuredStudies = CASE_STUDIES.slice(0, 4)
+    // One study per project (Part 1 of split builds), so the menu doesn't
+    // show four parts of the same build side by side.
+    const featuredStudies = LEAD_STUDIES.slice(0, 4)
     const latestBlog = BLOG_PREVIEWS[0]
     const secondaryBlogs = BLOG_PREVIEWS.slice(1, 4)
 
@@ -268,7 +270,7 @@ useEffect(() => {
                                         {study.category}
                                     </p>
                                     <h3 className="text-[20px] leading-tight tracking-wide font-medium text-white">
-                                        {study.client || study.title}
+                                        {study.title}
                                     </h3>
                                 </div>
                             </Link>

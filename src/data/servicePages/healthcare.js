@@ -188,7 +188,7 @@ const healthcare = {
       ],
     },
     caseStudy: {
-      id: "mindful-rejuvenation",
+      id: "hospital-os-patient-records-opd",
       title: "A complete HMS, delivered in three months",
       intro: "A psychiatric and mental healthcare practice moved from a manual, offline system to a fully digitised workflow.",
     },
@@ -459,7 +459,7 @@ const healthcare = {
       note: "Which rules apply depends on where you operate and which channels you use. We confirm the exact scope with you during planning.",
     },
     caseStudy: {
-      id: "desire-study-abroad",
+      id: "admissions-follow-up-automation",
       title: "Automated follow-ups that replaced hours of manual work",
       intro: "Not a hospital, but the same problem: an AI chatbot and automated follow-ups helped a study abroad firm enrol 3x as many students with a smaller team.",
     },
@@ -695,7 +695,7 @@ const healthcare = {
       ],
     },
     caseStudy: {
-      id: "desire-study-abroad",
+      id: "admissions-ai-assistant",
       title: "An AI chatbot and follow-ups, live in four days",
       intro: "For a study abroad firm, an AI chatbot and automated follow-ups replaced hours of manual work. The same pattern applies to patient queries and follow-up chasing.",
     },
@@ -819,7 +819,7 @@ const healthcare = {
       note: "Which standards apply depends on where you operate. We confirm the exact scope with you during planning.",
     },
     caseStudy: {
-      id: "mindful-rejuvenation",
+      id: "hospital-os-patient-portal-ai",
       title: "An HMS with AI integration, in three months",
       intro: "A psychiatric and mental healthcare practice moved from manual records to a digitised workflow, with AI integrated into the system.",
     },

@@ -132,7 +132,7 @@ const technologies = {
       ],
     },
     caseStudy: {
-      id: "mindful-rejuvenation",
+      id: "hospital-os-patient-records-opd",
       title: "A 50+ module hospital system, built with React",
       intro: "A psychiatric and mental healthcare practice moved from a manual, offline system to a digitised workflow, built with React, Node.js and PostgreSQL in three months.",
     },
@@ -264,7 +264,7 @@ const technologies = {
       ],
     },
     caseStudy: {
-      id: "mindful-rejuvenation",
+      id: "hospital-os-billing-admin-analytics",
       title: "A hospital system backend built on Node.js",
       intro: "A 50+ module hospital management system for a psychiatric and mental healthcare practice, built with React, Node.js and PostgreSQL and delivered in three months.",
     },
@@ -632,7 +632,7 @@ const technologies = {
       ],
     },
     caseStudy: {
-      id: "mindful-rejuvenation",
+      id: "hospital-os-ipd-pharmacy-lab",
       title: "A 50+ module system built on one JavaScript stack",
       intro: "A hospital management system for a psychiatric and mental healthcare practice, built with React, Node.js and PostgreSQL in three months.",
     },

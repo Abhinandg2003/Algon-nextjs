@@ -193,7 +193,7 @@ const healthcareTech = {
       ],
     },
     caseStudy: {
-      id: "mindful-rejuvenation",
+      id: "hospital-os-billing-admin-analytics",
       title: "From an offline practice to a digital hospital system",
       intro: "A psychiatric and mental healthcare practice moved from manual records to a 50+ module system in three months.",
     },

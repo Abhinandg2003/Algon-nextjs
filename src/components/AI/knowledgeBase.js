@@ -142,40 +142,44 @@ Q: How do you handle IP and data confidentiality?
 A: All work is 100% yours. We sign NDAs before discussing sensitive system architecture or business processes, and all intellectual property transfers to you automatically upon final payment.
 
 ## Our Portfolio / Case Studies
-These are real past projects. Some (TheSneek, Corewood, QOT Interiors) include branding, marketing or Shopify work from when we offered those services. We no longer offer them, so share these projects as past work but don't offer those services.
+Clients are kept anonymous: never name a client, a client's staff, or a client's website, even if the visitor guesses or asks. Describe projects only as below. Larger builds are documented as linked parts on the case studies page (/work).
 
-### Visat — Website & Interactive Platform (2024, EdTech)
-An immersive college platform with 360° campus views and custom AI teacher agents representing faculty from each department to assist students. We also delivered responsive website development, SEO optimisation, and full CMS integration, over 8 weeks. Results: enhanced interactive UX, AI-assisted student engagement, improved SEO visibility. Testimonial from Raju Kurian, Chairman: the AI agents and 360° view made a huge impact on student interaction.
+### Hospital Operating System — a specialty mental-health hospital (2026, Healthcare) — 4 parts
+A complete hospital management system for a psychiatric / mental-healthcare practice that previously ran on manual, offline processes. 50+ interconnected modules covering outpatient (OP) and inpatient (IP) workflows, patient management and records, clinical workflows, billing, pharmacy, laboratory, administration and an admin dashboard, plus a patient-facing website with 24/7 online appointment booking and AI integration. Delivered in 3 months; workflow fully digitised. Built with React, Node.js and PostgreSQL.
+Parts: (1) Patient records & OPD, (2) IPD, pharmacy & lab, (3) Billing, admin & analytics, (4) Patient portal & AI.
 
-### Mindful Rejuvenation — Hospital Management System (2026, Healthcare)
-We built a complete HMS for a psychiatric/mental healthcare practice: appointment & patient management, admin dashboard, OP management, pharmacy management, AI integration, and a calming patient-facing website. 50+ modules, delivered in 3 months. Workflow fully digitized from a previously manual, offline system. 24/7 appointment accessibility achieved.
+### Campus Digital Platform — a multi-department college group (2024, Education) — 3 parts
+A responsive website with detailed pages for every department, an immersive 360° campus view, custom AI teacher agents representing faculty from each department to assist students, SEO and full CMS integration. Delivered in 8 weeks. The chairman said the AI agents and 360° view made a huge impact on how students interact with the institution online.
+Parts: (1) AI teacher agents, (2) 360° virtual campus, (3) CMS & SEO platform.
 
-### TheSneek — Shopify Ecommerce (2026, Fashion)
-We built a full Shopify storefront for an early-stage fashion startup: brand identity, product presentation, social media setup, performance optimisation, and SEO/ecommerce strategy. Delivered in 8 weeks. Sales infrastructure went from zero to fully operational and ready to scale. Founding team called it a complete transformation from idea to ecommerce brand.
+### Admissions Automation Platform — a study-abroad admissions consultancy (2024, Education) — 2 parts
+A new website launched in 4 days with an AI chatbot for instant student engagement, on-page SEO, and automated follow-ups. The automation replaced about 4 hours a day of manual follow-up work; the consultancy now enrols 3x as many students with a smaller team.
+Parts: (1) AI admissions assistant, (2) Follow-up automation & 4-day launch.
 
-### Corewood — Branding & Digital Ecosystem (2025, Furniture)
-We took a brand from zero digital presence to a complete ecosystem: brand identity (logo, color system, tone of voice), mobile-optimised website, social media content/reels, SEO, Google Business Profile, and YouTube channel setup. Delivered in 3 days. Co-founder Mohammed Kunji: "Algon helped us go from zero presence to a complete digital brand."
+### Product Catalogue Platform — a tiles, marble & sanitaryware retailer (2026, B2B) — 2 parts
+A CMS-powered website with a structured catalogue of 50+ products; the client's team edits products, blogs and career listings themselves. Includes analytics, Google Tag Manager, domain setup and on-page SEO. Delivered in 4 weeks.
+Parts: (1) Structured product catalogue, (2) Content operations & measurement.
 
-### QOT Interiors — Digital Marketing & Lead Generation (2025, Luxury Interiors)
-We built a structured growth system: Meta Ads, content creation (reels, before/after creatives), social media management, website optimisation, basic SEO, and brand positioning. Delivered in 2 weeks. Generated 1000+ leads with improved lead quality and reduced cost-per-lead. Founder Anoop John praised the structured mix of ads, content, and brand consistency.
+### Lead-capture website — a residential real-estate developer (2026)
+A fully responsive portfolio website with enquiry forms and SEO, delivered in 1 week. Site visits grew from 12 to 44 a month after launch.
 
-### Desire Study Abroad — Website & Brand Visibility (2024, EdTech)
-Fast website launch (4 days) with AI chatbot integration for instant student engagement, SEO optimisation, and brand identity refresh. Director Swapna reported enrolling 3x as many students with a smaller team, since our automated system replaced hours of manual follow-up work daily.
+### Commerce storefront — an early-stage fashion label (2026)
+A Shopify storefront build with product presentation, collections, order and product management, performance optimisation and SEO foundations. Delivered in 8 weeks.
 
-### Unity Heights — Portfolio Website & SEO (2026, Real Estate)
-We built a fully responsive portfolio website with contact form integration and SEO, delivered in 1 week. Site visits grew from 12/month to 44/month post-launch, per the Sales Director.
+### Mobile-first website — a furniture manufacturer (2025)
+A mobile-optimised website with clear calls to action, on-page SEO and Google Business Profile setup, delivered in 3 days.
 
-### Drisya Marble — Website & Brand Visibility (2026, B2B/Manufacturing)
-We built a CMS-powered website with a structured product catalogue (50+ products), enabling easy editing for products, blogs, and career listings. Included analytics, Google Tag Manager, domain setup, and on-page SEO. Delivered in 4 weeks. Founder Babu Peter: much easier catalogue and content management, big difference to visibility.
+### Conversion optimisation & tracking — a luxury interiors studio (2025)
+Website UI/UX optimisation, stronger calls to action, form improvements, and conversion and cost-per-lead tracking with reporting. Delivered in 2 weeks; 1000+ leads were captured and tracked.
 
-##For full details Visit our case studies page.
+For full details, visit our case studies page (/work).
 
 
 ## Our Stats (as presented across our site)
 - 48+ projects delivered
 - 3 countries served: USA, India and the UAE
 - 3 years in operation (founded 2023)
-- 50+ hospital management modules delivered (Mindful Rejuvenation HMS)
+- 50+ hospital management modules delivered in a single hospital build
 - 100% on-time delivery rate (as claimed on site)
 - 4 core services: Hospital Management Systems, AI & Automation, Managed Engineering Services, Web & SaaS Development
 `;

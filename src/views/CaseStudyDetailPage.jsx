@@ -25,7 +25,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { CASE_STUDIES } from "../data/caseStudiesData";
+import { CASE_STUDIES, seriesParts } from "../data/caseStudiesData";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
@@ -324,6 +324,7 @@ function DetailHero({ study }) {
         <div ref={metaRef} className="csd-meta-row">
           {[
             { label: "Category", val: study.category },
+            ...(study.series ? [{ label: study.series.name, val: `Part ${study.series.part} of ${study.series.total}` }] : []),
             // { label: "Year", val: study.year },
             // { label: "Duration", val: study.duration },
           ].map((m) => (
@@ -332,6 +333,25 @@ function DetailHero({ study }) {
               <span className="csd-meta-val">{m.val}</span>
             </div>
           ))}
+          {/* Other parts of the same build */}
+          {study.series && (
+            <nav aria-label={`${study.series.name} — all parts`} className="csd-meta-item">
+              <span className="csd-meta-label">All parts</span>
+              <span className="csd-meta-val" style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                {seriesParts(study).map((p) =>
+                  p.id === study.id ? (
+                    <span key={p.id} aria-current="page" style={{ opacity: 1, borderBottom: "1px solid currentColor" }}>
+                      {p.series.part}
+                    </span>
+                  ) : (
+                    <Link key={p.id} href={`/work/${p.id}`} title={p.title} style={{ opacity: 0.55 }}>
+                      {p.series.part}
+                    </Link>
+                  )
+                )}
+              </span>
+            </nav>
+          )}
           {/* <div className="csd-meta-item">
             <span className="csd-meta-label">Services</span>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 4 }}>
@@ -1154,7 +1174,8 @@ function ResultsSection({ study }) {
               after
             </span> */}
           </h2>
-            {/* Testimonial inline */}
+            {/* Testimonial inline — optional: some parts have no quote (we never invent them) */}
+            {study.testimonial && (
             <div className="csd-testimonial-inline">
               <div className="csd-tl-mark" style={{ color: study.accent }}>"</div>
               <p className="csd-tl-text">{study.testimonial.text}</p>
@@ -1170,6 +1191,7 @@ function ResultsSection({ study }) {
                 </div>
               </div>
             </div>
+            )}
           </div>
 
           <div className="csd-results-table-wrap">
@@ -1287,11 +1309,14 @@ export default function CaseStudyDetailPage() {
     
     <>
 
-    <a href={study.href} target="_blank">
+    {/* Live-site link — only for studies that have one (anonymised studies don't) */}
+    {study.href && (
+    <a href={study.href} target="_blank" rel="noopener noreferrer" aria-label="Visit the live website">
           <div className="fixed h-[58px] w-[58px] flex right-[104px] bottom-[32px] rounded-md items-center justify-center bg-[#298dff] border-2  border-[#fcfcf7] z-[999] group ">
             <ArrowUpRight className="flex justify-center items-center group-hover:-translate-y-1 group-hover:translate-x-1  text-[#fcfcf7] transition-all duration-300"/>
           </div>
         </a>
+    )}
     
       <style>{`
         /* ── KEYFRAMES ──────────────────────────────────────────── */
@@ -1376,7 +1401,7 @@ export default function CaseStudyDetailPage() {
         .csd-back:hover{color:rgba(255,255,255,.8);}
         .csd-hero-title-wrap{margin-bottom:40px;}
         .csd-hero-h1 {
-          font-weight:400;font-size:clamp(52px,9vw,130px);line-height:.95;
+          font-weight:400;font-size:clamp(32px,6vw,100px);line-height:.95;
           letter-spacing:-.04em;color:#fff;
         }
         .csd-hero-tagline {

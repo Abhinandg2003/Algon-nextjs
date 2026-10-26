@@ -32,54 +32,52 @@ gsap.registerPlugin(ScrollTrigger);
 /* ─────────────────────────────────────────────────────────────────────────────
    DATA
 ──────────────────────────────────────────────────────────────────────────── */
+// Anonymised, and in step with the case studies: `id` is the case-study id
+// (/work/<id>), and both the title link and the image open that page.
+// Copy uses only confirmed facts (see src/data/caseStudies/*).
 const FEATURED = [
   {
     num: "01",
-    id: "visat",
-    title: "Visat",
-    category: "Website & Interactive Platform",
-    year: "2024",
-    desc: "An immersive college platform featuring 360-degree campus views and intelligent AI teacher agents. Delivered with integrated CMS in 8 weeks.",
-    tags: ["HTML", "CSS", "Node.js", "CMS", "AI"],
+    id: "hospital-os-patient-records-opd",
+    title: "Hospital Operating System",
+    category: "Healthcare · Hospital Management",
+    year: "2026",
+    desc: "A 50+ module hospital operating system for a specialty mental-health hospital: patient records, OPD and IPD, pharmacy, laboratory, billing and admin dashboards, with a patient booking portal and AI integration. Delivered in 3 months.",
+    tags: ["React", "Node.js", "PostgreSQL", "AI"],
     accent: "#fff",
-    stat: "8 wks",
-    statLabel: "Full delivery",
-    bg: "linear-gradient(135deg, #0d0109 0%, #170214 50%, #070105 100%)",
-    image: "/images/clients/gallery/visat/hero.webp",
-    href: "https://visat.in",
+    stat: "50+",
+    statLabel: "Modules",
+    bg: "linear-gradient(135deg, #01040d 0%, #020517 50%, #010107 100%)",
+    image: "/images/clients/gallery/hms/herohid.jpg",
   },
 
   {
     num: "02",
-    id: "hms",
-    title: "Mindful Rejuvenation",
-    category: "Hospital management system",
-    year: "2026",
-    desc: "A comprehensive hospital management platform streamlining OP, pharmacy, and advanced healthcare workflows. Delivered with intelligent AI technologies in 3 months.",
-    tags: ["postgresql", "React", "Node.js"],
-    accent: "#fff",
-    stat: "3 mos",
-    statLabel: "Full delivery",
-    bg: "linear-gradient(135deg, #01040d 0%, #020517 50%, #010107 100%)",
-    image: "/images/clients/gallery/hms/hero.webp",
-    href: "#",
-  },
-
-  {
-    num: "03",
-    id: "thesneek",
-    title: "Thesneek",
-    category: "Shopify Solution",
-    year: "2026",
-    desc: "Full Shopping infrastructure — Order management, Product management, Brand Identity. Delivered in 8 weeks.",
-    tags: ["Shopify", "React"],
+    id: "campus-ai-teacher-agents",
+    title: "Campus AI Teacher Agents",
+    category: "AI & Automation · AI Agents",
+    year: "2024",
+    desc: "Custom AI teacher agents for every department of a multi-department college group, assisting students on the institution's own platform, alongside a 360° virtual campus and CMS. Delivered in 8 weeks.",
+    tags: ["AI Agents", "Node.js", "CMS", "360°"],
     accent: "#fff",
     stat: "8 wks",
     statLabel: "Full delivery",
+    bg: "linear-gradient(135deg, #0d0109 0%, #170214 50%, #070105 100%)",
+image: "/images/clients/gallery/visat/herohid.jpg",  },
+
+  {
+    num: "03",
+    id: "product-catalogue-cms",
+    title: "Product Catalogue Platform",
+    category: "Web & SaaS · B2B Platform",
+    year: "2026",
+    desc: "A CMS-driven B2B catalogue platform for a tiles, marble and sanitaryware retailer: a structured catalogue of 50+ products, team-editable content, analytics and SEO foundations. Delivered in 4 weeks.",
+    tags: ["CMS", "B2B", "Analytics", "SEO"],
+    accent: "#fff",
+    stat: "50+",
+    statLabel: "Products",
     bg: "linear-gradient(135deg, #0d0301 0%, #170702 50%, #070201 100%)",
-    image: "/images/clients/gallery/sneek/hero.webp",
-    href: "https://www.thesneek.com/",
-  },
+image: "/images/clients/gallery/drisya/herohid.jpg",  },
 
   // {
   //   num:"04",
@@ -144,36 +142,38 @@ const FEATURED = [
   // },
 ];
 
+// Same pattern as FEATURED (healthcare → AI → web/B2B) but different case
+// studies, anonymised; href points at the matching /work case study.
 const GRID_PROJECTS = [
   {
     id: "06",
-    title: "Drisya Marble",
-    cat: "Web + Brand",
+    title: "Hospital Billing & Admin Dashboards",
+    cat: "Healthcare + Dashboards",
     year: "2026",
-    pic: "/images/clients/gallery/drisya/thumbnail.webp",
+    pic: "/images/clients/gallery/hms/thumbnail.webp",
     accent: "#e82727",
-    tags: ["React", "GSAP", "CMS"],
-    href: "work/drisya-marble",
+    tags: ["React", "PostgreSQL", "Dashboards"],
+    href: "/work/hospital-os-billing-admin-analytics",
   },
   {
     id: "07",
-    title: "Corewood",
-    cat: "Portfolio + Branding",
-    year: "2025",
-    pic: "/images/clients/gallery/corewood/thumbnail.webp",
+    title: "Admissions AI Assistant",
+    cat: "AI + Automation",
+    year: "2024",
+    pic: "/images/clients/gallery/desire/thumbnail.webp",
     accent: "#f07829",
-    tags: ["HTML", "Branding", "CSS"],
-    href: "work/corewood",
+    tags: ["AI Chatbot", "Automation", "Web"],
+    href: "/work/admissions-ai-assistant",
   },
   {
     id: "09",
-    title: "VISAT",
-    cat: "College + SaaS",
-    year: "2024",
-    pic: "/images/clients/gallery/visat/thumbnail.webp",
+    title: "Real-Estate Lead Website",
+    cat: "Web + Lead Capture",
+    year: "2026",
+    pic: "/images/clients/gallery/unity/thumbnail.webp",
     accent: "#de078b",
-    tags: ["HTML","CSS", "Node.js","CMS", "AI"],
-    href: "work/visat",
+    tags: ["Responsive", "SEO", "Lead Forms"],
+    href: "/work/real-estate-lead-website",
   },
 ];
 
@@ -745,8 +745,9 @@ function FeaturedReel() {
                     </Canvas>
                   </div> */}
 
-                  {/* Project image — full bleed, premium overlay */}
-                  <a href={proj.href} target="_blank">
+                  {/* Project image — full bleed, premium overlay. Links to the
+                      case study (same tab), not the client's live site. */}
+                  <Link href={`/work/${proj.id}`} aria-label={`${proj.title} case study`}>
                     <img
                       src={proj.image}
                       alt={`${proj.title} — ${proj.category}`}
@@ -754,7 +755,7 @@ function FeaturedReel() {
                       loading="lazy"
                       decoding="async"
                     />
-                  </a>
+                  </Link>
 
                   {/* Gradient overlay — bottom fade + accent tint */}
                   {/* <div
@@ -890,9 +891,9 @@ function GridCard({ proj, index }) {
             style={{ transition: "fill-opacity 0.4s" }}/>
         </svg>
         <div className="pf-gc-year">{proj.year}</div> */}
-        <a href={proj.href} target="_blank">
+        <Link href={proj.href} aria-label={`${proj.title} case study`}>
           <img src={proj.pic} alt={`${proj.title} — ${proj.cat}`} loading="lazy" decoding="async" />{" "}
-        </a>
+        </Link>
         {/* <div
           className="pf-panel-img-overlay"
           style={{
@@ -1404,7 +1405,7 @@ export default function PortfolioPage() {
         }
         .pf-panel-title {
           
-          font-size: clamp(44px, 6vw, 90px);
+          font-size: clamp(37px, 5vw, 70px);
           font-weight: 400; line-height: 0.95;
           color: #fff; margin: 0 0 24px;
         }
@@ -1455,7 +1456,7 @@ export default function PortfolioPage() {
 
         /* Full-bleed project image */
         .pf-panel-img {
-        border-radius:20px;
+        border-radius:10px;
           position: absolute; inset: 0;
           width: 100%; height: 100%;
           object-fit: cover; object-position: center;
@@ -1649,10 +1650,15 @@ export default function PortfolioPage() {
           display: grid; grid-template-columns: repeat(3, 1fr);
           gap: 10px; 
         }
+        /* Equal-height cards: every column stretches to the tallest card;
+           the card fills it, category + title stay at the top and the tags
+           sit on the bottom edge (any extra space goes between them). */
+        .pf-grid > div { height: 100%; }
         .pf-grid-card {
           position: relative; background: #0f0f0f;
           overflow: hidden; transform-style: preserve-3d;
           cursor: pointer;border-radius:20px;
+          height: 100%; display: flex; flex-direction: column;
         }
         .pf-grid-card:hover { background: rgba(30,30,30,1); }
         .pf-gc-glow {
@@ -1684,7 +1690,7 @@ export default function PortfolioPage() {
 
         .pf-gc-visual {
           position: relative; z-index: 1;
-          height: 240px;
+          height: 240px; flex-shrink: 0;
           
           display: flex; align-items: center; justify-content: center;
           overflow: hidden;
@@ -1703,7 +1709,10 @@ export default function PortfolioPage() {
           font-size: 10px; letter-spacing: 0.15em;
           color: rgba(255,255,255,0.18); z-index: 2;
         }
-        .pf-gc-body { position: relative; z-index: 1; padding: 20px 22px 24px; }
+        .pf-gc-body {
+          position: relative; z-index: 1; padding: 20px 22px 24px;
+          flex: 1; display: flex; flex-direction: column;
+        }
         .pf-gc-cat {
           
           font-size: 16px; font-weight:400;
@@ -1715,7 +1724,7 @@ export default function PortfolioPage() {
           font-weight: 400; letter-spacing: 0.01em;
           color: #fff; margin: 0 0 14px;
         }
-        .pf-gc-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+        .pf-gc-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: auto; }
         .pf-gc-bar {
           position: absolute; bottom: 0; left: 0; right: 0; height: 2px; 
           background: var(--accent,transparent); opacity: 0;

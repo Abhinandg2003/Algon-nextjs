@@ -275,9 +275,9 @@ useEffect(() => {
           <h1 className="whitespace-pre-line text-[50px] md:text-[60px] font-light leading-[1.05] tracking-wide">
             {SLIDES[current].headline}
           </h1>
-          <button className="mt-10 border border-white  text-[18px]  text-white rounded-full   px-8 py-3    duration-300 transition hover:bg-white hover:text-black">
-            Explore Works →
-          </button>
+          <Link href="/contact" className="mt-10 inline-block text-[18px] text-white rounded-full py-3 hover:translate-x-2 transition-all duration-300">
+            Contact Us →
+          </Link>
         </div>
       </div>
 

@@ -119,7 +119,7 @@ const aiDevelopment = {
       ],
     },
     caseStudy: {
-      id: "desire-study-abroad",
+      id: "admissions-ai-assistant",
       title: "An AI chatbot and automated follow-ups, live in four days",
       intro: "A study abroad consultancy replaced hours of daily manual follow-up and enrolled three times as many students with a smaller team.",
     },
@@ -259,7 +259,7 @@ const aiDevelopment = {
       ],
     },
     caseStudy: {
-      id: "visat",
+      id: "campus-ai-teacher-agents",
       title: "AI teacher agents for every department",
       intro: "A college platform with custom AI teacher agents built for each department, delivered in eight weeks.",
     },
@@ -396,7 +396,7 @@ const aiDevelopment = {
       note: "The exact list is confirmed for each project, based on what you already use.",
     },
     caseStudy: {
-      id: "desire-study-abroad",
+      id: "admissions-follow-up-automation",
       title: "Hours of manual follow-up, automated",
       intro: "Automated follow-ups replaced hours of daily manual work for a study abroad consultancy, helping it enrol three times as many students with a smaller team.",
     },
@@ -674,7 +674,7 @@ const aiDevelopment = {
       note: "Hosting set-up and the exact data rules are confirmed for each project, based on where you operate and the data involved.",
     },
     caseStudy: {
-      id: "mindful-rejuvenation",
+      id: "hospital-os-patient-portal-ai",
       title: "AI integrated into a hospital management system",
       intro: "A 50+ module HMS for a psychiatric and mental healthcare practice, delivered in three months with AI integration.",
     },
