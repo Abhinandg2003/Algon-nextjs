@@ -31,6 +31,12 @@ export function bannerImage(type, slug) {
   ])
 }
 
+// Hero image for the "image" hero variant:
+//   public/images/services/<type>/<slug>/hero.webp
+export function heroImage(type, slug) {
+  return firstExisting([`/images/services/${type}/${slug}/hero`])
+}
+
 export function showcaseImages(type, slug, count) {
   return Array.from({ length: count }, (_, i) => firstExisting([`/images/services/${type}/${slug}/service-${i + 1}`]))
 }

@@ -356,7 +356,7 @@ const productEngineering = {
       title: "Built around how a practice really works",
       intro: "A 50+ module hospital management system delivered in three months, shaped around the daily workflow of a psychiatric and mental healthcare practice.",
     },
-    related: ["product-engineering/mvp-development", "product-engineering/managed-engineering-services", "healthcare/healthcare-software-development-services"],
+    related: ["product-engineering/mvp-development", "product-engineering/managed-engineering-services", "healthcare/healthcare-software-development"],
     faq: [
       {
         q: "Can you take over a product another team built?",

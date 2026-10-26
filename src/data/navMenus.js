@@ -53,7 +53,7 @@ export const NAV_MENUS = [
       {
         title: "Technology",
         items: [
-          "Healthcare Software Development Services",
+          "Healthcare Software Development",
           "Healthcare Integration",
           "Health Data Analysis",
           "DevOps in Healthcare",

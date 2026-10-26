@@ -144,8 +144,8 @@
   border: 1px solid transparent;
   cursor: pointer;
 }
-.svp-btn--primary { background: var(--svp-blue); color: #fff; }
-.svp-btn--primary:hover { background: var(--svp-blue-2); }
+.svp-btn--primary { background: var(--svp-blue-2); color: #fff; }
+.svp-btn--primary:hover { background: var(--svp-blue); }
 .svp-btn--ghost { border-color: var(--svp-line); color: var(--svp-fg); }
 .svp-btn--ghost:hover { border-color: var(--svp-fg); }
 /* Matches the site's secondary buttons: outline on dark, fills white on hover */
@@ -197,6 +197,44 @@ color: var(--svp-blue-2);;  padding: 0 0.12em 0.06em;
   color: var(--svp-muted);
   margin: 0;
 }
+/* ── Hero variants (components/servicepage/heroes) ─────────────────────── */
+/* light: dark text on paper, white form card */
+.svp-hero--light .svp-h1,
+.svp-hero--light .svp-tagline,
+.svp-hero--light .svp-tagline em { color: var(--svp-fg); }
+.svp-hero--light .svp-form { background: #fff; backdrop-filter: none; }
+.svp-btn--outline-dark { background: transparent; color: var(--svp-ink); border-color: var(--svp-ink); }
+.svp-btn--outline-dark:hover { background: var(--svp-ink); color: #fff; border-color: var(--svp-ink); }
+
+/* Light stats band (StatsStrip tone="light"), under a light hero */
+.svp-stats-band--light { background: var(--svp-paper); }
+
+/* image: framed visual in the second column */
+.svp-hero-media {
+  overflow: hidden;
+    background: rgba(255, 255, 255, 0.03);
+}
+.svp-hero-media-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(5, 5, 8, 0.35) 0%, transparent 45%);
+}
+
+/* centered: one column, bigger statement heading */
+/* Full-screen, content vertically centred. Top padding clears the fixed
+   navbar (72px); svh avoids the mobile address-bar jump. */
+.svp-hero--centered {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 96px;
+  padding-bottom: 72px;
+}
+.svp-h1--xl { font-size: clamp(52px, 7.5vw, 120px); }
+
 /* Hero tags: plain text, "•"-separated (not pills) */
 .svp-hero-tags {
   font-size: 14px;

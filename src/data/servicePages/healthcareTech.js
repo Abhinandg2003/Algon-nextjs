@@ -3,13 +3,13 @@
 
 const healthcareTech = {
   // ───────────────────────────────────────────────────────────────────────────
-  "healthcare-software-development-services": {
+  "healthcare-software-development": {
     seo: {
-      title: "Healthcare Software Development Services",
+      title: "Healthcare Software Development",
       description:
         "Custom healthcare software for hospitals, clinics, diagnostic centres, health product companies and medical distributors, built around how your work really runs.",
       keywords: [
-        "healthcare software development services",
+        "healthcare software development",
         "custom healthcare software development",
         "healthcare software development company India",
         "hospital software development",

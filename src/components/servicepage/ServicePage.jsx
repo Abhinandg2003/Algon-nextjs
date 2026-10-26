@@ -18,6 +18,7 @@ import MediaBand from "./MediaBand"
 import StickyShowcase from "./StickyShowcase"
 import { getServicePage } from "@/data/servicePages"
 import { bannerImage, showcaseImages } from "@/lib/serviceImages"
+import { pickHeroVariant } from "@/lib/heroVariant"
 
 const SITE_URL = "https://algonsolutions.com"
 const RELATED_ICON = { healthcare: "Stethoscope", "ai-development": "Sparkles", "product-engineering": "Layers" }
@@ -78,7 +79,7 @@ function jsonLd({ page, item, menu }) {
 export default function ServicePage({ type, slug }) {
   const data = getServicePage(type, slug)
   if (!data) return null
-  const { page, menu, group, item } = data
+  const { page, item } = data
   const name = item.label
 
   // Build the body sections in order, then alternate light/dark tones so
@@ -124,6 +125,7 @@ export default function ServicePage({ type, slug }) {
     ))
 
   const rootId = `svp-${type}-${slug}`
+  const heroPick = pickHeroVariant(type, slug, page.hero)
 
   return (
     // key: /healthcare/a → /healthcare/b reuses this route's components, so
@@ -134,12 +136,14 @@ export default function ServicePage({ type, slug }) {
       <Reveal rootId={rootId} />
       <Navbar />
       <ServiceHero
+        variant={heroPick.variant}
+        image={heroPick.image}
         serviceName={name}
         heading={page.hero.heading || name}
         hero={page.hero}
-        crumbs={[{ label: "Home", href: "/" }, { label: menu.label, href: `/${type}` }, { label: group.title }, { label: name }]}
       />
-      {page.stats?.length > 0 && <StatsStrip items={page.stats} />}
+      {/* Stats follow the hero's tone: light hero → light stats */}
+      {page.stats?.length > 0 && <StatsStrip items={page.stats} tone={heroPick.variant === "light" ? "light" : "dark"} />}
       {(() => {
         let n = 0
         return blocks.map((render) => (render.untoned ? render() : render(n++ % 2 === 0 ? "light" : "dark")))

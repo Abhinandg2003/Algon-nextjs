@@ -48,7 +48,6 @@ export default function ServiceHub({ type }) {
         serviceName={menu.label}
         heading={`${menu.label} services`}
         hero={{ ...copy, secondaryCta: "See all services" }}
-        crumbs={[{ label: "Home", href: "/" }, { label: menu.label }]}
       />
       {banner && <MediaBand image={banner} alt={`${menu.label} services — Algon Solutions`} />}
       {menu.groups.map((g, i) => (
