@@ -846,11 +846,30 @@ export default function MainWebsite() {
     if (sessionStorage.getItem(PRELOADER_SEEN_KEY) === "true") setPhase("site")
   }, [])
 
-  // Lock scrolling while the overlay is up
+  // Block scrolling while the overlay is up — WITHOUT overflow:hidden, which
+  // removes the scrollbar and makes the page jump sideways when it returns.
+  // Capture-phase listeners on window run before Lenis's, and
+  // stopPropagation keeps Lenis from smooth-scrolling behind the overlay.
   useEffect(() => {
-    const locked = phase !== "site"
-    document.documentElement.style.overflow = locked ? "hidden" : ""
-    document.body.style.overflow = locked ? "hidden" : ""
+    if (phase === "site") return
+    const SCROLL_KEYS = new Set([" ", "PageDown", "PageUp", "ArrowDown", "ArrowUp", "Home", "End"])
+    const block = (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+    const onKey = (e) => { if (SCROLL_KEYS.has(e.key)) block(e) }
+    const stayAtTop = () => { if (window.scrollY !== 0) window.scrollTo(0, 0) } // e.g. dragging the scrollbar
+    const opts = { passive: false, capture: true }
+    window.addEventListener("wheel", block, opts)
+    window.addEventListener("touchmove", block, opts)
+    window.addEventListener("keydown", onKey, true)
+    window.addEventListener("scroll", stayAtTop)
+    return () => {
+      window.removeEventListener("wheel", block, opts)
+      window.removeEventListener("touchmove", block, opts)
+      window.removeEventListener("keydown", onKey, true)
+      window.removeEventListener("scroll", stayAtTop)
+    }
   }, [phase])
 
   // Video preloader — safety net: never stay on the loader longer than 8s

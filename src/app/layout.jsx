@@ -2,7 +2,7 @@ import "../index.css";
 import AppShell from "@/components/AppShell";
 
 const SITE_URL = "https://algonsolutions.com";
-const TITLE = "Algon Solutions — Hospital Management Systems, AI Automation & Engineering Teams";
+const TITLE = "Algon Solutions: Smart Healthcare Solutions for Hospitals & Clinics";
 const DESCRIPTION =
   "Algon Solutions is a systems and engineering firm in Kochi, India, building hospital management systems, clinic automation, AI and workflow automation, managed engineering teams, and web and SaaS platforms for clients in the USA, India and the UAE.";
 
