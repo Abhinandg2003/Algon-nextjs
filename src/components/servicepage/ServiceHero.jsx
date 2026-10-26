@@ -43,7 +43,7 @@ export default function ServiceHero({ crumbs = [], heading, hero, serviceName })
   return (
     <section data-navbar="light" className="svp-section svp-dark svp-hero">
       <div className="svp-grain" aria-hidden="true" />
-      <div className="svp-orb -top-[20%] -right-[10%]" aria-hidden="true" />
+      {/* <div className="svp-orb -top-[20%] -right-[10%]" aria-hidden="true" /> */}
 
       <div className="svp-inner grid gap-14 lg:grid-cols-[1.25fr_1fr] lg:gap-20 lg:items-center">
         <div className="flex flex-col gap-7">
@@ -68,9 +68,14 @@ export default function ServiceHero({ crumbs = [], heading, hero, serviceName })
           </div>
 
           {chips.length > 0 && (
-            <ul className="flex flex-wrap justify-center lg:justify-start gap-2 pt-1" aria-label="Covers">
-              {chips.map((c) => (
-                <li key={c} className="svp-chip">{c}</li>
+            // Plain text tags separated by "•" (the separator is decorative,
+            // so screen readers just hear the list items)
+            <ul className="svp-hero-tags flex flex-wrap justify-center lg:justify-start gap-x-1 gap-y-1 pt-1" aria-label="Covers">
+              {chips.map((c, i) => (
+                <li key={c} className="flex items-center gap-1">
+                  {i > 0 && <span aria-hidden="true" className="svp-hero-tags-sep">·</span>}
+                  {c}
+                </li>
               ))}
             </ul>
           )}
