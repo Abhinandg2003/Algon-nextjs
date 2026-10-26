@@ -6,7 +6,7 @@ const ADVANCE = "(1ch + 0.25em)";     // one character + its letter-spacing
 export default function Loader() {
   return (
     <div
-      className="fixed inset-0 flex items-center justify-center bg-[#131313]"
+      className="fixed inset-0 flex items-center justify-center bg-[#050508]"
       style={{ zIndex: 99999999 }}
     >
       <span

@@ -24,7 +24,15 @@ export default function Page() {
       <link rel="preload" as="image" href="/images/posters/algonhero-4.webp" media="(min-width: 768px)" />
 
       <script dangerouslySetInnerHTML={{ __html: HIDE_SEEN_SPLASH }} />
-      <style>{`html.splash-seen [data-splash]{display:none!important}`}</style>
+      <style>{`
+        html.splash-seen [data-splash]{display:none!important}
+        /* Returning visitors skip the preloader, so the hero text is shown as-is */
+        html.splash-seen .hero-reveal{opacity:1!important;transform:none!important}
+        @media (prefers-reduced-motion: reduce){
+          [data-splash], .hero-reveal{transition:none!important}
+          .hero-reveal{transform:none!important}
+        }
+      `}</style>
 
       <MainWebsite />
     </>

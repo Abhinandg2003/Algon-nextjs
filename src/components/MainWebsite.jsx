@@ -19,7 +19,7 @@ import { CASE_STUDIES } from "../data/caseStudiesData"
 import "../casestudies.css"
 import TestimonialCarousel from "./testimonialsectionvideos"
 import { ServicesOverviewMain } from "./Servicesinmain"
-import { LOADER_FADE_MS, LOADER_ONLY_MS, PRELOADER_SEEN_KEY, PRELOADER_VIDEO } from "@/config/preloader"
+import { LOADER_ONLY_MS, PRELOADER_SEEN_KEY, PRELOADER_VIDEO, REVEAL_EASE, REVEAL_MS } from "@/config/preloader"
 import { requestScrollRefresh } from "@/lib/scrollRefresh"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -113,7 +113,9 @@ const posterFor = (src) => `/images/posters/${src.split("/").pop().replace(/\.\w
 
 // deferMedia: true while the preloader overlay is up — videos don't download
 // (posters show instead) so the intro video gets the bandwidth.
-function Hero({ deferMedia = false }) {
+// revealed: false while the preloader overlay is fully up — the hero text
+// then eases in as the overlay crossfades out.
+function Hero({ deferMedia = false, revealed = true }) {
 
   const [isMobile, setIsMobile] = useState(false);
 
@@ -271,7 +273,16 @@ useEffect(() => {
 
       {/* Hero text */}
       <div className="absolute inset-0 z-20 flex items-end">
-        <div className="ml-[8vw] max-w-[620px] pb-[30%] md:pb-[5%]">
+        {/* hero-reveal: eases in with the preloader crossfade. Starts at 35%
+            opacity (not 0) so the text still counts as painted for LCP. */}
+        <div
+          className="hero-reveal ml-[8vw] max-w-[620px] pb-[30%] md:pb-[5%]"
+          style={{
+            opacity: revealed ? 1 : 0.35,
+            transform: revealed ? "none" : "translateY(18px)",
+            transition: `opacity 900ms ${REVEAL_EASE} 120ms, transform 900ms ${REVEAL_EASE} 120ms`,
+          }}
+        >
           <h1 className="whitespace-pre-line text-[50px] md:text-[60px] font-light leading-[1.05] tracking-wide">
             {SLIDES[current].headline}
           </h1>
@@ -830,16 +841,25 @@ function ServicesOverviewPC() {
 // the full home page). The preloader is an overlay on top of it, shown once
 // per tab. See src/config/preloader.js for the PRELOADER_VIDEO toggle.
 export default function MainWebsite() {
-  const [phase, setPhase] = useState("loading")   // "loading" | "site"
+  // "loading"   → overlay up, page locked, hero videos idle
+  // "revealing" → overlay crossfades out over the site; page already usable
+  // "site"      → overlay removed
+  const [phase, setPhase] = useState("loading")
   const [ready, setReady] = useState(false)        // intro video buffered
-  const [loaderLeaving, setLoaderLeaving] = useState(false) // loader-only fade-out
 
+  // Start the crossfade (from the video ending / Skip, or the loader timer)
   const finishSplash = useCallback(() => {
-    sessionStorage.setItem(PRELOADER_SEEN_KEY, "true")
-    setPhase("site")
-    window.dispatchEvent(new Event("site-ready"))
-    requestScrollRefresh() // scrollbar returns → widths change → re-measure GSAP
+    setPhase((p) => (p === "loading" ? "revealing" : p))
   }, [])
+
+  useEffect(() => {
+    if (phase !== "revealing") return
+    sessionStorage.setItem(PRELOADER_SEEN_KEY, "true")
+    window.dispatchEvent(new Event("site-ready"))
+    requestScrollRefresh()
+    const t = setTimeout(() => setPhase("site"), REVEAL_MS)
+    return () => clearTimeout(t)
+  }, [phase])
 
   // Returning visitors in this tab skip the intro
   useEffect(() => {
@@ -851,7 +871,7 @@ export default function MainWebsite() {
   // Capture-phase listeners on window run before Lenis's, and
   // stopPropagation keeps Lenis from smooth-scrolling behind the overlay.
   useEffect(() => {
-    if (phase === "site") return
+    if (phase !== "loading") return // unlocked as soon as the reveal starts
     const SCROLL_KEYS = new Set([" ", "PageDown", "PageUp", "ArrowDown", "ArrowUp", "Home", "End"])
     const block = (e) => {
       e.preventDefault()
@@ -879,34 +899,39 @@ export default function MainWebsite() {
     return () => clearTimeout(t)
   }, [phase, ready])
 
-  // No-video preloader: brief loader, quick fade, done.
+  // No-video preloader: brief loader, then the crossfade.
   useEffect(() => {
     if (PRELOADER_VIDEO || phase !== "loading") return
-    const fade = setTimeout(() => setLoaderLeaving(true), LOADER_ONLY_MS)
-    const done = setTimeout(finishSplash, LOADER_ONLY_MS + LOADER_FADE_MS)
-    return () => {
-      clearTimeout(fade)
-      clearTimeout(done)
-    }
+    const t = setTimeout(finishSplash, LOADER_ONLY_MS)
+    return () => clearTimeout(t)
   }, [phase, finishSplash])
 
-  // Hold back the hero videos while the overlay is up so they don't compete
-  // with the intro video for bandwidth (their posters still show).
-  const deferMedia = phase !== "site"
+  // Hero videos stay idle only while the overlay is fully up; they start
+  // loading as the crossfade begins (posters cover the gap).
+  const deferMedia = phase === "loading"
+  const revealed = phase !== "loading"
 
   return (
     <>
-      {phase === "loading" && (
-        <div data-splash>
+      {phase !== "site" && (
+        // The overlay fades (opacity only — GPU-cheap, and it never hides the
+        // site itself, so content stays visible to Google and LCP isn't held).
+        <div
+          data-splash
+          style={{
+            position: "fixed", inset: 0, zIndex: 9999999,
+            opacity: revealed ? 0 : 1,
+            transition: `opacity ${REVEAL_MS}ms ${REVEAL_EASE}`,
+            pointerEvents: revealed ? "none" : "auto",
+          }}
+        >
           {PRELOADER_VIDEO ? (
             <>
               <SplashScreen onFinish={finishSplash} onReady={() => setReady(true)} play={ready} />
               {!ready && <Loader />}
             </>
           ) : (
-            <div style={{ opacity: loaderLeaving ? 0 : 1, transition: `opacity ${LOADER_FADE_MS}ms ease` }}>
-              <Loader />
-            </div>
+            <Loader />
           )}
         </div>
       )}
@@ -914,7 +939,7 @@ export default function MainWebsite() {
       <div className="min-h-screen bg-[#050508] text-white">
       <ScrollIndicator />
       <Navbar />
-      <Hero deferMedia={deferMedia} />
+      <Hero deferMedia={deferMedia} revealed={revealed} />
       <div className="hidden lg:block">
         <AlgonHero deferMedia={deferMedia} />
       </div>

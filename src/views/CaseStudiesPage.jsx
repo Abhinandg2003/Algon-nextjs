@@ -194,7 +194,12 @@ function CaseStudiesHero() {
         <div className="flex flex-row md:flex-col justify-center pt-10">
 
         <h1 ref={h1Ref} className="cs-hero-h1 text-center md:text-start">
-          <h1>Projects that <br /></h1> <span>moved the </span> <h1 className="bg-[#265eed] mt-4 text-[80px] md:text-[115px] mx-auto md:mx-0 w-fit -py-2 pr-2"> needle</h1>
+          {/* One <h1>; the lines are block <span>s (a heading can't contain another heading) */}
+          <span className="block">Projects that</span>
+          <span className="block">moved the</span>
+          <span className="block bg-[#265eed] mt-4 text-[80px] md:text-[115px] leading-none mx-auto md:mx-0 w-fit pr-2 pb-2">
+            needle
+          </span>
           {/* <span
             style={{
               background: "linear-gradient(135deg, #0050d4 0%, #298dff 50%, #0050d4 100%)",

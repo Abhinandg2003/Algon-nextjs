@@ -14,9 +14,14 @@ export const INTRO_VIDEO = {
   desktopQuery: "(min-width: 769px)",
 }
 
-// How long the loader shows when PRELOADER_VIDEO is false (ms), plus its fade.
+// How long the loader shows when PRELOADER_VIDEO is false (ms).
 export const LOADER_ONLY_MS = 500
-export const LOADER_FADE_MS = 400
+
+// The reveal after either preloader: the overlay crossfades out over the
+// already-rendered site while the hero content eases in. Ease-out curve:
+// starts quickly, settles softly.
+export const REVEAL_MS = 1400
+export const REVEAL_EASE = "cubic-bezier(0.16, 1, 0.3, 1)"
 
 // sessionStorage key: set after the preloader has been seen in this tab.
 export const PRELOADER_SEEN_KEY = "loaded"

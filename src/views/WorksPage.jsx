@@ -150,8 +150,8 @@ const GRID_PROJECTS = [
     title: "Hospital Billing & Admin Dashboards",
     cat: "Healthcare + Dashboards",
     year: "2026",
-    pic: "/images/clients/gallery/hms/thumbnail.webp",
-    accent: "#e82727",
+    pic: "/images/clients/gallery/hms/4.jpg",
+    accent: "#444",
     tags: ["React", "PostgreSQL", "Dashboards"],
     href: "/work/hospital-os-billing-admin-analytics",
   },
@@ -160,8 +160,8 @@ const GRID_PROJECTS = [
     title: "Admissions AI Assistant",
     cat: "AI + Automation",
     year: "2024",
-    pic: "/images/clients/gallery/desire/thumbnail.webp",
-    accent: "#f07829",
+    pic: "/images/clients/gallery/desire/41.jpg",
+    accent: "#444",
     tags: ["AI Chatbot", "Automation", "Web"],
     href: "/work/admissions-ai-assistant",
   },
@@ -170,8 +170,8 @@ const GRID_PROJECTS = [
     title: "Real-Estate Lead Website",
     cat: "Web + Lead Capture",
     year: "2026",
-    pic: "/images/clients/gallery/unity/thumbnail.webp",
-    accent: "#de078b",
+    pic: "/images/clients/gallery/unity/11.jpg",
+    accent: "#444",
     tags: ["Responsive", "SEO", "Lead Forms"],
     href: "/work/real-estate-lead-website",
   },
@@ -1657,7 +1657,7 @@ export default function PortfolioPage() {
         .pf-grid-card {
           position: relative; background: #0f0f0f;
           overflow: hidden; transform-style: preserve-3d;
-          cursor: pointer;border-radius:20px;
+          cursor: pointer;border-radius:10px;
           height: 100%; display: flex; flex-direction: column;
         }
         .pf-grid-card:hover { background: rgba(30,30,30,1); }
