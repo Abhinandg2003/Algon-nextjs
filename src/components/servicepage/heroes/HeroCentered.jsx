@@ -2,6 +2,7 @@ import { HeroCtas, HeroHeading, HeroTagline, HeroTags } from "./heroParts"
 
 // Variant "centered": dark statement hero — everything centred in one column,
 // larger heading, no second column. "Talk to us" scrolls to the bottom form.
+// Centred at every screen size (the two-column heroes are left-aligned).
 export default function HeroCentered({ heading, hero }) {
   const { title, highlight, highlightStyle, chips, primaryCta, secondaryCta } = hero
 

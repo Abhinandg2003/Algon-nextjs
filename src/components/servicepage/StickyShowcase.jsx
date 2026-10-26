@@ -91,12 +91,15 @@ export default function StickyShowcase({ tone, id, eyebrow, title, intro, items 
               key={item.title}
               ref={(el) => (itemRefs.current[i] = el)}
               data-active={i === active}
-              className="svp-show-item flex flex-col justify-center gap-4 py-8 lg:min-h-[52vh] lg:py-12"
+              // Phones: image above text. Tablets (md): image beside text, so six
+              // items don't become six full-width images. Desktop (lg): text
+              // only — the pinned panel shows the images.
+              className="svp-show-item flex flex-col justify-center gap-4 py-8 md:grid md:grid-cols-[1fr_1.1fr] md:items-center md:gap-x-8 md:gap-y-3 lg:flex lg:min-h-[52vh] lg:py-12"
             >
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[16px] lg:hidden">{media(item, i, true)}</div>
-              <span className="svp-num">{String(i + 1).padStart(2, "0")}</span>
-              <h3 className="svp-title !text-[clamp(26px,2.6vw,40px)]">{item.title}</h3>
-              <p className="svp-lead max-w-[46ch]">{item.text}</p>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[16px] md:col-start-1 md:row-span-3 md:row-start-1 lg:hidden">{media(item, i, true)}</div>
+              <span className="svp-num md:col-start-2">{String(i + 1).padStart(2, "0")}</span>
+              <h3 className="svp-title !text-[clamp(26px,2.6vw,40px)] md:col-start-2">{item.title}</h3>
+              <p className="svp-lead max-w-[46ch] md:col-start-2">{item.text}</p>
             </li>
           ))}
         </ol>

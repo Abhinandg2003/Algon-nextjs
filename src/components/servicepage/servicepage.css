@@ -14,7 +14,7 @@
   --svp-blue: #0050d4;
   --svp-blue-2: #298dff;
   --svp-brand: #265eed; /* highlight colour used in the site's page heroes */
-  --svp-pad-x: 7vw;
+  --svp-pad-x: clamp(20px, 7vw, 112px); /* side padding: scales, but capped on very wide screens */
   background: var(--svp-ink);
   color: #fff;
 }
@@ -25,12 +25,24 @@
   overflow: hidden;
   padding-block: clamp(80px, 11vw, 140px);
 }
+/* Side padding scales with the screen but is capped, so very wide screens
+   (1920–2560px) don't lose a fifth of the 1600px container to padding. */
 .svp-inner {
   position: relative;
   z-index: 1;
   padding-inline: var(--svp-pad-x);
   max-width: 1600px;
   margin: 0 auto;
+}
+
+/* Headings: balanced line breaks, and long words (e.g. "Modernization")
+   wrap instead of overflowing narrow phones. */
+.svp-h1,
+.svp-title,
+.svp-h3,
+.svp-tagline {
+  text-wrap: balance;
+  overflow-wrap: break-word;
 }
 
 .svp-dark {
@@ -168,14 +180,15 @@
 .svp-h1 {
   font-family: "DisplayFont", sans-serif;
   font-weight: 400;
-  font-size: clamp(46px, 6vw, 96px);
+  font-size: clamp(38px, 6vw, 96px);
   line-height: 1.02;
   letter-spacing: -0.03em;
   color: #fff;
   margin: 0;
 }
 .svp-h1-mark {
-color: var(--svp-blue-2);;  padding: 0 0.12em 0.06em;
+  color: var(--svp-blue-2);
+  padding: 0 0.12em 0.06em;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
@@ -233,7 +246,12 @@ color: var(--svp-blue-2);;  padding: 0 0.12em 0.06em;
   padding-top: 96px;
   padding-bottom: 72px;
 }
-.svp-h1--xl { font-size: clamp(52px, 7.5vw, 120px); }
+.svp-h1--xl { font-size: clamp(40px, 7.5vw, 120px); }
+@media (max-height: 640px) {
+  /* Short screens (landscape phones): let the hero grow past one screen
+     instead of squeezing, and trim the top padding. */
+  .svp-hero--centered { padding-top: 88px; }
+}
 
 /* Hero tags: plain text, "•"-separated (not pills) */
 .svp-hero-tags {
@@ -254,6 +272,10 @@ color: var(--svp-blue-2);;  padding: 0 0.12em 0.06em;
   color: var(--svp-muted);
   background: var(--svp-card);
   white-space: nowrap;
+  max-width: 100%; /* never wider than a phone screen */
+}
+@media (max-width: 480px) {
+  .svp-chip { white-space: normal; }
 }
 
 /* ── Stats ──────────────────────────────────────────────────────────────── */
@@ -352,8 +374,14 @@ a.svp-card:hover,
    white bar with black text on dark sections. */
 .svp-table thead th {
   background: #88888820;
-  color: var(--svp-color);
+  color: var(--svp-fg);
   border-bottom-color: var(--svp-fg);
+}
+/* Phones: tighter cells so more of each column fits before scrolling */
+@media (max-width: 640px) {
+  .svp-table th,
+  .svp-table td { padding: 14px 16px; }
+  .svp-table tbody th { min-width: 120px; }
 }
 .svp-table td {
   padding: 18px 22px;
@@ -391,9 +419,22 @@ a.svp-card:hover,
   border-radius: 50%;
   background: var(--svp-blue-2);
 }
-/* Horizontal pinned track (lg+): fixed-width step cards side by side */
-@media (min-width: 1024px) {
-  .svp-process-step { width: clamp(300px, 27vw, 420px); flex-shrink: 0; }
+/* Horizontal pinned track: only while the GSAP pin is active (ProcessSteps
+   adds .is-pinned on lg+ screens without reduced motion). Otherwise the
+   steps stay a wrapping grid, so none can end up off-screen. */
+.svp-process-track.is-pinned {
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+  gap: 24px;
+}
+.svp-process-track.is-pinned .svp-process-step { width: clamp(300px, 27vw, 420px); flex-shrink: 0; }
+.svp-process-pinned > .svp-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 80px;
 }
 
 /* ── Media band (parallax image, MediaBand.jsx) ─────────────────────────── */

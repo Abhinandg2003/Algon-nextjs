@@ -12,7 +12,7 @@ export default function CaseStudyProof({ tone, id, eyebrow = "Proof", title = "W
 
   return (
     <Section tone={tone} eyebrow={eyebrow} title={title} intro={intro}>
-      <Link href={`/work/${study.id}`} className="svp-proof svp-reveal grid overflow-hidden rounded-[18px] border border-[var(--svp-line)] bg-[var(--svp-card)] lg:grid-cols-[1.1fr_1fr]">
+      <Link href={`/work/${study.id}`} className="svp-proof group svp-reveal grid overflow-hidden rounded-[18px] border border-[var(--svp-line)] bg-[var(--svp-card)] lg:grid-cols-[1.1fr_1fr]">
         <div className="relative aspect-[16/10] overflow-hidden lg:aspect-auto lg:min-h-[420px]">
           <img
             src={study.thumbnail || study.heroImage}
@@ -27,16 +27,21 @@ export default function CaseStudyProof({ tone, id, eyebrow = "Proof", title = "W
           <h3 className="svp-title !text-[clamp(28px,3vw,44px)]">{study.title}</h3>
           <p className="svp-lead">{study.tagline}</p>
           {stats.length > 0 && (
-            <dl className="grid grid-cols-3 gap-6  pt-6">
+            // 2 columns on small phones, 3 from sm; word suffixes get a space ("3 Months")
+            <dl className="grid grid-cols-2 sm:grid-cols-3 gap-6  pt-6">
               {stats.map((s) => (
                 <div key={s.label} className="flex flex-col gap-1">
-                  <dd className="svp-stat-value !text-[clamp(28px,2.6vw,40px)]">{s.value}{s.suffix}</dd>
+                  <dd className="svp-stat-value !text-[clamp(28px,2.6vw,40px)]">
+                    {s.value}
+                    {s.suffix && /^[A-Za-z]/.test(s.suffix) ? ` ${s.suffix}` : s.suffix}
+                  </dd>
                   <dt className="text-[13px] text-[var(--svp-faint)]">{s.label}</dt>
                 </div>
               ))}
             </dl>
           )}
-          <span className="svp-arrow !rounded-full !px-5 !py-3 !border hover:!text-white !transition-all !duration-300 !border-black !w-fit !bg-black/0 hover:!bg-black">Read the case study <ArrowUpRight size={15} /></span>
+          {/* Pill follows the section's colours, so it's visible on dark AND light sections */}
+          <span className="svp-arrow !rounded-full !px-5 !py-3 !border !transition-all !duration-300 !w-fit !border-[var(--svp-fg)] !bg-transparent group-hover:!bg-[var(--svp-fg)] group-hover:!text-[var(--svp-inverse)]">Read the case study <ArrowUpRight size={15} /></span>
         </div>
       </Link>
     </Section>

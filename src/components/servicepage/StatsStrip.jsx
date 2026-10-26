@@ -12,7 +12,7 @@ export default function StatsStrip({ items, tone = "dark" }) {
       // The paper band fills the space around the card (otherwise the dark
       // page background would show above and below it). Navbar: dark text.
       <div data-navbar="dark" className="svp-stats-band--light pt-10 pb-20">
-        <Section tone="light" className="!py-16 md:!py-20 !bg-white border border-black/15 !rounded-none mx-auto md:max-w-[90vw] max-w-[95vw]">
+        <Section tone="light" className="!py-16 md:!py-20 !bg-white border border-black/15 !rounded-none mx-auto max-w-[min(95vw,1600px)] md:max-w-[min(90vw,1600px)]">
           <dl className={grid}>
             {items.map((s) => (
               <div key={s.label} className="svp-stat svp-reveal flex flex-col gap-3">
@@ -29,7 +29,7 @@ export default function StatsStrip({ items, tone = "dark" }) {
 
   return (
     // Dark card: it must also tell the navbar to use its light (white) theme.
-    <Section tone="dark" className="!py-16 md:!py-20 my-10 mb-20 !bg-[#07070A] border border-white/30 !rounded-none mx-auto rounded-3xl md:max-w-[90vw] max-w-[95vw]">
+    <Section tone="dark" className="!py-16 md:!py-20 my-10 mb-20 !bg-[#07070A] border border-white/30 !rounded-none mx-auto rounded-3xl max-w-[min(95vw,1600px)] md:max-w-[min(90vw,1600px)]">
       <dl className={grid}>
         {items.map((s) => (
           <div key={s.label} className="svp-stat svp-reveal flex flex-col gap-3">

@@ -17,7 +17,7 @@ export default function ServiceCTA({
           <p className="svp-lead max-w-[52ch]">{text}</p>
           <p className="svp-body">
             Or write directly to{" "}
-            <a href="mailto:support@algonsolutions.com" className="text-white underline underline-offset-4">
+            <a href="mailto:support@algonsolutions.com" className="text-white underline underline-offset-4 break-all">
               support@algonsolutions.com
             </a>
           </p>
