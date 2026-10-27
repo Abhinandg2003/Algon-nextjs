@@ -1,5 +1,16 @@
 import "../index.css";
+import { Hanken_Grotesk } from "next/font/google";
 import AppShell from "@/components/AppShell";
+
+// Site-wide font. next/font self-hosts it (no request to Google at runtime),
+// preloads it and sizes the fallback to match, so text doesn't jump when the
+// font arrives. Exposed as --font-hanken and applied to every element in
+// index.css, with SF Pro Display / the system font as fallback.
+const hanken = Hanken_Grotesk({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-hanken",
+});
 
 const SITE_URL = "https://algonsolutions.com";
 const TITLE = "Algon Solutions: Smart Healthcare Solutions for Hospitals & Clinics";
@@ -141,7 +152,7 @@ export default function RootLayout({ children }) {
   return (
     // suppressHydrationWarning: the home page adds a "splash-seen" class to
     // <html> before hydration (see app/page.jsx) — expected, not a mismatch.
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={hanken.variable}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

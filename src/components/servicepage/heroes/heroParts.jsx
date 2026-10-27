@@ -1,20 +1,11 @@
 // Shared building blocks for every hero variant, so heading/tagline/CTA/tag
 // behaviour stays identical whichever layout a page gets.
 
-// H1: the service name, one part marked in the brand colour
-// (`highlight`, default: the last word; `highlightStyle` "bg" | "text").
-export function HeroHeading({ heading, highlight, highlightStyle = "bg", className = "" }) {
-  const mark = highlight && heading.includes(highlight) ? highlight : heading.split(" ").pop()
-  const at = heading.lastIndexOf(mark)
-  const before = heading.slice(0, at).trimEnd()
-  const after = heading.slice(at + mark.length)
-  return (
-    <h1 className={`svp-h1 ${className}`}>
-      {before && `${before} `}
-      <span className={highlightStyle === "text" ? "svp-h1-mark--text" : "svp-h1-mark"}>{mark}</span>
-      {after}
-    </h1>
-  )
+// H1: the service name, all in one colour (white on the dark heroes).
+// Pages may still carry `highlight` / `highlightStyle` from the old
+// brand-colour mark; they're ignored now.
+export function HeroHeading({ heading, className = "" }) {
+  return <h1 className={`svp-h1 ${className}`}>{heading}</h1>
 }
 
 // Tagline: hero.title; wrap a phrase in *asterisks* to colour it.

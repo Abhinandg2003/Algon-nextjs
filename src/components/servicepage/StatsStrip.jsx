@@ -4,7 +4,8 @@ import Section from "./Section"
 //   dark  (default) — dark card on the dark page background
 //   light — white card on a paper band, for pages with the light hero, so the
 //           page doesn't go light hero → dark strip → light section.
-export default function StatsStrip({ items, tone = "dark" }) {
+// tone "light" is the one in use; "dark" is kept for reuse.
+export default function StatsStrip({ items, tone = "light" }) {
   const grid = `grid gap-10 sm:grid-cols-2 ${items.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`
 
   if (tone === "light") {

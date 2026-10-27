@@ -283,7 +283,7 @@ useEffect(() => {
             transition: `opacity 900ms ${REVEAL_EASE} 120ms, transform 900ms ${REVEAL_EASE} 120ms`,
           }}
         >
-          <h1 className="whitespace-pre-line text-[50px] md:text-[60px] font-light leading-[1.05] tracking-wide">
+          <h1 className="whitespace-pre-line text-[50px] md:text-[60px] font-extralight leading-[1.05] tracking-wide">
             {SLIDES[current].headline}
           </h1>
           <Link href="/contact" className="mt-10 inline-block text-[18px] text-white rounded-full py-3 hover:translate-x-2 transition-all duration-300">

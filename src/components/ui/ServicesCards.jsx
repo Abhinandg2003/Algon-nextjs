@@ -292,7 +292,7 @@ function ExplodingLines({ color = "#4f46e5" }) {
 ──────────────────────────────────────────────────────────────────────────── */
 function Illustration({ type, color }) {
   if (type === "code") return (
-    <div style={{ position:"absolute", bottom:24, right:24, opacity:0.18, pointerEvents:"none", fontFamily:"monospace", fontSize:18, lineHeight:1.6, color }}>
+    <div className="font-mono" style={{ position:"absolute", bottom:24, right:24, opacity:0.18, pointerEvents:"none", fontFamily:"monospace", fontSize:18, lineHeight:1.6, color }}>
       <div>{"const build = () => {"}</div>
       <div>{"  return <Product />"}</div>
       <div>{"}"}</div>

@@ -83,12 +83,15 @@ export default function ServicePage({ type, slug }) {
   const name = item.label
 
   // Build the body sections in order, then alternate light/dark tones so
-  // every page has the same rhythm whatever sections it uses. The stats strip
-  // sits outside the rhythm: it is always a dark card under the hero.
-  // Blocks marked `untoned` (full-bleed image bands) sit outside that rhythm.
+  // every page has the same rhythm whatever sections it uses.
+  // Blocks marked `untoned` (the stats band, full-bleed image bands) sit
+  // outside that rhythm.
   const blocks = []
   const banner = bannerImage(type, slug)
   if (page.definition) blocks.push((tone) => <DefinitionBlock key="def" tone={tone} {...page.definition} />)
+  // Stats sit right under the definition, as their own light band
+  if (page.stats?.length)
+    blocks.push(Object.assign(() => <StatsStrip key="stats" items={page.stats} tone="light" />, { untoned: true }))
   if (banner)
     blocks.push(
       Object.assign(() => <MediaBand key="band" image={banner} alt={`${name} — Algon Solutions`} caption={page.media?.caption} />, {
@@ -142,8 +145,6 @@ export default function ServicePage({ type, slug }) {
         heading={page.hero.heading || name}
         hero={page.hero}
       />
-      {/* Stats follow the hero's tone: light hero → light stats */}
-      {page.stats?.length > 0 && <StatsStrip items={page.stats} tone={heroPick.variant === "light" ? "light" : "dark"} />}
       {(() => {
         let n = 0
         return blocks.map((render) => (render.untoned ? render() : render(n++ % 2 === 0 ? "light" : "dark")))

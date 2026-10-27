@@ -1,8 +1,14 @@
-import { heroImage } from "./serviceImages"
+import { bannerImage, heroImage } from "./serviceImages"
 
 // Which hero layout a service page gets. Server-only (checks image files).
 //
-// Order of precedence:
+// HERO_MODE
+//   "banner" → every page uses the 60vh image banner (HeroBanner). Image:
+//              hero.image, else <slug>/hero.webp, else the page/category banner.
+//   "mix"    → the older layouts, picked as described below.
+export const HERO_MODE = "banner"
+
+// "mix" order of precedence:
 //   1. hero.variant in the page data ("form" | "image" | "light" | "centered")
 //   2. the page has a hero image → "image"
 //      (hero.image in the data, or public/images/services/<type>/<slug>/hero.webp)
@@ -23,6 +29,8 @@ function hash(str) {
 
 export function pickHeroVariant(type, slug, hero = {}) {
   const image = hero.image || heroImage(type, slug)
+
+  if (HERO_MODE === "banner") return { variant: "banner", image: image || bannerImage(type, slug) }
 
   if (hero.variant) {
     // An "image" hero with no image would be empty — fall back to the form.

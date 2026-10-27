@@ -87,8 +87,9 @@ canvas {
 } */
 
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap");
+/* Inter and Roboto were loaded here from Google Fonts; the site now uses
+   Hanken Grotesk everywhere (see the "Site font" rule below), so those
+   render-blocking requests were removed. */
 
 
 
@@ -124,6 +125,34 @@ canvas {
 @tailwind utilities;
 
 /* @import "tailwindcss"; */
+
+/* ── Site font ──────────────────────────────────────────────────────────────
+   Hanken Grotesk on EVERY element (headings, paragraphs, buttons, inputs…),
+   falling back to SF Pro Display / the system font. --font-hanken comes from
+   next/font in app/layout.jsx.
+
+   !important is deliberate: fonts were set in ~150 places (DisplayFont,
+   DM Sans, Syne, Outfit, Inter, Roboto…), many as inline styles. This one
+   rule overrides them all, and anything added later follows it too.
+
+   Exception: .loader-window and .font-mono stay monospace — the loader's
+   sliding animation is measured in character widths, and the code-snippet
+   illustration is meant to look like code. */
+:root {
+  --font-site: var(--font-hanken), "SF Pro Display", "SF Display", -apple-system, BlinkMacSystemFont,
+    system-ui, "Segoe UI", Roboto, sans-serif;
+}
+*,
+*::before,
+*::after {
+  font-family: var(--font-site) !important;
+}
+.loader-window,
+.loader-window *,
+.font-mono,
+.font-mono * {
+  font-family: "Space Mono", ui-monospace, SFMono-Regular, Menlo, monospace !important;
+}
 
 
 
