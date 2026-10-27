@@ -320,15 +320,15 @@ export default function Footer() {
 
             <div className="w-full h-auto  hidden  md:flex justify-start">
               <a href="https://www.instagram.com/algonofficial/">
-                <FaInstagram className="h-7 w-10 hover:text-white/70 text-white/90" />
+                <FaInstagram className="footer-social-icon h-7 w-10 text-white/90" />
               </a>
 
               <a href="https://x.com/algonsolutions?s=20">
-                <FaTwitter className="h-7 w-10  hover:text-white/70 text-white/90" />
+                <FaTwitter className="footer-social-icon h-7 w-10 text-white/90" />
               </a>
 
               <a href="https://www.linkedin.com/company/algonsolutions/">
-                <FaLinkedin className="h-7 w-10  hover:text-white/70 text-white/90" />
+                <FaLinkedin className="footer-social-icon h-7 w-10 text-white/90" />
               </a>
             </div>
 

@@ -38,6 +38,23 @@
   color: rgba(255, 255, 255, 0.65);
 }
 
+/* Social icons: on hover (or keyboard focus) they lift slightly and stay up
+   until the pointer leaves. The overshoot curve (y > 1) makes them go a touch
+   past the target and settle back — a small spring, not a bounce. */
+.footer-social-icon {
+  transition: transform 0.4s ease-out;
+}
+a:hover > .footer-social-icon,
+a:focus-visible > .footer-social-icon {
+  transform: translateY(-4px);
+  transition: transform 0.5s cubic-bezier(0.34, 1.8, 0.64, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .footer-social-icon,
+  a:hover > .footer-social-icon,
+  a:focus-visible > .footer-social-icon { transition: none; }
+}
+
 .footer-subscribe-btn {
   background: transparent;
   border: none;

@@ -35,7 +35,7 @@ export default function HeroBanner({ heading, hero, image }) {
           />
         </div>
       )}
-      {/* <div className="svp-hero-banner-shade" aria-hidden="true" /> */}
+      <div className="svp-hero-banner-shade" aria-hidden="true" />
 
       <div className="svp-inner svp-hero-banner-content">
         <HeroHeading heading={heading} className="max-w-[18ch]" />

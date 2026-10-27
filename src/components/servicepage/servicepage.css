@@ -298,12 +298,13 @@
   object-fit: cover;
   display: block;
 }
-/* Keeps the heading readable on any image */
+/* Light diagonal shade behind the heading: 10% black in the bottom-left
+   corner fading to transparent toward the top-right. */
 .svp-hero-banner-shade {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(to top, rgba(5, 5, 8, 0.35) 0%, rgba(5, 5, 8, 0.15) 45%, rgba(5, 5, 8, 0.35) 100%);
+  background: linear-gradient(to top right, rgba(0, 0, 0, 0.2) 0%, transparent 60%);
 }
 .svp-hero-banner-content {
   width: 100%;
