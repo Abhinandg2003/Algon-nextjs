@@ -505,7 +505,7 @@ useEffect(() => {
                 </Link>
 
                 {/* Desktop nav — dropdown triggers */}
-                <div className="hidden lg:flex gap-9 text-[15px] tracking-[0.14em]">
+                <div className="hidden lg:flex gap-9 text-[16px] tracking-[0.08em] ">
                     {NAV_MENUS.map((menu) => {
                         const isOpen = openMenu === menu.id
                         return (
@@ -518,7 +518,7 @@ useEffect(() => {
                                 onMouseEnter={() => setOpenMenu(menu.id)}
                                 onFocus={() => setOpenMenu(menu.id)}
                                 onClick={() => setOpenMenu(isOpen ? null : menu.id)}
-                                className={`flex items-center gap-1.5 bg-transparent font-light transition-colors ${effectiveTheme === "dark" ? "text-black  " : isOpen ? "text-white" : "text-white"}`}
+                                className={`flex items-center gap-1.5 bg-transparent font-normal transition-colors ${effectiveTheme === "dark" ? "text-black  " : isOpen ? "text-white" : "text-white"}`}
                             >
                                 {menu.label}
                                 <ChevronDown
