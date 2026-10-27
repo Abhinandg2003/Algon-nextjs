@@ -531,7 +531,7 @@ useEffect(() => {
                 </div>
 
                 <div className="flex items-center gap-6">
-                    <Link href="/contact" className={`${effectiveTheme === "dark" ? " text-[#fcfcf7] border border-[#050508] bg-[#050508] hidden lg:flex px-6 rounded-full  py-2 tracking-[0.15em]  hover:bg-[#fcfcf7] hover:text-[#050508] transition" :"hidden lg:flex px-6 py-2 tracking-[0.15em] rounded-full bg-[#fcfcf7] border border-[#fcfcf7] text-[#050508] hover:bg-[#050508] hover:text-[#fcfcf7] transition"}`}>
+                    <Link href="/contact" className={`${effectiveTheme === "dark" ? " text-[#fcfcf7] border border-[#050508] bg-[#050508] hidden lg:flex px-6 rounded-full  py-2 tracking-[0.15em]  hover:bg-[#fcfcf7] transition-all duration-300 hover:text-[#050508] " :"hidden lg:flex px-6 py-2 tracking-[0.15em] rounded-full bg-[#fcfcf7] border border-[#fcfcf7] text-[#050508] hover:bg-[#050508] hover:text-[#fcfcf7] transition-all duration-300"}`}>
                         Contact Us
                     </Link>
 

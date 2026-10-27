@@ -6,6 +6,7 @@ import { FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { FaMessage } from "react-icons/fa6";
 import { GoMail } from "react-icons/go";
 import Link from "next/link";
+import { NAV_MENUS } from "../data/navMenus";
 
 /* ────────────────────────────────────────────────────────────────────
    WHY THE FOOTER WAS LAGGING
@@ -45,14 +46,22 @@ import Link from "next/link";
       it just wasn't activating the user's mail client. Fixed inline.
    ──────────────────────────────────────────────────────────────────── */
 
-const SERVICES = [
-  "Hospital Management Systems",
-  "AI & Automation",
-  "Managed Engineering",
-  "Web & SaaS Development",
-  "Clinic Automation",
-  "Dashboards & Internal Tools",
-];
+// Footer "Services": each category's hub, two of its services (by slug), then
+// "All services". Labels and links come from the navbar data, so they stay in sync.
+const FOOTER_SERVICE_PICKS = {
+  healthcare: ["hospital-management-system", "clinic-automation"],
+  "ai-development": ["ai-agent-development", "workflow-automation"],
+  "product-engineering": ["managed-engineering-services", "web-application-development"],
+};
+
+const FOOTER_SERVICE_GROUPS = NAV_MENUS.filter((m) => FOOTER_SERVICE_PICKS[m.type]).map((m) => {
+  const items = m.groups.flatMap((g) => g.items);
+  return {
+    label: m.label,
+    hub: m.hub,
+    items: FOOTER_SERVICE_PICKS[m.type].map((slug) => items.find((i) => i.slug === slug)).filter(Boolean),
+  };
+});
 
 const COMPANY = [
   { label: "About Us", to: "/about-us" },
@@ -220,7 +229,36 @@ const LinkColumn2 = memo(function LinkColumn({ title, items }) {
   );
 });
 
-const servicesItems = SERVICES.map((s) => ({ label: s, href: "/services" }));
+const ServicesColumn = memo(function ServicesColumn() {
+  return (
+    <div>
+      <p className="mb-5 text-base font-semibold tracking-[0.1em] text-white">
+        Services
+      </p>
+      <div className="flex flex-col gap-7">
+        {FOOTER_SERVICE_GROUPS.map((g) => (
+          <ul key={g.hub} className="flex flex-col gap-[13px] list-none m-0 p-0">
+            <li>
+              <Link href={g.hub} className="footer-link text-[15px] tracking-[0.02em] font-medium">
+                {g.label}
+              </Link>
+            </li>
+            {g.items.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="footer-link text-[15px] tracking-[0.02em]">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ))}
+        <Link href="/services" className="footer-link text-[15px] tracking-[0.02em] font-medium">
+          All services →
+        </Link>
+      </div>
+    </div>
+  );
+});
 const companyItems = COMPANY.map((c) => ({ label: c.label, href: c.to }));
 const socialItems = SOCIALS.map((s) => ({
   label: s.label,
@@ -273,7 +311,7 @@ export default function Footer() {
 
         {/* Link columns */}
         <div className="mb-[22px] grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-x-8 gap-y-12">
-          <LinkColumn2 title="Services" items={servicesItems} />
+          <ServicesColumn />
           <LinkColumn2 title="Company" items={companyItems} />
           <div className="flex flex-col ">
             <p className="mb-5 text-base font-semibold tracking-[0.1em] hidden md:block text-white">

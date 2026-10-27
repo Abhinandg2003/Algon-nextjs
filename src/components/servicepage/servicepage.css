@@ -504,10 +504,14 @@ a.svp-card:hover,
   background: #fcfcf7;
 }
 
-@media (max-width: 768px) {
+/* Phones: a shorter band. The image is 124% of the band's height, so the
+   parallax and the clip-path opening scale with it and still fit. */
+@media (max-width: 767px) {
   .svp-band {
-    height: clamp(25vh, 30vh, 35vh);
+    height: 30vh;
   }
+  /* The desktop caption padding (22vh + 7vh) would fill a 30vh band */
+  .svp-band-caption { padding: 4vh var(--svp-pad-x) 3vh; }
 }
 .svp-band-frame {
   position: absolute;
