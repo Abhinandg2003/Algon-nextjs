@@ -257,15 +257,25 @@
    Entrance once the image loads (.is-ready): fades up from the dark section
    background, and settles from 130% to 100% height anchored top-centre —
    scaleY only, so the width never changes. */
+/* Height tuning: --svp-banner-h (screen height %), --svp-banner-min (floor).
+   Big screens use the first pair; phones (< 768px) the second. */
 .svp-hero--banner {
   --svp-banner-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --svp-banner-h: 60;
+  --svp-banner-min: 420px;
   position: relative;
   overflow: hidden;
-  height: 60vh;
-  height: 60svh;
-  min-height: 420px;
+  height: calc(var(--svp-banner-h) * 1vh);
+  height: calc(var(--svp-banner-h) * 1svh);
+  min-height: var(--svp-banner-min);
   display: flex;
   align-items: flex-end;
+}
+@media (max-width: 767px) {
+  .svp-hero--banner {
+    --svp-banner-h: 30;
+    --svp-banner-min: 0px;
+  }
 }
 .svp-hero-banner-media {
   position: absolute;
