@@ -206,8 +206,11 @@ function DesktopSection() {
       return { wrap, headline, para, btn };
     });
 
+    // Each panel starts below its resting spot and rises in as it fades in;
+    // on the way out it only fades, in place.
+    const RISE = 60; // px travelled on the way in
     panels.forEach((p) => {
-      gsap.set([p.headline, p.para, p.btn], { opacity: 0 });
+      gsap.set([p.headline, p.para, p.btn], { opacity: 0, y: RISE });
     });
 
     if (canvasWrapRef.current) gsap.set(canvasWrapRef.current, { opacity: 0 });
@@ -238,10 +241,11 @@ function DesktopSection() {
       );
     }
 
+    // Headline leads, paragraph follows a beat later (stagger).
     function addReveal(headline, para, btn, start) {
       tl.to(
         [headline, para, btn],
-        { opacity: 1, duration: 0.1, ease: "power2.out" },
+        { opacity: 1, y: 0, duration: 0.12, ease: "power3.out", stagger: 0.02 },
         start,
       );
     }
@@ -491,12 +495,12 @@ export default function ScrollRevealSection() {
           
           font-size: clamp(42px, 5.5vw, 60px); line-height: 0.96;
           color: #000000; margin: 0 0 clamp(24px, 3vh, 44px) 0;
-          will-change: opacity; font-weight:400; font-family: var(--font-roboto);
+          will-change: opacity, transform; font-weight:400; font-family: var(--font-roboto);
         }
         .srv-para {
           font-weight: 400; color: rgba(0,0,0,0.8);
-          font-size: clamp(16px, 1.4vw, 16px); 
-          will-change: opacity;
+          font-size: clamp(16px, 1.4vw, 16px);
+          will-change: opacity, transform;
           margin-bottom: clamp(20px, 2.5vh, 32px);
         }
         .srv-btn {

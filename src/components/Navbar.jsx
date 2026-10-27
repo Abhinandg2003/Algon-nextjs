@@ -505,7 +505,7 @@ useEffect(() => {
                 </Link>
 
                 {/* Desktop nav — dropdown triggers */}
-                <div className="hidden lg:flex gap-9 text-[16px] tracking-[0.08em] ">
+                <div className="hidden lg:flex gap-9 text-[16px] tracking-[0.1em] ">
                     {NAV_MENUS.map((menu) => {
                         const isOpen = openMenu === menu.id
                         return (

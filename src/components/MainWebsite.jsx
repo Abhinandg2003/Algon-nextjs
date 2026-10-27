@@ -570,12 +570,20 @@ function ServicesOverview() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────
-// DESKTOP — replicated from SolOverviewpc, COLUMNS SWAPPED
-// (images now on the LEFT, text/content now on the RIGHT)
+// DESKTOP — replicated from SolOverviewpc
+// (text/content on the LEFT, pinned images on the RIGHT)
 // ─────────────────────────────────────────────────────────────────────────
+
+// Progress squares between the two columns
+const PROGRESS_SQUARES = 40;      // how many squares span the bar
+const PROGRESS_ON = "#265eed";    // lit (brand colour)
+const PROGRESS_OFF = "#222";      // not yet reached
+const PROGRESS_FADE = true;       // true = squares fade to the new colour, false = instant switch
+
 function ServicesOverviewPC() {
   const sectionRef = useRef();
   const imageColRef = useRef();
+  const progressDotRefs = useRef([]);
   const imageRefs = useRef([]);
   const textRefs = useRef([]);
 
@@ -584,7 +592,7 @@ function ServicesOverviewPC() {
     {
     id: "01",
     title: "Hospital Management Systems",
-    desc: "Hospital operating systems and clinic automation, from front desk to discharge and follow-up.",
+    desc: "Hospital operating systems and clinic automation, from front desk to discharge and follow-up. OPD and IPD, nursing, pharmacy, OT and billing run on one connected system, so patient records, bills and handovers stop living in separate registers. For clinics, appointments, reminders, follow-ups and IVR triage run on their own instead of depending on someone remembering.",
     accent: "#666",
     bg: "#0f0f14",
     pic: "/images/medical.jpg",
@@ -593,7 +601,7 @@ function ServicesOverviewPC() {
   {
     id: "02",
     title: "AI & Automation",
-    desc: "AI agents, n8n workflows, and RAG grounded in your own data.",
+    desc: "AI agents, n8n workflows, and RAG grounded in your own data. We automate the repetitive work between your systems, such as follow-ups, approvals, data entry and reporting, and build assistants that answer from your own documents and records rather than the open internet. Every automation is mapped to a real process first, so it removes work instead of adding a new tool to manage.",
     accent: "#666",
     bg: "#0f0f14",
     pic: "/images/algon-ai.jpg",
@@ -602,7 +610,7 @@ function ServicesOverviewPC() {
   {
     id: "03",
     title: "Managed Engineering",
-    desc: "A dedicated team for a defined project: architects, developers, QA, DevOps, and a project lead.",
+    desc: "A dedicated team for a defined project: architects, developers, QA, DevOps, and a project lead. The team works inside your tools and rhythms, owns delivery end to end, and reports progress you can see every week. You get the capacity of an in-house engineering team without the months of hiring, and you can scale it up or down as the project changes.",
     accent: "#666",
     bg: "#0f0f14",
     pic: "/images/managed5.jpg",
@@ -611,7 +619,7 @@ function ServicesOverviewPC() {
   {
     id: "04",
     title: "Web & SaaS Development",
-    desc: "Web apps, SaaS platforms, and MVPs built around how your business runs.",
+    desc: "Web apps, SaaS platforms, and MVPs built around how your business runs. From a first version that proves the idea to a multi-tenant platform with billing, roles and dashboards, we design, build and ship it on a modern, maintainable stack. Internal tools and admin panels too, so your team stops working around spreadsheets.",
     accent: "#666",
     bg: "#0f0f14",
     pic: "/images/100x.jpg",
@@ -662,8 +670,11 @@ function ServicesOverviewPC() {
           clipPath: i === 0 ? "inset(0% 0% 0% 0%)" : "inset(0% 0% 0% 100%)",
         });
       });
+      // Text items rest at 20% opacity; the one in the middle of the screen
+      // eases up to full and back down as it enters / leaves.
+      const DIM = 0.2;
       textRefs.current.forEach((el) => {
-        gsap.set(el, { autoAlpha: 1, y: 0 });
+        gsap.set(el, { autoAlpha: DIM, y: 0 });
       });
 
       ScrollTrigger.create({
@@ -674,20 +685,38 @@ function ServicesOverviewPC() {
         pinSpacing: false,
       });
 
+      // Progress squares: light up top → bottom across the section's scroll.
+      // Only touches the DOM when the number of lit squares changes.
+      let lit = -1;
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top top",
+        end: "bottom bottom",
+        onUpdate: (self) => {
+          const next = Math.round(self.progress * PROGRESS_SQUARES);
+          if (next === lit) return;
+          lit = next;
+          progressDotRefs.current.forEach((d, i) => {
+            if (d) d.style.backgroundColor = i < lit ? PROGRESS_ON : PROGRESS_OFF;
+          });
+        },
+      });
+
       textRefs.current.forEach((el, i) => {
         if (!el) return;
         ScrollTrigger.create({
           trigger: el,
           start: "top 55%",
           end: "bottom 45%",
-          onEnter: () => {
-            gsap.set(el, { autoAlpha: 1, y: 0 });
-            activateImage(i, false);
-          },
-          onEnterBack: () => {
-            gsap.set(el, { autoAlpha: 1, y: 0 });
-            activateImage(i, true);
-          },
+          onEnter: () => activateImage(i, false),
+          onEnterBack: () => activateImage(i, true),
+          onToggle: (self) =>
+            gsap.to(el, {
+              autoAlpha: self.isActive ? 1 : DIM,
+              duration: 0.6,
+              ease: "power2.out",
+              overwrite: true,
+            }),
         });
       });
     }, sectionRef);
@@ -701,30 +730,7 @@ function ServicesOverviewPC() {
       data-navbar="light"
     >
       <div className="flex w-full">
-        {/* ── LEFT: image column — pinned to viewport top ── */}
-        <div
-          ref={imageColRef}
-          className="w-1/2 h-screen flex-shrink-0 overflow-hidden"
-        >
-          <div className="absolute inset-0 flex items-center justify-center p-12">
-            <div className="relative w-full h-full max-w-[520px] max-h-[380px] rounded-md overflow-hidden">
-              {SERVICES.map((sv, i) => (
-                <img
-                  key={sv.id}
-                  ref={(el) => (imageRefs.current[i] = el)}
-                  src={sv.picsticky}
-                  alt={sv.title}
-                  loading="lazy"
-                  decoding="async"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  style={{ willChange: "clip-path" }}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* ── RIGHT: text column — scrolls normally, determines section height ── */}
+        {/* ── LEFT: text column — scrolls normally, determines section height ── */}
         <div className="w-1/2 flex flex-col">
           <div className="px-[7vw] mt-20">
             <h2 className="text-[clamp(40px,9vw,70px)] font-medium leading-[1.08] tracking-normal text-white mb-5">
@@ -755,6 +761,48 @@ function ServicesOverviewPC() {
           ))}
 
           <div className="h-[40vh]" />
+        </div>
+
+        {/* ── RIGHT: image column — pinned to viewport top ──
+            `relative` so the centred image box sits inside this column. */}
+        <div
+          ref={imageColRef}
+          className="relative w-1/2 h-screen flex-shrink-0 overflow-hidden"
+        >
+          {/* Progress: a column of 3×3px squares on this column's left edge
+              (= the centre of the screen), spread over the image box's height
+              (380px, or less on short screens). They turn brand colour from
+              the top as the section scrolls; see PROGRESS_* above the component. */}
+          <div
+            aria-hidden="true"
+            className="absolute left-0 top-1/2 -translate-y-1/2 h-[min(calc(100vh-6rem),380px)] flex flex-col justify-between"
+          >
+            {Array.from({ length: PROGRESS_SQUARES }, (_, i) => (
+              <span
+                key={i}
+                ref={(el) => (progressDotRefs.current[i] = el)}
+                className={`block w-[3px] h-[3px] ${PROGRESS_FADE ? " ease-out" : ""}`}
+                style={{ backgroundColor: PROGRESS_OFF }}
+              />
+            ))}
+          </div>
+
+          <div className="absolute inset-0 flex items-center justify-center p-12">
+            <div className="relative w-full h-full max-w-[520px] max-h-[380px] rounded-md overflow-hidden">
+              {SERVICES.map((sv, i) => (
+                <img
+                  key={sv.id}
+                  ref={(el) => (imageRefs.current[i] = el)}
+                  src={sv.picsticky}
+                  alt={sv.title}
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  style={{ willChange: "clip-path" }}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

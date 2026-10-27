@@ -3,7 +3,7 @@ import Navbar from "../Navbar"
 import Footer from "../Footer"
 import Reveal from "./Reveal"
 import ServiceHero from "./ServiceHero"
-import StatsStrip from "./StatsStrip"
+// import StatsStrip from "./StatsStrip" // stats band switched off, see below
 import DefinitionBlock from "./DefinitionBlock"
 import CardGrid from "./CardGrid"
 import DataTable from "./DataTable"
@@ -89,9 +89,10 @@ export default function ServicePage({ type, slug }) {
   const blocks = []
   const banner = bannerImage(type, slug)
   if (page.definition) blocks.push((tone) => <DefinitionBlock key="def" tone={tone} {...page.definition} />)
-  // Stats sit right under the definition, as their own light band
-  if (page.stats?.length)
-    blocks.push(Object.assign(() => <StatsStrip key="stats" items={page.stats} tone="light" />, { untoned: true }))
+  // Stats band: switched off for now (page data still has `stats`).
+  // Uncomment to bring it back, right under the definition.
+  // if (page.stats?.length)
+  //   blocks.push(Object.assign(() => <StatsStrip key="stats" items={page.stats} tone="light" />, { untoned: true }))
   if (banner)
     blocks.push(
       Object.assign(() => <MediaBand key="band" image={banner} alt={`${name} — Algon Solutions`} caption={page.media?.caption} />, {

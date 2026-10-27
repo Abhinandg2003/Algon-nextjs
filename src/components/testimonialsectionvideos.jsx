@@ -352,7 +352,7 @@ export default function TestimonialCarousel() {
       {/* heading row */}
       <div data-navbar="light" className="mb-10 flex-col md:flex md:flex-row items-end justify-between pl-6 pr-6 md:pl-[80px] md:pr-[80px]">
         <div>
-          <h2 className="text-4xl text-start mb-7 md:mb-0 md:font-semibold font-normal text-white md:text-[70px] leading-[.9] tracking-tight">
+          <h2 className="text-4xl text-start mb-7 md:mb-0 md:font-light font-light text-white md:text-[70px] leading-[.9] tracking-tight">
             What several brands <br /> has to say about Algon
           </h2>
         </div>
