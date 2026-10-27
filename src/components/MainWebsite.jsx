@@ -588,7 +588,7 @@ function ServicesOverviewPC() {
     accent: "#666",
     bg: "#0f0f14",
     pic: "/images/medical.jpg",
-    picsticky: "/images/medical.jpg",
+    picsticky: "/images/hms.webp",
   },
   {
     id: "02",
@@ -597,7 +597,7 @@ function ServicesOverviewPC() {
     accent: "#666",
     bg: "#0f0f14",
     pic: "/images/algon-ai.jpg",
-    picsticky: "/images/algon-ai.jpg",
+    picsticky: "/images/ai-auto.webp",
   },
   {
     id: "03",
@@ -606,7 +606,7 @@ function ServicesOverviewPC() {
     accent: "#666",
     bg: "#0f0f14",
     pic: "/images/managed5.jpg",
-    picsticky: "/images/managed5.jpg",
+    picsticky: "/images/mes.webp",
   },
   {
     id: "04",
@@ -615,7 +615,7 @@ function ServicesOverviewPC() {
     accent: "#666",
     bg: "#0f0f14",
     pic: "/images/100x.jpg",
-    picsticky: "/images/100x.jpg",
+    picsticky: "/images/webnsaas.webp",
   },
 
 ];
@@ -940,9 +940,9 @@ export default function MainWebsite() {
       <ScrollIndicator />
       <Navbar />
       <Hero deferMedia={deferMedia} revealed={revealed} />
-      <div className="hidden lg:block">
+      {/* <div className="hidden lg:block">
         <AlgonHero deferMedia={deferMedia} />
-      </div>
+      </div> */}
       <ScrollRevealText />
       <ScrollRevealSection />
       <ServicesOverviewMain />
