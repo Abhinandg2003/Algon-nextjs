@@ -94,9 +94,13 @@ export default function StickyShowcase({ tone, id, eyebrow, title, intro, items 
               // Phones: image above text. Tablets (md): image beside text, so six
               // items don't become six full-width images. Desktop (lg): text
               // only — the pinned panel shows the images.
-              className="svp-show-item flex flex-col justify-center gap-4 py-8 md:grid md:grid-cols-[1fr_1.1fr] md:items-center md:gap-x-8 md:gap-y-3 lg:flex lg:min-h-[52vh] lg:py-12"
+              // Text is centred on phones (single column) and left-aligned in
+              // both two-column layouts. lg:items-start matters: md:items-center
+              // (vertical centring in the grid) would otherwise carry into the
+              // lg flex column and centre short lines horizontally.
+              className="svp-show-item flex flex-col items-center justify-center gap-4 py-8 text-center md:grid md:grid-cols-[1fr_1.1fr] md:items-center md:gap-x-8 md:gap-y-3 md:text-left lg:flex lg:items-start lg:min-h-[52vh] lg:py-12"
             >
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[16px] md:col-start-1 md:row-span-3 md:row-start-1 lg:hidden">{media(item, i, true)}</div>
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[16px] md:col-start-1 md:row-span-3 md:row-start-1 lg:hidden">{media(item, i, true)}</div>
               <span className="svp-num md:col-start-2">{String(i + 1).padStart(2, "0")}</span>
               <h3 className="svp-title !text-[clamp(26px,2.6vw,40px)] md:col-start-2">{item.title}</h3>
               <p className="svp-lead max-w-[46ch] md:col-start-2">{item.text}</p>

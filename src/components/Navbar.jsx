@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react"
 import { LEAD_STUDIES } from "../data/caseStudiesData"
-import { NAV_MENUS, MOBILE_LINKS } from "../data/navMenus"
+import { NAVBAR_MENUS as NAV_MENUS } from "../data/navMenus"
 
 const BLOG_PREVIEWS = [
     {
@@ -570,10 +570,9 @@ useEffect(() => {
                     }`}
                 >
 {panelData && (() => {
-    const hasTitles = panelData.groups.some((g) => g.title)
     return (
         <div
-            className={`grid gap-x-14 gap-y-10 px-[5vw] ${hasTitles ? "py-12" : "py-10"}`}
+            className="grid gap-x-14 gap-y-10 px-[5vw] py-12"
             style={{
                 // First column (image + "View all") shares one width across every menu
                 gridTemplateColumns: `${MENU_IMAGE_COL} repeat(${panelData.groups.length}, minmax(0,1fr))`,
@@ -597,7 +596,7 @@ useEffect(() => {
                         onClick={() => setOpenMenu(null)}
                         className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white px-4 py-2 text-[14px] tracking-[0.06em] text-white transition hover:bg-white hover:text-[#050508]"
                     >
-                        View all
+                        {panelData.hubLabel || "View all"}
                         <ArrowRight size={15} aria-hidden="true" />
                     </Link>
                 )}
@@ -733,7 +732,7 @@ useEffect(() => {
                   onClick={() => { setMenuOpen(false); setMobileOpen(null) }}
                   className="inline-flex w-fit items-center gap-2 rounded-full border border-white/60 px-4 py-2 text-[15px] text-white transition hover:bg-white hover:text-[#050508]"
                 >
-                  View all
+                  {menu.hubLabel || "View all"}
                   <ArrowRight size={15} aria-hidden="true" />
                 </Link>
               )}
@@ -768,30 +767,6 @@ useEffect(() => {
         <div className="mt-6 h-[1px] w-full bg-white/10" />
       </div>
     )
-  })}
-
-  {/* OTHER LINKS */}
-  {MOBILE_LINKS.map((item, i) => {
-    const index = NAV_MENUS.length + i
-
-    return (
-      <div key={item.label} className="flex flex-col gap-6">
-        <Link
-          href={item.href}
-          onClick={() => setMenuOpen(false)}
-          className="font-primary px-[8vw] font-light text-[20px] tracking-[0.07em] transition-all duration-300 hover:text-white/60"
-          style={{
-            transitionDelay: menuOpen ? `${index * 60}ms` : "0ms",
-            opacity: menuOpen ? 1 : 0,
-            transform: menuOpen ? "translateY(0)" : "translateY(10px)",
-          }}
-        >
-          {item.label}
-        </Link>
-
-        <div className="w-full h-[1px] bg-white/10" />
-      </div>
-    );
   })}
 </div>
                 </div>

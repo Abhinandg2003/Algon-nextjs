@@ -135,7 +135,7 @@
 }
 .svp-h3 {
   font-family: "DisplayFont", sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(20px, 1.7vw, 26px);
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -195,7 +195,7 @@
 .svp-h1-mark--text { color: var(--svp-brand); }
 .svp-tagline {
   font-family: "DisplayFont", sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(20px, 1.8vw, 27px);
   line-height: 1.3;
   letter-spacing: 0.02em;
@@ -205,7 +205,7 @@
 .svp-tagline em { font-style: normal; color: white; }
 .svp-hero-sub {
   font-size: clamp(14px, 1.05vw, 16px);
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.75;
   color: var(--svp-muted);
   margin: 0;
@@ -293,24 +293,14 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(to top, rgba(5, 5, 8, 0.75) 0%, rgba(5, 5, 8, 0.25) 45%, rgba(5, 5, 8, 0.35) 100%);
+  background: linear-gradient(to top, rgba(5, 5, 8, 0.35) 0%, rgba(5, 5, 8, 0.15) 45%, rgba(5, 5, 8, 0.35) 100%);
 }
 .svp-hero-banner-content {
   width: 100%;
   padding-bottom: clamp(32px, 5vw, 72px);
-  opacity: 0;
-  transform: translateY(16px);
-}
-.svp-hero--banner.is-ready .svp-hero-banner-content {
-  opacity: 1;
-  transform: none;
-  transition:
-    opacity 1s var(--svp-banner-ease) 0.5s,
-    transform 1s var(--svp-banner-ease) 0.5s;
 }
 @media (prefers-reduced-motion: reduce) {
-  .svp-hero-banner-media,
-  .svp-hero-banner-content { opacity: 1; transform: none; transition: none !important; }
+  .svp-hero-banner-media { opacity: 1; transform: none; transition: none !important; }
 }
 
 /* Hero tags: plain text, "•"-separated (not pills) */

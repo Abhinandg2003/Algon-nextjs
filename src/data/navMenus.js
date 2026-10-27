@@ -13,11 +13,13 @@ export const slugify = (s) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
 
-// groups: [{ title, items: [label, ...], chips? }] -> adds slug + href to each item
+// groups: [{ title, items: [label, ...], chips?, navHidden? }] -> adds slug + href to each item
+// navHidden: left out of the navbar only — its pages and hub listing stay live.
 const build = (type, groups) =>
-  groups.map(({ title, items, chips }) => ({
+  groups.map(({ title, items, chips, navHidden }) => ({
     title,
     chips: Boolean(chips),
+    navHidden: Boolean(navHidden),
     items: items.map((label) => {
       const slug = slugify(label)
       return { label, slug, href: pageHref(type, slug) }
@@ -70,20 +72,16 @@ export const NAV_MENUS = [
     blurb: "Workflow automation, AI agents, and RAG grounded in your own data.",
     groups: build("ai-development", [
       {
-        title: "AI Agents and Automation",
-        items: [
-          "AI Development Services",
-          "AI Agent Development",
-          "Workflow Automation",
-        ],
+        title: "AI Strategy and Build",
+        items: ["AI Development Services", "Machine Learning"],
       },
       {
-        title: "Models and Data",
-        items: [
-          "Machine Learning",
-          "LLM Development Services",
-          "RAG Development Services",
-        ],
+        title: "Agents and Automation",
+        items: ["AI Agent Development", "Workflow Automation"],
+      },
+      {
+        title: "LLMs and Knowledge",
+        items: ["LLM Development Services", "RAG Development Services"],
       },
     ]),
   },
@@ -114,40 +112,44 @@ export const NAV_MENUS = [
       },
       {
         title: "Tech Stack",
-        
+        navHidden: true, // temporarily hidden from the navbar
         items: ["React JS", "Node JS", "Next JS", "Python", "TypeScript", "AWS & Cloud"],
       },
     ]),
   },
   {
-  id: "company",
-  type: "company",
-  label: "Company",
-  image: "/images/menu/company.webp", // no hub page, so the image shows without "View all"
-  blurb: "Who we are, what we have built, and how to reach us.",
-  groups: [
-    {
-      chips: false,
-      items: [
-        { label: "About us", href: "/about-us" },
-        { label: "Solutions", href: "/solutions" },
-        { label: "Portfolio", href: "/portfolio" },
-      ],
-    },
-    {
-      chips: false,
-      items: [
-        { label: "Insights", href: "/blogs" },
-        { label: "Careers", href: "/careers" },
-        { label: "Case Studies", href: "/work" },
-      ],
-    },
-  ],
-},
+    id: "company",
+    type: "company",
+    hub: "/",
+    hubLabel: "Home page", // CTA under the image (the other menus say "View all")
+    label: "Company",
+    image: "/images/menu/company.webp",
+    blurb: "Who we are, what we have built, and how to reach us.",
+    groups: [
+      {
+        title: "About Algon",
+        items: [
+          { label: "About us", href: "/about-us" },
+          { label: "Solutions", href: "/solutions" },
+        ],
+      },
+      {
+        title: "Our Work",
+        items: [
+          { label: "Portfolio", href: "/portfolio" },
+          { label: "Case Studies", href: "/work" },
+        ],
+      },
+      {
+        title: "Insights and Careers",
+        items: [
+          { label: "Insights", href: "/blogs" },
+          { label: "Careers", href: "/careers" },
+        ],
+      },
+    ],
+  },
 ]
 
-// Extra links shown in the mobile menu below the accordions
-export const MOBILE_LINKS = [
-  { label: "Case Studies", href: "/work" },
-  { label: "Insights", href: "/blogs" },
-]
+// What the navbar shows: NAV_MENUS minus groups marked navHidden.
+export const NAVBAR_MENUS = NAV_MENUS.map((m) => ({ ...m, groups: m.groups.filter((g) => !g.navHidden) }))
