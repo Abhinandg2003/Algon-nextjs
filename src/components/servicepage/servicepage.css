@@ -500,8 +500,14 @@ a.svp-card:hover,
 /* ── Media band (parallax image, MediaBand.jsx) ─────────────────────────── */
 .svp-band {
   position: relative;
-  height: clamp(160px, 38vh, 840px);
-  background:#fcfcf7;
+  height: clamp(30vh, 70vh, 75vh);
+  background: #fcfcf7;
+}
+
+@media (max-width: 768px) {
+  .svp-band {
+    height: clamp(25vh, 30vh, 35vh);
+  }
 }
 .svp-band-frame {
   position: absolute;

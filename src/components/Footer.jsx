@@ -198,7 +198,9 @@ const LinkColumn = memo(function LinkColumn({ title, items }) {
 const LinkColumn2 = memo(function LinkColumn({ title, items }) {
   return (
     <div className="">
-      <p className="mb-5 text-base font-semibold tracking-[0.1em] text-white">{title}</p>
+      <p className="mb-5 text-base font-semibold tracking-[0.1em] text-white">
+        {title}
+      </p>
       <ul className="flex flex-col gap-[13px] list-none m-0 p-0">
         {items.map((item) => (
           <li key={item.label}>
@@ -250,13 +252,13 @@ export default function Footer() {
         <div className="mb-[72px] flex flex-wrap items-start justify-between gap-12 border-b border-white/[0.07] pb-3">
           <div className="max-w-[480px]">
             <Link href="/">
-            <img
-              src="/images/logo-white.webp"
-              alt="Algon Solutions logo"
-              className="block h-25 max-w-full"
-              loading="lazy"
-              decoding="async"
-            />
+              <img
+                src="/images/logo-white.webp"
+                alt="Algon Solutions logo"
+                className="block h-25 max-w-full"
+                loading="lazy"
+                decoding="async"
+              />
             </Link>
           </div>
 
@@ -338,10 +340,22 @@ export default function Footer() {
           </a>
         </div>
 
-        <div className=" gap-5 mt-0 flex md:hidden justify-center mb-10">
-              <img className="h-20 w-auto" src="/images/hippa.webp" alt="HIPAA compliant" loading="lazy" decoding="async" />
-              <img className="h-20 w-auto" src="/images/gdpr.webp" alt="GDPR compliant" loading="lazy" decoding="async" />
-            </div>
+        {/* <div className=" gap-5 mt-0 flex md:hidden justify-center mb-10">
+          <img
+            className="h-20 w-auto"
+            src="/images/hippa.webp"
+            alt="HIPAA compliant"
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            className="h-20 w-auto"
+            src="/images/gdpr.webp"
+            alt="GDPR compliant"
+            loading="lazy"
+            decoding="async"
+          />
+        </div> */}
 
         {/* Bottom bar */}
         <div className="flex flex-wrap items-center justify-center gap-4 border-t border-white/20 pt-6 text-center md:justify-between">
@@ -349,12 +363,18 @@ export default function Footer() {
             Copyright © {new Date().getFullYear()} Algon Solutions.
           </p>
           <div className="flex items-center ">
-          <p className="text-sm tracking-[0.12em] text-white/60">
-            All Rights Reserved | 
-          </p>
-          <div >
-            <Link  className="text-sm tracking-[0.12em] ml-2 text-white/60 underline hover:text-white/80" href="/privacy"> Privacy Policy</Link>
-          </div>
+            <p className="text-sm tracking-[0.12em] text-white/60">
+              All Rights Reserved |
+            </p>
+            <div>
+              <Link
+                className="text-sm tracking-[0.12em] ml-2 text-white/60 underline hover:text-white/80"
+                href="/privacy"
+              >
+                {" "}
+                Privacy Policy
+              </Link>
+            </div>
           </div>
         </div>
       </div>
