@@ -29,7 +29,7 @@ const OVERLAY_MAX = 0.6 // black overlay opacity at the end
 
 // Hero word that swaps with an image
 const SWAP_IMAGE = "/images/thoughtful.webp"
-const SWAP_MS = 3000 // time each state stays before switching
+const SWAP_MS = 2000 // time each state stays before switching
 const SWAP_IMG_H = "0.86em" // image height (the square on hover is this wide too)
 const SWAP_IMG_W = "1.9em" // image width while looping
 const SWAP_EASE = "cubic-bezier(0.65, 0, 0.35, 1)"

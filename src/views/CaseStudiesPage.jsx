@@ -23,6 +23,7 @@ import Footer from "../components/Footer";
 import ScrollIndicator from "../components/ui/ScrollIndicator";
 import animationData from "@/assets/Loader_06.json";
 import Lottie from "@/components/LottieClient";
+import CTASection from "@/components/CTASection";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -137,7 +138,140 @@ function PortfolioCTA() {
   );
 }
 
-/* ─── HERO ───────────────────────────────────────────────────────────────── */
+/* ─── HERO (banner) ──────────────────────────────────────────────────────── */
+// 55vh banner image; the heading sits on top of it, left-aligned, vertically
+// centred (below the 72px navbar).
+
+// "moved" word effect (desktop only)
+const FLOAT_RANGE = 10; // px it drifts around its spot
+const FLOAT_SPEED = [2.5, 3]; // seconds per drift (random in this range)
+const REPEL_RADIUS = 10; // px — cursor closer than this pushes the word away
+const REPEL_DISTANCE = 5; // px — how far it moves when the cursor is right on it
+const REPEL_DURATION = 0.5; // seconds to move away / come back
+
+function CaseStudiesHeroBanner() {
+  const h1Ref = useRef();
+  const videoRef = useRef();
+  const sectionRef = useRef();
+  const movedRef = useRef();
+  const repelRef = useRef();
+  const floatRef = useRef();
+
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+    mm.add("(min-width: 1024px) and (pointer: fine) and (prefers-reduced-motion: no-preference)", () => {
+      // Slow float: drift to a random nearby point, then another, forever
+      let drift;
+      const float = () => {
+        const [min, max] = FLOAT_SPEED;
+        drift = gsap.to(floatRef.current, {
+          x: gsap.utils.random(-FLOAT_RANGE, FLOAT_RANGE),
+          y: gsap.utils.random(-FLOAT_RANGE, FLOAT_RANGE),
+          rotation: gsap.utils.random(-1.5, 1.5),
+          duration: gsap.utils.random(min, max),
+          ease: "sine.inOut",
+          onComplete: float,
+        });
+      };
+      float();
+
+      // Repel: push away from the cursor, harder the closer it is
+      const toX = gsap.quickTo(repelRef.current, "x", { duration: REPEL_DURATION, ease: "power3.out" });
+      const toY = gsap.quickTo(repelRef.current, "y", { duration: REPEL_DURATION, ease: "power3.out" });
+      const section = sectionRef.current;
+
+      const onMove = (e) => {
+        const r = movedRef.current.getBoundingClientRect();
+        const dx = r.left + r.width / 2 - e.clientX;
+        const dy = r.top + r.height / 2 - e.clientY;
+        const d = Math.hypot(dx, dy) || 1;
+        // Measure from the word's edge, not its centre, so the whole word reacts
+        const edge = Math.max(0, d - r.width / 2);
+        const push = edge < REPEL_RADIUS ? (1 - edge / REPEL_RADIUS) * REPEL_DISTANCE : 0;
+        toX((dx / d) * push);
+        toY((dy / d) * push);
+      };
+      const onLeave = () => {
+        toX(0);
+        toY(0);
+      };
+
+      section.addEventListener("mousemove", onMove);
+      section.addEventListener("mouseleave", onLeave);
+      return () => {
+        drift?.kill();
+        section.removeEventListener("mousemove", onMove);
+        section.removeEventListener("mouseleave", onLeave);
+      };
+    });
+    return () => mm.revert();
+  }, []);
+
+  // React leaves `muted` out of the server HTML, so the browser can block the
+  // native autoplay; mute and start it from code to be sure.
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = true;
+    v.play().catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(h1Ref.current, { autoAlpha: 0, y: 24, duration: 0.8, ease: "power3.out", delay: 0.1 });
+    });
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section ref={sectionRef} data-navbar="light" className="relative h-[55vh] overflow-hidden bg-[#050508]">
+      {/* The browser plays the first source it supports: WebM, then the MP4
+          fallback (older Safari / iOS). The still image shows until it plays. */}
+      <video
+        ref={videoRef}
+        poster="/images/portfolio-stack.webp"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        disablePictureInPicture
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source src="/videos/portfolio-stack-float.webm" type="video/webm" />
+        <source src="/videos/portfolio-stack-float.mp4" type="video/mp4" />
+      </video>
+      {/* Static version:
+      <img
+        src="/images/portfolio-stack.webp"
+        alt="A selection of Algon projects"
+        fetchPriority="high"
+        decoding="async"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      */}
+      <div className="absolute inset-0 z-10 flex items-center pl-[5vw] pr-[5vw] pt-[72px] md:pl-[10vw]">
+        <h1
+          ref={h1Ref}
+          className="max-w-[16ch] text-[clamp(40px,4.5vw,70px)] font-light leading-[1.1] tracking-[-0.01em] text-white"
+        >
+          Projects that{" "}
+          {/* "moved": wrapper stays put (measured), repel layer dodges the
+              cursor, float layer drifts. Desktop only (see FLOAT_* / REPEL_*). */}
+          <span ref={movedRef} className="inline-block">
+            <span ref={repelRef} className="inline-block will-change-transform">
+              <span ref={floatRef} className="inline-block will-change-transform">moved</span>
+            </span>
+          </span>{" "}
+          the needle.
+        </h1>
+      </div>
+    </section>
+  );
+}
+
+/* ─── HERO (previous: big heading + Lottie, not used) ───────────────────── */
 function CaseStudiesHero() {
   const heroRef = useRef();
   const h1Ref = useRef();
@@ -281,7 +415,7 @@ function FilterBar({ active, onChange }) {
       >
         <h2
           style={{
-            fontWeight: 400,
+            fontWeight: 300,
             fontSize: "clamp(46px, 6vw, 76px)",
             color: "#0f0f0f",
             letterSpacing: "-0.035em",
@@ -806,12 +940,15 @@ solid rgba(5,5,8,.08);  overflow:hidden;
 
       <div style={{ background: "#050508", color: "#fff", minHeight: "100vh" }}>
         <Navbar />
-        <CaseStudiesHero />
+        <CaseStudiesHeroBanner />
+        {/* <CaseStudiesHero /> */}
         <ScrollIndicator />
         
         <FilterBar active={filter} onChange={setFilter} />
         <WorkGrid filter={filter} />
-        <PortfolioCTA/>
+        {/* <PortfolioCTA/> */}
+
+        <CTASection/>
         {/* <WorkCTA /> */}
         <Footer />
       </div>
