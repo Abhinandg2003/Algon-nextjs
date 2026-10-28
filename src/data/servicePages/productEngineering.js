@@ -334,6 +334,7 @@ const productEngineering = {
     ],
     process: {
       title: "How we work on a growing product",
+      intro: "We start from where the product is today and where it needs to be. Work ships in short cycles, is piloted with real users, and is measured before the next step is planned.",
       steps: [
         { title: "Product review", text: "Code, infrastructure, usage data and customer feedback, reviewed with your team. You get a plain account of what we found." },
         { title: "Roadmap", text: "A ranked list of what to build next, with cost and risk for each item. You approve it and can change it at any point." },
@@ -717,6 +718,7 @@ const productEngineering = {
     ],
     process: {
       title: "From request to a working team",
+      intro: "You describe the work, we propose the team, and you approve every person on it. The team joins your tools and process, and its shape changes as the work does.",
       steps: [
         { title: "Share the work", text: "What you are building, the skills you have in-house and the timeline you are working to." },
         { title: "Team proposal", text: "We propose roles and named people, with the reason for each." },
@@ -1106,6 +1108,7 @@ const productEngineering = {
     ],
     process: {
       title: "From spreadsheets to one system",
+      intro: "We replace the spreadsheets and workarounds one stage at a time. The new system runs in parallel until your team trusts it, and each role is trained on the steps it owns.",
       steps: [
         { title: "Bottleneck review", text: "We map how orders, tasks and approvals really move today, and agree who owns each step." },
         { title: "Plan", text: "Modules, priorities, timeline and cost, agreed in writing. You approve the plan before build starts." },
@@ -1289,6 +1292,7 @@ const productEngineering = {
     ],
     process: {
       title: "How we build a frontend",
+      intro: "We design from how people actually use the product, then build reusable components, test them on real devices and measure what changes after release.",
       steps: [
         { title: "Watch the work", text: "We observe the people who use the screens and list their most frequent tasks." },
         { title: "Design the flows", text: "Wireframes and clickable prototypes, checked with the people who will use them." },
@@ -1488,6 +1492,7 @@ const productEngineering = {
     ],
     process: {
       title: "How a full stack build runs",
+      intro: "We build in vertical slices, so every cycle delivers something that works end to end. Each slice is tested and run in parallel before it replaces the old way.",
       steps: [
         { title: "Map the work", text: "We map how the work happens today and who owns each step, before any screens are designed." },
         { title: "Design the system", text: "Architecture, data model and integrations, written down. You approve the plan before build starts." },
@@ -1668,6 +1673,7 @@ const productEngineering = {
     ],
     process: {
       title: "From content audit to launch",
+      intro: "A CMS is built around your content, not the other way round. We audit and model the content first, build the site and the editing experience, migrate everything and train your editors.",
       steps: [
         { title: "Content audit", text: "We list what content you have, what changes often and who is responsible for each part." },
         { title: "Content model", text: "Content types, fields and editing roles, agreed with you before any build." },

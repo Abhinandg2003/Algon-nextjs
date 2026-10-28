@@ -7,7 +7,8 @@ import ServiceHero from "./ServiceHero"
 import DefinitionBlock from "./DefinitionBlock"
 import CardGrid from "./CardGrid"
 import DataTable from "./DataTable"
-import ProcessSteps from "./ProcessSteps"
+// import ProcessSteps from "./ProcessSteps" // replaced by StackedProcess
+import StackedProcess from "./StackedProcess"
 import ChipGroups from "./ChipGroups"
 import CaseStudyProof from "./CaseStudyProof"
 import RelatedServices from "./RelatedServices"
@@ -89,6 +90,10 @@ export default function ServicePage({ type, slug }) {
   const blocks = []
   const banner = bannerImage(type, slug)
   if (page.definition) blocks.push((tone) => <DefinitionBlock key="def" tone={tone} {...page.definition} />)
+  // "How": stacked step cards, straight after the definition. Always light,
+  // so it sits outside the light/dark rhythm (`untoned`).
+  if (page.process)
+    blocks.push(Object.assign(() => <StackedProcess key="process" tone="light" {...page.process} />, { untoned: true }))
   // Stats band: switched off for now (page data still has `stats`).
   // Uncomment to bring it back, right under the definition.
   // if (page.stats?.length)
@@ -100,7 +105,7 @@ export default function ServicePage({ type, slug }) {
       })
     )
   if (page.problems)
-    blocks.push((tone) => <CardGrid key="problems" tone={tone} eyebrow="Why it stalls" numbered {...page.problems} />)
+    blocks.push((tone) => <CardGrid key="problems" tone={tone} eyebrow="Why it stalls" numbered cardClassName="svp-card--edge-hover" {...page.problems} />)
   if (page.services) {
     const images = showcaseImages(type, slug, page.services.items.length)
     blocks.push((tone) => (
@@ -110,7 +115,8 @@ export default function ServicePage({ type, slug }) {
   ;(page.tables || []).forEach((t, i) =>
     blocks.push((tone) => <DataTable key={`table-${i}`} tone={tone} eyebrow={t.eyebrow || "In detail"} {...t} />)
   )
-  if (page.process) blocks.push((tone) => <ProcessSteps key="process" tone={tone} {...page.process} />)
+  // Old horizontal process section, replaced by StackedProcess above
+  // if (page.process) blocks.push((tone) => <ProcessSteps key="process" tone={tone} {...page.process} />)
   if (page.stack) blocks.push((tone) => <ChipGroups key="stack" tone={tone} eyebrow="Technology" {...page.stack} />)
   if (page.industries)
     blocks.push((tone) => <CardGrid key="industries" tone={tone} eyebrow="Who it is for" {...page.industries} />)

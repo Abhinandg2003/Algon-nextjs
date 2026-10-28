@@ -241,6 +241,7 @@ const aiDevelopment = {
     ],
     process: {
       title: "From one job to a working agent",
+      intro: "An agent starts with one job and clear limits on what it may do. It is tested on real cases and runs alongside your staff, with every action logged, before it works on its own.",
       steps: [
         { title: "Pick the job", text: "We choose one bounded task, agree what done looks like and who reviews the agent's work." },
         { title: "Set the limits", text: "We list the information the agent may use, the tools it may call and the cases it must hand over." },
@@ -376,6 +377,7 @@ const aiDevelopment = {
     ],
     process: {
       title: "How an automation project runs",
+      intro: "Automation starts with the bottleneck, not the tool. We map the steps and their owners, build with logging so failures are visible, and run it alongside the manual process before handing it over.",
       steps: [
         { title: "Name the bottleneck", text: "We find the process that slips most often and the person currently holding it together." },
         { title: "Map the steps", text: "We write down every step, every system it touches and every exception, with your team." },
@@ -511,6 +513,7 @@ const aiDevelopment = {
     ],
     process: {
       title: "How a machine learning project runs",
+      intro: "A model is only worth building if it improves a real decision. We frame that decision, check the data, beat a simple baseline first, and keep monitoring the model once it is in use.",
       steps: [
         { title: "Frame the decision", text: "We agree the decision the model supports, who acts on it and what a useful result looks like." },
         { title: "Check the data", text: "We review what records exist, how complete they are and what needs cleaning before any model is trained." },
@@ -651,6 +654,7 @@ const aiDevelopment = {
     ],
     process: {
       title: "How an LLM feature is built",
+      intro: "An LLM feature is defined by its task and judged on your own examples. We evaluate it before release and ship it with guardrails, so its behaviour is predictable and reviewable.",
       steps: [
         { title: "Define the task", text: "We agree the input, the expected output, who reviews it and what good looks like." },
         { title: "Collect examples", text: "We gather real cases from your work, including the difficult ones, to build a test set." },
@@ -806,6 +810,7 @@ const aiDevelopment = {
     ],
     process: {
       title: "From scattered documents to a working assistant",
+      intro: "A useful assistant starts with the questions people really ask and the documents that should answer them. We get retrieval right first, then add answers with sources and human review.",
       steps: [
         { title: "Collect the questions", text: "We gather the questions people actually ask, from staff, inboxes and call logs." },
         { title: "Audit the content", text: "We check which documents answer them, which are out of date and what is missing." },

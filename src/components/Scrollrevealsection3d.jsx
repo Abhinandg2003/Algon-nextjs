@@ -495,7 +495,7 @@ export default function ScrollRevealSection() {
           
           font-size: clamp(42px, 5.5vw, 60px); line-height: 0.96;
           color: #000000; margin: 0 0 clamp(24px, 3vh, 44px) 0;
-          will-change: opacity, transform; font-weight:400; font-family: var(--font-roboto);
+          will-change: opacity, transform; font-weight:300; font-family: var(--font-roboto);
         }
         .srv-para {
           font-weight: 400; color: rgba(0,0,0,0.8);

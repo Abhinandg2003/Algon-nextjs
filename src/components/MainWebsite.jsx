@@ -733,7 +733,7 @@ function ServicesOverviewPC() {
         {/* ── LEFT: text column — scrolls normally, determines section height ── */}
         <div className="w-1/2 flex flex-col">
           <div className="px-[7vw] mt-20">
-            <h2 className="text-[clamp(40px,9vw,70px)] font-medium leading-[1.08] tracking-normal text-white mb-5">
+            <h2 className="text-[clamp(40px,9vw,70px)] font-light leading-[1.08] tracking-normal text-white mb-5">
               Our services,
               <br />
               built to deliver.
@@ -748,13 +748,13 @@ function ServicesOverviewPC() {
               className="min-h-[60vh] flex flex-col justify-center px-[7vw] py-16"
             >
               <h3
-                className="text-[clamp(38px,3vw,48px)] font-medium leading-[1.08] text-white mb-5"
+                className="text-[clamp(38px,3vw,48px)] font-light leading-[1.08] text-white mb-5"
                 style={{ fontFamily: "DisplayFont" }}
               >
                 {sv.title}
               </h3>
 
-              <p className="text-[clamp(13px,1.5vw,17px)] font-normal leading-[1.75] text-white max-w-[42ch] mb-8">
+              <p className="text-[clamp(13px,1.5vw,17px)] font-light leading-[1.75] text-white max-w-[42ch] mb-8">
                 {sv.desc}
               </p>
             </div>

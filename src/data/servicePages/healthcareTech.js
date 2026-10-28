@@ -376,6 +376,7 @@ const healthcareTech = {
     ],
     process: {
       title: "How an integration project runs",
+      intro: "Integration starts with a map of what you run today and which data actually needs to move. Each connection is built, tested and run in parallel before anyone relies on it.",
       steps: [
         { title: "Map current systems", text: "We list what you run, who uses it, what data it holds and where staff copy data between systems." },
         { title: "Choose what to connect", text: "We rank connections by staff time saved and risk, and recommend connect or replace for each. You approve the plan." },
@@ -568,6 +569,7 @@ const healthcareTech = {
     ],
     process: {
       title: "How we get from records to answers",
+      intro: "Dashboards are only as good as the data behind them. We agree the questions first, check and fix how the data is captured, then build the views, alerts and assistant on top.",
       steps: [
         { title: "Agree the questions", text: "We sit with owners and department heads and list the five to ten questions they need answered most often." },
         { title: "Check the data", text: "We trace where each answer would come from and find the gaps in how data is captured today." },
@@ -773,6 +775,7 @@ const healthcareTech = {
     ],
     process: {
       title: "How we take over or set up your infrastructure",
+      intro: "Hospital systems cannot simply go down for maintenance. We review what runs today, close the biggest risks first, and move releases into a pipeline that ships in safe stages.",
       steps: [
         { title: "Review what runs today", text: "Servers, access, backups, release habits and costs, written down in one place." },
         { title: "Fix the risks first", text: "Untested backups, shared logins and missing monitoring are addressed before anything else." },

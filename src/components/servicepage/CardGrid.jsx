@@ -6,7 +6,8 @@ import Icon from "./Icon"
 // One grid for every card list on a service page: failure patterns,
 // what-we-build, industries, differentiators. `numbered` shows 01, 02…
 // instead of (or as well as) the icon; items with `href` become links.
-export default function CardGrid({ tone, id, eyebrow, title, intro, items = [], numbered = false, columns = 3 }) {
+// `cardClassName` adds classes to every card (e.g. a section-specific hover).
+export default function CardGrid({ tone, id, eyebrow, title, intro, items = [], numbered = false, columns = 3, cardClassName = "" }) {
   const cols = columns === 2 ? "md:grid-cols-2" : columns === 4 ? "md:grid-cols-2 xl:grid-cols-4" : "md:grid-cols-2 lg:grid-cols-3"
 
   return (
@@ -31,9 +32,9 @@ export default function CardGrid({ tone, id, eyebrow, title, intro, items = [], 
           return (
             <li key={item.title} className="svp-reveal" style={{ transitionDelay: `${(i % 3) * 70}ms` }}>
               {item.href ? (
-                <Link href={item.href} className="svp-card">{body}</Link>
+                <Link href={item.href} className={`svp-card ${cardClassName}`}>{body}</Link>
               ) : (
-                <div className="svp-card">{body}</div>
+                <div className={`svp-card ${cardClassName}`}>{body}</div>
               )}
             </li>
           )

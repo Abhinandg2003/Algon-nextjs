@@ -365,6 +365,10 @@
   background: var(--svp-card);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s, background 0.35s;
 }
+/* "Why it stalls" cards (under the image band): border turns paper-white on
+   hover. The colour fade comes from .svp-card's border-color transition. */
+.svp-card--edge-hover:hover { border-color: #fcfcf790; }
+
 a.svp-card:hover,
 .svp-card--hover:hover {
   transform: translateY(-4px);
@@ -534,6 +538,44 @@ a.svp-card:hover,
   inset: auto 0 0 0;
   padding: 22vh var(--svp-pad-x) 7vh;
   background: linear-gradient(to top, rgba(5, 5, 8, 0.8), transparent);
+}
+
+/* ── Stacked process cards (StackedProcess.jsx) ─────────────────────────── */
+/* Card size on desktop: --svp-stack-h (the width is the right column, max 560px). */
+.svp-stack-section { --svp-stack-h: 300px; }
+.svp-stack-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: clamp(24px, 3vw, 40px);
+  border: 1px solid #050508;
+  text-align: left;
+}
+/* Opaque, because the cards cover each other */
+.svp-light .svp-stack-card { background: #fff; }
+.svp-dark .svp-stack-card { background: #0c0c11; }
+.svp-stack-icon { color: var(--svp-brand); margin-bottom: 6px; }
+
+@media (min-width: 1024px) {
+  /* Pinned for the whole stack: one screen tall, content centred */
+  .svp-stack-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  .svp-stack-card { height: var(--svp-stack-h); }
+  /* Stack mode (added by GSAP): one card tall, cards layered in place and
+     moved by transform. Without it (mobile, reduced motion) it's a list. */
+  .svp-stack-stage.is-stacked {
+    position: relative;
+    height: var(--svp-stack-h);
+  }
+  .svp-stack-stage.is-stacked .svp-stack-card {
+    position: absolute;
+    inset: 0 0 auto 0;
+    will-change: transform;
+  }
 }
 
 /* ── Sticky showcase (StickyShowcase.jsx) ───────────────────────────────── */

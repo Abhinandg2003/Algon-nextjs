@@ -34,6 +34,7 @@ import ValuesSectionAbout from "../components/ValuesSectionAbout";
 import CTASectionAbt from "../components/CTASectionAbt";
 import ScrollIndicator from "../components/ui/ScrollIndicator";
 import FAQ_Sectionlight from "../components/ui/FAQLight";
+import { AboutHeroMinimal, AboutMedia } from "../components/about/AboutIntro";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -2134,7 +2135,9 @@ color: rgba(255,255,255,01);
 
       <div style={{ background: "#050508", color: "#fff", minHeight: "100vh" }}>
         <Navbar />
-        <AboutHero />
+        {/* <AboutHero /> — replaced by the minimal hero + media band below */}
+        <AboutHeroMinimal />
+        <AboutMedia />
         {/* <Marquee/> */}
         <ScrollIndicator />
         <StorySection />

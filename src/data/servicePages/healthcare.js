@@ -319,6 +319,7 @@ const healthcare = {
     ],
     process: {
       title: "How a clinic automation project runs",
+      intro: "We start with a real day at your front desk, not a feature list. Each task gets an owner before it is automated, and nothing replaces the old way until your staff trust the new one.",
       steps: [
         { title: "Sit with the front desk", text: "We watch a real day, count the calls by reason and see which tasks repeat. You decide what is worth automating." },
         { title: "Name the owners", text: "Each task, from reminders to complaints, gets one person responsible for it, before anything is automated." },
@@ -438,6 +439,7 @@ const healthcare = {
     ],
     process: {
       title: "How we set up patient engagement",
+      intro: "Engagement works when every message is tied to a real event and to a person who acts on the reply. We set it up one flow at a time and measure what changes before adding the next.",
       steps: [
         { title: "List the moments that matter", text: "We map where patients drop away today: after booking, after discharge, after a report, after a complaint." },
         { title: "Assign owners", text: "Each moment gets a named owner for replies and exceptions before any message is sent." },
@@ -558,6 +560,7 @@ const healthcare = {
     ],
     process: {
       title: "How we roll out digital onboarding",
+      intro: "Onboarding moves forms and checks out of the queue and to before the visit. We build it into the system you already run, with a paper fallback for patients who need one.",
       steps: [
         { title: "Walk the front desk", text: "We follow new patients from the gate to the consultation room and note every form, copy and repeated question." },
         { title: "Decide what moves before the visit", text: "Together we choose which details patients can give in advance and which must stay at the desk." },
@@ -678,6 +681,7 @@ const healthcare = {
     ],
     process: {
       title: "How we introduce an agent",
+      intro: "An agent gets one clearly defined job, built on your own content and run under staff supervision. It takes on more only after it has proved itself on real cases.",
       steps: [
         { title: "Check the process first", text: "We confirm the records, rules and owners the agent depends on are reliable. If not, we fix that first." },
         { title: "Define one job", text: "We agree exactly what the agent does, what it must not do, and who it hands off to." },
@@ -797,6 +801,7 @@ const healthcare = {
     ],
     process: {
       title: "How we introduce documentation AI",
+      intro: "Documentation AI drafts, clinicians decide. We start with one document type, agree the format with the people who sign it, and keep every draft in review mode until it is trusted.",
       steps: [
         { title: "Pick one document", text: "We start with the document that holds up the most work, often the discharge summary." },
         { title: "Check the sources", text: "We confirm the record contains what the draft needs. If it does not, we fix data capture first." },
@@ -920,6 +925,7 @@ const healthcare = {
     },
     process: {
       title: "How we deliver an NLP project",
+      intro: "We work from samples of your real text, not demo data. Every output has an owner, is tested against your records, and is confirmed by a person before anything acts on it.",
       steps: [
         { title: "Collect real samples", text: "We gather anonymised examples of the text or calls involved, in the languages patients actually use." },
         { title: "Define the output and owner", text: "We agree what the result should be, such as a category or a set of fields, and who acts on it." },
