@@ -202,7 +202,7 @@ export default function ValuesSection() {
     <section ref={ref} className="ab-values-section " data-navbar="dark">
       <div className="ab-values-inner">
         <div ref={headRef} className="ab-section-head">
-          <h2 className="ab-section-title2">
+          <h2 className="ab-section-title !text-[#050508]">
             Five values. <br /> One standard.
           </h2>
         </div>

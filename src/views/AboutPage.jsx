@@ -35,6 +35,7 @@ import CTASectionAbt from "../components/CTASectionAbt";
 import ScrollIndicator from "../components/ui/ScrollIndicator";
 import FAQ_Sectionlight from "../components/ui/FAQLight";
 import { AboutHeroMinimal, AboutMedia } from "../components/about/AboutIntro";
+import CTASection from "@/components/CTASection";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -436,7 +437,7 @@ function StorySection() {
   }, []);
 
   return (
-    <div ref={wrapRef} className="ab-story-wrap">
+    <div ref={wrapRef} className="ab-story-wrap" data-navbar="light">
       <div ref={stickyRef} className="ab-story-sticky">
         {/* <div className="ab-grid-bg" />
         <div className="ab-grain" /> */}
@@ -619,7 +620,7 @@ function VisionMission() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="ab-vm-section">
+    <section ref={sectionRef} className="ab-vm-section" data-navbar="light">
       <div className="ab-orb ab-orb--vm" />
 
       <div className="ab-vm-inner">
@@ -1550,7 +1551,7 @@ export default function AboutPage() {
         }
         .ab-section-title {
            font-size: clamp(32px, 4.5vw, 66px);
-          font-weight: 500; line-height: 1.05;
+          font-weight: 400; line-height: 1.05;
            color: #fff; margin: 0; letter-spacing:2.05;
         }
 
@@ -1729,7 +1730,7 @@ export default function AboutPage() {
 /* Year */
 .ab-tl-year {
   font-size: clamp(36px,3.5vw,56px);
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: -0.03em;
   line-height: 1;
 
@@ -2146,7 +2147,9 @@ color: rgba(255,255,255,01);
         {/* <TeamSection /> */}
         {/* <NumbersSection /> */}
         {/* <CultureSection /> */}
-        <CTASectionAbt />
+        {/* <CTASectionAbt /> */}
+
+<CTASection/>
         <Footer />
       </div>
     </>
