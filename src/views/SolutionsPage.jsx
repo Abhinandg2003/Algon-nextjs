@@ -20,6 +20,7 @@ import { useInView } from "react-intersection-observer";
 import ScrollIndicator from "../components/ui/ScrollIndicator";
 import FAQ_Section from "../components/ui/FAQ";
 import Link from "next/link";
+import StickyOverviewPC from "../components/StickyOverviewPC";
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
@@ -1360,7 +1361,9 @@ function DeepDive() {
               gsap.fromTo(
                 nextEl,
                 { autoAlpha: 0, y: nextIndex > prevIdx ? 40 : -40 },
-                { autoAlpha: 1, y: 0, duration: 0.45, ease: "power3.out" },
+                // delay: waits for the previous panel to mostly fade out first,
+                // so the two never overlap. Raise it for a longer gap.
+                { autoAlpha: 1, y: 0, duration: 0.45, ease: "power3.out", delay: 0.2 },
               );
             }
           }
@@ -2347,7 +2350,8 @@ export default function SolutionsPage() {
         <SolHero />
         <ScrollIndicator />
         <SolOverview />
-        <SolOverviewpc />
+        {/* <SolOverviewpc /> old desktop layout, replaced by the shared home-page one */}
+        <StickyOverviewPC items={SOLUTIONS} heading={<>Four tracks,<br />one company.</>} />
         {/* <CaseStudiesnew /> */}
 
         <DeepDive />
