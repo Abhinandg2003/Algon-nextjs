@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import MuxVideo, { muxPoster } from "../MuxVideo"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -12,9 +13,14 @@ gsap.registerPlugin(ScrollTrigger)
 // Media shown in the band. Swap the image for a real About photo; to use a
 // video instead, uncomment the <video> in AboutMedia and remove the <img>.
 const MEDIA_IMAGE = "/images/algon-ai.jpg"
-// The browser plays the first one it supports: WebM (smaller) first, then the
-// MP4 fallback for browsers without WebM (older Safari / iOS).
-const MEDIA_VIDEO = { webm: "/videos/aboutwebm.webm", mp4: "/videos/about.mp4" }
+// Band video, streamed from Mux (adaptive quality). The local MP4 is the
+// fallback if the stream fails.
+const MEDIA_MUX = {
+  desktop: "kHjPa01z6CA4yPlw9pzSm6EqFKH8qDXfSHwTqBFVs538", // Mux: "about"
+  mobile: "wzWeOePhL8hK6fpHZewXCfXPiuTSbUzqJUCkT5EOGZk", // Mux: "about-mobile"
+}
+// Local files (before Mux). The WebM is no longer used.
+const MEDIA_VIDEO = { webm: "/videos/aboutwebm.webm", mp4: "/videos/aboutwebm.mp4" }
 
 // Band animation settings
 const START_INSET = { mobile: 5, desktop: 5 } // % trimmed off each side at the start (90vw / 80vw wide)
@@ -113,7 +119,7 @@ export function AboutHeroMinimal() {
       <div className="mx-auto grid w-full max-w-[90vw] gap-4 md:max-w-[80vw]  md:gap-10">
         {/* <p className="text-[18px]  text-white md:col-span-1 md:pt-3">About Algon</p> */}
         <div className="md:col-span-4">
-          <h1 className=" text-[clamp(30px,4.4vw,60px)] font-extralight text-center leading-[1.05] tracking-[-0.02em]">
+          <h1 className=" text-[clamp(40px,4.4vw,60px)] font-extralight text-center leading-[1.05] tracking-[-0.02em]">
             We build <SwapWord word="thoughtful" /> systems, <br /> refining every detail for people who use them.
           </h1>
           {/* <p className="mt-6 max-w-[76ch] font-light text-[clamp(15px,1.2vw,18px)] leading-[1.7] text-white">
@@ -136,14 +142,22 @@ export function AboutMedia() {
   const frameRef = useRef(null)
   const mediaRef = useRef(null)
   const overlayRef = useRef(null)
+  // null until mounted, so nothing downloads before we know which version to use
+  const [isMobile, setIsMobile] = useState(null)
 
-  // Start the video from code (see the note on the <video> below)
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)")
+    const update = () => setIsMobile(mq.matches)
+    update()
+    mq.addEventListener("change", update)
+    return () => mq.removeEventListener("change", update)
+  }, [])
+
+  // Make sure it's muted from code (see the note on the video below);
+  // MuxVideo starts playback itself once the stream is ready.
   useEffect(() => {
     const v = mediaRef.current
-    if (v instanceof HTMLVideoElement) {
-      v.muted = true
-      v.play().catch(() => {})
-    }
+    if (v) v.muted = true
   }, [])
 
   useEffect(() => {
@@ -187,6 +201,22 @@ export function AboutMedia() {
         {/* Autoplay needs muted + playsInline (iOS); the effect above also
             starts it from code, because React leaves `muted` out of the
             server HTML and the browser would block the native autoplay. */}
+        <MuxVideo
+          ref={mediaRef}
+          playbackId={isMobile === null ? null : isMobile ? MEDIA_MUX.mobile : MEDIA_MUX.desktop}
+          fallbackSrc={MEDIA_VIDEO.mp4}
+          poster={isMobile === null ? undefined : muxPoster(isMobile ? MEDIA_MUX.mobile : MEDIA_MUX.desktop)}
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ willChange: "transform" }}
+          autoPlay
+          muted
+          loop
+          playsInline
+          disablePictureInPicture
+          disableRemotePlayback
+          aria-hidden="true"
+        />
+        {/* Local version (before Mux):
         <video
           ref={mediaRef}
           poster={MEDIA_IMAGE}
@@ -202,6 +232,7 @@ export function AboutMedia() {
           <source src={MEDIA_VIDEO.webm} type="video/webm" />
           <source src={MEDIA_VIDEO.mp4} type="video/mp4" />
         </video>
+        */}
         {/* Video version: uncomment, and remove the <img> above (keep ref={mediaRef}).
         <video
           ref={mediaRef}

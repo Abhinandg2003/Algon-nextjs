@@ -20,6 +20,7 @@ import "../casestudies.css"
 import TestimonialCarousel from "./testimonialsectionvideos"
 import { ServicesOverviewMain } from "./Servicesinmain"
 import StickyOverviewPC from "./StickyOverviewPC"
+import MuxVideo from "./MuxVideo"
 import { LOADER_ONLY_MS, PRELOADER_SEEN_KEY, PRELOADER_VIDEO, REVEAL_EASE, REVEAL_MS } from "@/config/preloader"
 import { requestScrollRefresh } from "@/lib/scrollRefresh"
 
@@ -76,9 +77,14 @@ ScrollTrigger.config({ ignoreMobileResize: true }) // add this line
       doesn't re-render every card.
    ──────────────────────────────────────────────────────────────────── */
 
+// mux / muxmob: Mux playback IDs (streamed, adaptive quality). video /
+// videomob: the local files, used for the posters and as the fallback if the
+// stream fails.
 const SLIDES = [
   {
     id: 0,
+    mux: "oPF9Ze4NUz8rdki401cm7lxuCm01HfO02nlw9tG1MiBlgs", // Mux: "medical"
+    muxmob: "Z9H02Sp013c3gOQ300VxEVhBmZwtJDQzMjUdVT515Kxsus", // Mux: "medical-mobile"
     video: "/videos/algonhero-4.mp4",
     videomob:"/videos/algon-hero-4mobile.mp4",
     headline: "Flawless Medical\nSoftwares",
@@ -87,6 +93,8 @@ const SLIDES = [
   },
   {
     id: 1,
+    mux: "MVCHJ38Fyqj14Z5ef9vsWQ01mVFcoazN62o4LdhHD9c00", // Mux: "team"
+    muxmob: "BuIFnBRJO8wleS01LB7FQm02x8Mf2xs02TW7gdv02CzArq8", // Mux: "team-mobile"
     video: "/videos/hero-2-comp-comp.mp4",
     videomob:"/videos/hero-2-comp-comp-mob.mp4",
     headline: "Managed Engineering\nServices",
@@ -95,6 +103,8 @@ const SLIDES = [
   },
   {
     id: 2,
+    mux: "UL00EGuEx9Ju9p2ov3Ks3cvPGH5elpPe00gV9PvF4evrU", // Mux: "graph"
+    muxmob: "FOcj2X4UGnVnUYTTO02EgMDNI008mbscprnT7il4cJQX4", // Mux: "graph-mobile"
     video: "/videos/hero-4-comp-comp.mp4",
     videomob:"/videos/hero-4-comp-comp-mob.mp4",
     headline: "AI that Actually\nWorks",
@@ -211,8 +221,8 @@ useEffect(() => {
         if (v.readyState >= 2) play()
         else {
           v.addEventListener("loadeddata", play, { once: true })
-          // It was held at preload="none" during the preloader; start loading now
-          if (v.readyState === 0 && v.networkState !== HTMLMediaElement.NETWORK_LOADING) v.load()
+          // It was held at preload="none" during the preloader; MuxVideo starts
+          // loading by itself when preload changes (v.load() would cut the stream).
         }
       } else {
         v.pause()
@@ -249,9 +259,12 @@ useEffect(() => {
             style={{ transitionDuration: `${TRANSITION_MS}ms`, willChange: isActive || isPrev ? "opacity" : "auto" }}
           >
             {load && (
-              <video
+              <MuxVideo
                 ref={(el) => (videoRefs.current[i] = el)}
-                src={isMobile ? slide.videomob : slide.video}
+                playbackId={isMobile ? slide.muxmob : slide.mux}
+                fallbackSrc={isMobile ? slide.videomob : slide.video}
+                // Local version (before Mux): swap MuxVideo back to <video> and use
+                // src={isMobile ? slide.videomob : slide.video}
                 // First frame shown until the video can play (see posterFor)
                 poster={posterFor(isMobile ? slide.videomob : slide.video)}
                 muted
