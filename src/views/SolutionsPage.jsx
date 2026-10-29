@@ -1732,7 +1732,7 @@ function DeepDive() {
               <div className="sl-dd-lottie">
                 <video
                   ref={videoRef}
-                  className="rounded-full p-0 md:p-20"
+                  className="rounded-none md:rounded-full xl:rounded-none p-0 md:p-20"
                   loop
                   muted
                   playsInline
