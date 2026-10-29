@@ -2487,7 +2487,7 @@ export default function SolutionsPage() {
         .sl-dd-point{font-size:15px;color:rgba(5,5,8,0.8);font-weight:300;display:flex;align-items:center;gap:8px;}
         .sl-dd-check{font-size:14px;}
         .sl-dd-right{position:relative;}
-        .sl-dd-canvas-wrap{position:relative;overflow:hidden;border-radius:20px;}
+        .sl-dd-canvas-wrap{position:relative;overflow:hidden;border-radius:9999px;}
         .sl-dd-counter{position:absolute;bottom:28px;right:7vw;z-index:20;font-size:30px;font-weight:500;opacity:.7;color:rgba(5,5,8,0.22);}
         .sl-how{position:relative;background:#050508;padding:120px 7vw 140px;border-top:1px solid #f3f4f6;}
         .sl-how-inner{position:relative;z-index:1;}
