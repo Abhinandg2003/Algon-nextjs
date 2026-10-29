@@ -1723,8 +1723,8 @@ function DeepDive() {
               </div>
             ))}
           </div>
-          <div className="sl-dd-right !aspect-square">
-            <div className="sl-dd-canvas-wrap !aspect-square">
+          <div className="sl-dd-right !flex !justify-center !items-center !aspect-square">
+            <div className="sl-dd-canvas-wrap rounded-full overflow-hidden !aspect-square">
               {/* <div className="sl-dd-lottie">
                 <RocketAnim />
               </div> */}
@@ -1732,7 +1732,7 @@ function DeepDive() {
               <div className="sl-dd-lottie !aspect-square">
                 <video
                   ref={videoRef}
-                  className="rounded-none md:rounded-full xl:rounded-none p-0 md:p-20"
+                  className=" p-0 md:p-20 rounded-full"
                   loop
                   muted
                   playsInline
