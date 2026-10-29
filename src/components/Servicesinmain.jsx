@@ -113,8 +113,8 @@ export function ServicesOverviewMain() {
       data-navbar="dark"
     >
       <div className="relative z-[1]">
-        <div className="mb-[44px] mt-[12vh]">
-          <h2 className="text-[clamp(40px,7vw,58px)] font-semibold leading-[1.05] tracking-[-0.03em] text-[#0f0f0f] m-0">
+        <div className="mb-[24px] mt-[11vh]">
+          <h2 className="text-[clamp(40px,7vw,58px)] font-normal leading-[1.05] tracking-[-0.03em] text-[#0f0f0f] m-0">
             Our services.
             <br />
             Built to deliver.
@@ -125,13 +125,13 @@ export function ServicesOverviewMain() {
             <div
               key={sv.id}
               ref={addItemRef}
-              className="flex flex-col gap-[2px] sm:flex-row sm:items-baseline sm:gap-[25px]  pt-[10px] [will-change:opacity,transform]"
+              className="flex flex-col gap-[2px] sm:flex-row sm:items-baseline sm:gap-[20px]  pt-[10px] [will-change:opacity,transform]"
             >
               
               <div>
                 <div className="flex justify-between">
                     <div>
-                <h3 className="text-[clamp(28px,4vw,24px)] font-medium tracking-[-0.01em] text-[#0f0f0f] mt-0 mb-[4px]">
+                <h3 className="text-[clamp(24px,4vw,24px)] tracking-[-0.01em] text-[#0f0f0f] mt-0 mb-[4px]">
                   {sv.title}
                 </h3>
                 </div>
@@ -139,7 +139,7 @@ export function ServicesOverviewMain() {
                 {sv.id}
               </div> */}
                 </div>
-                <p className="text-[18px] mt-1 leading-[1.55] font-normal text-[#000] m-0 ">
+                <p className="text-[18px] mt-1 leading-[1.3] font-light text-[#000] m-0 ">
                   {sv.desc}
                 </p>
               </div>
