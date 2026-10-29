@@ -1857,6 +1857,16 @@ export default function CaseStudyDetailPage() {
           .csd-gal-card--tablet{width:280px;}
           .csd-mockup-img-wrap { position:relative;height:180px; overflow:hidden; }
         }
+        /* Phones: short 40vh hero with only the title (after the 640px block,
+           so this title size wins there too) */
+        @media(max-width:767px){
+          .csd-hero{min-height:0;height:40vh;height:40svh;}
+          .csd-hero-inner{padding-bottom:32px;}
+          .csd-hero-title-wrap{margin-bottom:0;}
+          .csd-hero-h1{font-size:clamp(26px,7.5vw,36px);line-height:1.05;}
+          .csd-hero .csd-meta-row,
+          .csd-hero .cs-scroll-hint{display:none;}
+        }
       `}</style>
 
       <div style={{ background: "#050508", color: "#fff", minHeight: "100vh" }}>

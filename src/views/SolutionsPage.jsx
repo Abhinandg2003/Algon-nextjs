@@ -22,6 +22,7 @@ import ScrollIndicator from "../components/ui/ScrollIndicator";
 import FAQ_Section from "../components/ui/FAQ";
 import Link from "next/link";
 import StickyOverviewPC from "../components/StickyOverviewPC";
+import SolutionRows from "../components/SolutionRows";
 import FAQ_Sectionlight from "@/components/ui/FAQLight";
 import CTASection from "@/components/CTASection";
 
@@ -679,7 +680,7 @@ const SOLUTIONS = [
     accent3: "#c084fc",
 
     pic: "/images/stickers/algon-ai.webp",
-    picsticky: "/images/services/ai-development/rag-development-services/service-3.webp",
+    picsticky: "/images/services/ai-development/llm-development-services/service-1.webp",
 
     gradient: "/images/stickers/gradientpurple.webp",
   },
@@ -2632,7 +2633,8 @@ export default function SolutionsPage() {
         <StickyOverviewPC items={SOLUTIONS} heading={<>Four tracks,<br />one company.</>} />
         {/* <CaseStudiesnew /> */}
 
-        <DeepDive />
+        {/* <DeepDive /> sticky wave-video section, replaced by SolutionRows */}
+        <SolutionRows />
         <FAQ_Sectionlight />
         <CTASection />
         <Footer />

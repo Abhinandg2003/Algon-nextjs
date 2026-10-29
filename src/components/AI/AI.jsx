@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef, useCallback, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useAnimate } from "framer-motion";
 import ChatWidget from "./ChatWidget";
 import "./AI.css";
 // const sparkleIcon = "/images/sparkle.svg"; // old star icon (see the commented <img> below)
@@ -112,6 +112,41 @@ function EyesMark({ hop }) {
   )
 }
 
+// ── Logo icon ───────────────────────────────────────────────────────────────
+// Click: a card flip — half a turn (180°) around the vertical axis per click,
+// so opening flips it over and closing flips it back, while it scales up a
+// little and back.
+const LOGO_ICON = "/images/algon-a.png"
+const FLIP_DEG = 180 // turn per click
+const FLIP_SCALE = 1.15 // size at the middle of the flip
+// Ease-out: moves straight away on click, then settles slowly. (An ease-in-out
+// barely moves for the first ~0.2s, which reads as a delay after the click.)
+const FLIP_TRANSITION = { duration: 1.1, ease: [0.22, 1, 0.36, 1] }
+
+function LogoMark({ hop }) {
+  const [scope, animate] = useAnimate()
+
+  // Each click adds another 180°, so it always continues the same way
+  useEffect(() => {
+    if (!hop) return // no flip on page load
+    animate(scope.current, { rotateY: hop * FLIP_DEG, scale: [1, FLIP_SCALE, 1] }, FLIP_TRANSITION)
+  }, [hop, animate, scope])
+
+  return (
+    // perspective on the parent gives the flip its 3D depth
+    <div className="flex h-full w-full items-center justify-center p-3" style={{ perspective: 400 }}>
+      <motion.img
+        ref={scope}
+        src={LOGO_ICON}
+        alt=""
+        aria-hidden="true"
+        draggable={false}
+        className="h-full w-full object-contain"
+      />
+    </div>
+  )
+}
+
 export default function AIAssistant() {
   const [open, setOpen] = useState(false);
   const [hop, setHop] = useState(0); // click count, replays the eye bounce
@@ -214,7 +249,9 @@ export default function AIAssistant() {
           </video>
 
           <div className="sparkle">
-            <EyesMark hop={hop} />
+            <LogoMark hop={hop} />
+            {/* Previous icons, kept to switch back: */}
+            {/* <EyesMark hop={hop} /> */}
             {/* <AlgonMark hop={hop} /> */}
           </div>
 

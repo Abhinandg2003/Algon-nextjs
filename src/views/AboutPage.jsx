@@ -36,6 +36,7 @@ import ScrollIndicator from "../components/ui/ScrollIndicator";
 import FAQ_Sectionlight from "../components/ui/FAQLight";
 import { AboutHeroMinimal, AboutMedia } from "../components/about/AboutIntro";
 import CTASection from "@/components/CTASection";
+import TestimonialCarousel from "@/components/testimonialsectionvideos";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -626,90 +627,90 @@ function VisionMission() {
       <div className="ab-vm-inner">
         {/* Vision */}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className=" flex mx-auto gap-10">
           <div className="ab-vm-block">
             <span
               style={{
                 color: "#fcfcf7",
                 fontWeight: "500",
               }}
-              className="block text-3xl md:text-4xl lg:text-5xl mb-5 font-light uppercase"
+              className="block text-3xl md:text-4xl text-center lg:text-4xl mb-5 font-extralight uppercase"
             >
               Vision
             </span>
-            <p ref={vRef} className="ab-vm-text">
+            <p ref={vRef} className="ab-vm-text !text-center">
               To be the most trusted digital partner for ambitious companies
               building the next generation of technology — where every product
               we touch becomes a benchmark for its category.
             </p>
           </div>
-          <div ref={visionWrapRef} className=" hidden md:flex justify-center items-center">
+          {/* <div ref={visionWrapRef} className=" hidden md:flex justify-center items-center">
             <div className="w-[400px] h-[400px]">
               {visionData && <Lottie animationData={visionData} />}
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="ab-vm-divider" />
 
         {/* Mission */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="flex gap-10 mx-auto">
           <div className="ab-vm-block">
             <span
               style={{
                 color: "#fcfcf7",
                 fontWeight: "400",
               }}
-              className="block text-3xl md:text-4xl lg:text-5xl mb-5 font-light uppercase"
+              className="block text-3xl md:text-4xl text-center lg:text-4xl mb-5 font-extralight uppercase"
             >
               Mission
             </span>
-            <p ref={mRef} className="ab-vm-text">
+            <p ref={mRef} className="ab-vm-text !text-center">
               To build digital products that move people — literally and
               figuratively. We combine engineering precision with creative
               obsession to deliver systems that are beautiful, fast, and built
               to last.
             </p>
           </div>
-          <div
+          {/* <div
             ref={missionWrapRef}
             className=" justify-center hidden md:flex items-center"
           >
             <div className="w-[400px] h-[400px]">
               {missionData && <Lottie animationData={missionData} />}
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="ab-vm-divider" />
 
         {/* Purpose */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="flex gap-10 mx-auto">
           <div className="ab-vm-block">
             <span
               style={{
                 color: "#fcfcf7",
                 fontWeight: "400",
               }}
-              className="block text-3xl md:text-4xl lg:text-5xl mb-5 font-light uppercase"
+              className="block text-3xl md:text-4xl lg:text-4xl text-center mb-5 font-extralight uppercase"
             >
               Purpose
             </span>
-            <p ref={pRef} className="ab-vm-text">
+            <p ref={pRef} className="ab-vm-text !text-center">
               Technology should feel inevitable. When it's done right, users
               don't think about the product — they just experience it. Our
               purpose is to reach that invisible threshold on every project we
               take on.
             </p>
           </div>
-          <div
+          {/* <div
             ref={purposeWrapRef}
             className="md:flex hidden justify-center items-center"
           >
             <div className="w-[400px] h-[400px]">
               {purposeData && <Lottie animationData={purposeData} />}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
@@ -1679,13 +1680,26 @@ export default function AboutPage() {
 }
 
 .ab-story-bar {
+  position: relative;
   height: 100%;
   width: 0%;
 
-  background: #fff;
-  box-shadow: 0 0 10px rgba(255,255,255,0.45);
+  background: #265eed; /* brand blue */
+  box-shadow: 0 0 10px rgba(38,94,237,0.45);
 
   transition: width 0.35s ease;
+}
+/* 10px square riding the end of the line, centred on it; it moves with the
+   bar's width transition */
+.ab-story-bar::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background: #fcfcf7;
+  transform: translate(50%, -50%);
 }
 
 /* Viewport */
@@ -2143,7 +2157,8 @@ color: rgba(255,255,255,01);
         <ScrollIndicator />
         <StorySection />
         <VisionMission />
-        <ValuesSectionAbout />
+        {/* <ValuesSectionAbout /> */}
+        <TestimonialCarousel/>
         {/* <TeamSection /> */}
         {/* <NumbersSection /> */}
         {/* <CultureSection /> */}
