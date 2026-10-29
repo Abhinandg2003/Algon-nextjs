@@ -26,6 +26,7 @@ import animationData from "@/assets/cubes_fillDark_strokeWhite.json";
 import Link from "next/link";
 import ScrollIndicator from "../components/ui/ScrollIndicator";
 import FAQ_Section from "../components/ui/FAQ";
+import CTASection from "@/components/CTASection";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -786,7 +787,7 @@ function FeaturedReel() {
   }, []);
 
   return (
-    <div ref={wrapRef} className="pf-reel-wrap">
+    <div ref={wrapRef} className="pf-reel-wrap" data-navbar="light">
       <div ref={stickyRef} className="pf-reel-sticky">
         {/* <div className="pf-grid-bg" />
         <div className="pf-grain" /> */}
@@ -1139,7 +1140,7 @@ function ProjectGrid() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="pf-grid-section">
+    <section ref={sectionRef} className="pf-grid-section" data-navbar="dark">
       {/* <div className="pf-grid-bg" />
       <div className="pf-grain" /> */}
 
@@ -1172,7 +1173,7 @@ function ProjectGrid() {
           ))}
         </div>
         <div className="cs2-footer">
-          <Link href="/work" className=" flex text-[#fcfcf7] text-[18px] hover:bg-[#fcfcf7] hover:text-[#050508] transition-all duration-300   border border-[#fcfcf7] rounded-full px-6 py-3">
+          <Link href="/work" className=" flex text-[#050508] text-[18px] hover:bg-[#050508] hover:text-[#fcfcf7] transition-all duration-300   border border-[#050508] rounded-full px-6 py-3">
             See all case studies
             <span className=" ml-2 cs2-footer-arrow">
               <ArrowRight size={12} />
@@ -1419,7 +1420,7 @@ export default function PortfolioPage() {
         .pf-section-title {
           
           font-size: clamp(32px, 4.5vw, 66px);
-          font-weight: 500; line-height: 1.05;
+          font-weight: 300; line-height: 1.05;
            color: #fff; margin: 0; letter-spacing:2.05;
         }
         .pf-tag {
@@ -1634,7 +1635,7 @@ export default function PortfolioPage() {
         .pf-panel-title {
           
           font-size: clamp(37px, 5vw, 70px);
-          font-weight: 400; line-height: 0.95;
+          font-weight: 300; line-height: 0.95;
           color: #fff; margin: 0 0 24px;
         }
         .pf-panel-desc {
@@ -1746,7 +1747,7 @@ export default function PortfolioPage() {
         }
         .pf-panel-stat-num {
           font-size: clamp(36px, 3.5vw, 56px);
-          font-weight: 600; line-height: 1; letter-spacing: -0.03em;
+          font-weight: 400; line-height: 1; letter-spacing: -0.03em;
         }
         .pf-panel-stat-lbl {
           font-size: 18px; font-weight:300;
@@ -1960,6 +1961,16 @@ export default function PortfolioPage() {
         }
         // .pf-grid-card:hover .pf-gc-bar { opacity: 0.5; }
 
+        /* Light mode for the project grid (scoped, so the shared title /
+           tag styles stay dark everywhere else) */
+        .pf-grid-section { background: #fcfcf7; border-top-color: rgba(5,5,8,0.08); }
+        .pf-grid-section .pf-section-title,
+        .pf-grid-section .pf-gc-cat,
+        .pf-grid-section .pf-gc-title { color: #050508; }
+        .pf-grid-section .pf-grid-card { background: #f0f0eb; }
+        .pf-grid-section .pf-grid-card:hover { background: #e7e7e1; }
+        .pf-grid-section .pf-tag { color: rgba(5,5,8,0.85); border-color: rgba(5,5,8,0.4); }
+
         /* ── APPROACH ─────────────────────────────────────────── */
         .pf-approach {
           position: relative; background: #050508;
@@ -2112,7 +2123,7 @@ export default function PortfolioPage() {
         <FeaturedReel />
         <ProjectGrid />
         {/* <ApproachStrip /> */}
-        <PortfolioCTA />
+        <CTASection />
         <Footer />
       </div>
     </>
