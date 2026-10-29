@@ -253,7 +253,189 @@ function FloatingGeo({ accent }) {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   HERO
+   HERO — heading + endless project carousel
+──────────────────────────────────────────────────────────────────────────── */
+// Order is the order on screen. Stat + service come from the case studies
+// (src/data/caseStudies/*); `id` opens /work/<id>.
+const HERO_PROJECTS = [
+  { folder: "hms", id: "hospital-os-patient-records-opd", stat: "50+", statLabel: "Modules in the full system", service: "Hospital Operating System" },
+  { folder: "visat", id: "campus-ai-teacher-agents", stat: "8 wk", statLabel: "Full platform build", service: "AI Agents" },
+  { folder: "desire", id: "admissions-ai-assistant", stat: "3x", statLabel: "Enrolments with a smaller team", service: "Conversational AI" },
+  { folder: "qot", id: "interiors-conversion-tracking", stat: "1000+", statLabel: "Leads captured and tracked", service: "Conversion Optimisation" },
+  { folder: "drisya", id: "product-catalogue-cms", stat: "50+", statLabel: "Products modelled", service: "CMS Platform" },
+  { folder: "unity", id: "real-estate-lead-website", stat: "1 wk", statLabel: "Concept to launch", service: "Lead Capture Website" },
+  { folder: "corewood", id: "furniture-mobile-first-website", stat: "3 days", statLabel: "Concept to launch", service: "Mobile-first Website" },
+  { folder: "sneek", id: "fashion-commerce-storefront", stat: "8 wk", statLabel: "Build to launch", service: "Commerce Storefront" },
+];
+
+const CAROUSEL_SPEED = 100; // px per second, leftwards
+const CAROUSEL_STOP = 0.6; // seconds to ease to a stop / back up to speed on hover
+
+function PortfolioHeroCarousel() {
+  const trackRef = useRef();
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const speed = { v: reduced ? 0 : CAROUSEL_SPEED };
+    let x = 0;
+
+    // The list is rendered twice; once it has moved one full copy, jump back
+    // by that much — the second copy is then exactly where the first was.
+    const tick = (_, deltaMs) => {
+      const half = track.scrollWidth / 2;
+      if (!half) return;
+      x -= (speed.v * deltaMs) / 1000;
+      if (x <= -half) x += half;
+      track.style.transform = `translate3d(${x}px,0,0)`;
+    };
+    gsap.ticker.add(tick);
+
+    // Ease to a stop while a card is hovered, and back up to speed after
+    const slowTo = (v) => gsap.to(speed, { v, duration: CAROUSEL_STOP, ease: "power2.out", overwrite: true });
+    const onEnter = () => slowTo(0);
+    const onLeave = () => !reduced && slowTo(CAROUSEL_SPEED);
+    track.addEventListener("mouseenter", onEnter);
+    track.addEventListener("mouseleave", onLeave);
+
+    return () => {
+      gsap.ticker.remove(tick);
+      gsap.killTweensOf(speed);
+      track.removeEventListener("mouseenter", onEnter);
+      track.removeEventListener("mouseleave", onLeave);
+    };
+  }, []);
+
+  const cards = [...HERO_PROJECTS, ...HERO_PROJECTS];
+
+  return (
+    <section data-navbar="light" className="flex h-[100svh] flex-col bg-[#050508] text-white">
+      {/* Row 1: heading (same size/weight as the About hero) */}
+      <div className="flex flex-1 items-end justify-center px-[5vw] pb-[6vh] pt-[72px]">
+        <h1 className="text-center text-[clamp(40px,4.4vw,60px)] font-extralight leading-[1.05] tracking-[-0.02em]">
+          Work that <br /> speaks for itself.
+        </h1>
+      </div>
+
+      {/* Row 2: carousel. Cards are 5:4, sharp corners, 10px apart. */}
+      <div className="overflow-hidden pb-[8vh]">
+        <div ref={trackRef} className="flex w-max will-change-transform">
+          {cards.map((p, i) => {
+            const base = `/images/clients/gallery/${p.folder}/thumbnail`;
+            const copy = i >= HERO_PROJECTS.length; // second copy: hidden from screen readers
+            return (
+              <Link
+                key={`${p.folder}-${i}`}
+                href={`/work/${p.id}`}
+                aria-hidden={copy || undefined}
+                tabIndex={copy ? -1 : undefined}
+                className="group relative mr-[10px] block aspect-[5/4] h-[min(48vh,440px,60vw)] shrink-0 overflow-hidden"
+              >
+                <picture>
+                  <source srcSet={`${base}.webp`} type="image/webp" />
+                  <img
+                    src={`${base}.jpg`}
+                    alt={copy ? "" : `${p.service} project`}
+                    loading={i < 4 ? "eager" : "lazy"}
+                    decoding="async"
+                    draggable={false}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                </picture>
+                {/* Hover: dark gradient fades in, stat + service slide up */}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 group-focus-visible:opacity-100" />
+                <div className="absolute inset-x-0 bottom-0 translate-y-full p-6 opacity-0 transition-[transform,opacity] duration-[650ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+                  <div className="text-[clamp(28px,2.6vw,40px)] font-light leading-none">{p.stat}</div>
+                  <div className="mt-2 text-[14px] font-light text-white/75">{p.statLabel}</div>
+                  <div className="mt-4 text-[13px] font-medium text-white">{p.service}</div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   HERO — centred text + floating project bubbles
+──────────────────────────────────────────────────────────────────────────── */
+// One bubble per project (HERO_PROJECTS index), three per side:
+//   bottom: biggest, 10vw in / 10vh up · middle: smallest, 7vw in, centred
+//   top: 10vw in / 10vh down. Sizes + positions live in the .pf-bub CSS.
+// Each floats up and down on its own rhythm (dur / delay / amp); on hover a
+// pill with the project's stat slides out from behind it towards the centre.
+const HERO_BUBBLES = [
+  { project: 0, side: "l", pos: "bottom", dur: 5.6, delay: -1.2, amp: 14 },
+  { project: 1, side: "r", pos: "bottom", dur: 6.4, delay: -3.1, amp: 12 },
+  { project: 2, side: "l", pos: "top", dur: 4.8, delay: -2.4, amp: 10 },
+  { project: 3, side: "r", pos: "top", dur: 5.2, delay: -0.6, amp: 11 },
+  { project: 4, side: "l", pos: "middle", dur: 4.4, delay: -3.6, amp: 9 },
+  { project: 5, side: "r", pos: "middle", dur: 5.9, delay: -1.8, amp: 10 },
+];
+
+function PortfolioHeroBubbles() {
+  return (
+    <section data-navbar="light" className="relative flex h-[100svh] items-center justify-center overflow-hidden bg-[#050508] text-white">
+      {HERO_BUBBLES.map((b) => {
+        const p = HERO_PROJECTS[b.project];
+        const base = `/images/clients/gallery/${p.folder}/thumbnail`;
+        return (
+          <div
+            key={p.folder}
+            className={`pf-bub pf-bub--${b.pos} pf-bub--${b.side}`}
+            style={{ "--dur": `${b.dur}s`, "--delay": `${b.delay}s`, "--amp": `${b.amp}px` }}
+          >
+            {/* Pill: sits behind the bubble, starting at its centre, and
+                unclips towards the middle of the screen on hover */}
+            <div className="pf-bub-pill" aria-hidden="true">
+              <span className="pf-bub-pill-in">
+                <span className="text-[clamp(20px,1.6vw,26px)] font-light leading-none">{p.stat}</span>
+                <span className="flex flex-col leading-tight">
+                  <span className="text-[13px] font-light text-white/75">{p.statLabel}</span>
+                  <span className="text-[12px] font-medium text-white">{p.service}</span>
+                </span>
+              </span>
+            </div>
+            <Link href={`/work/${p.id}`} className="pf-bub-img" aria-label={`${p.service}: ${p.stat} ${p.statLabel}`}>
+              <picture>
+                <source srcSet={`${base}.webp`} type="image/webp" />
+                <img src={`${base}.jpg`} alt="" decoding="async" draggable={false} className="h-full w-full object-cover" />
+              </picture>
+            </Link>
+          </div>
+        );
+      })}
+
+      {/* Centre: heading + CTAs */}
+      <div className="relative z-10 flex max-w-[90vw] flex-col items-center px-4 text-center md:max-w-[min(48vw,780px)]">
+        <h1 className="text-[clamp(34px,3.6vw,56px)] font-extralight leading-[1.08] tracking-[-0.02em]">
+          Work that speaks for itself, built around how businesses run.
+        </h1>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          {/* "#pf-work" smooth-scrolls (SmoothAnchors) to the section right after the hero */}
+          <a
+            href="#pf-work"
+            className="rounded-full border border-white bg-white px-7 py-3 text-[15px] font-medium text-[#050508] transition-colors duration-[400ms] ease-out hover:bg-transparent hover:text-white"
+          >
+            See all works
+          </a>
+          <Link
+            href="/contact"
+            className="rounded-full border border-white bg-transparent px-7 py-3 text-[15px] font-medium text-white transition-colors duration-[400ms] ease-out hover:bg-white hover:text-[#050508]"
+          >
+            Contact us
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   HERO (previous, not used)
 ──────────────────────────────────────────────────────────────────────────── */
 function PortfolioHero() {
   const heroRef = useRef();
@@ -1162,6 +1344,52 @@ export default function PortfolioPage() {
         * { box-sizing: border-box; }
         .pf-page { background: #050508; color: #fff; min-height: 100vh; }
 
+        /* ── Hero bubbles ─────────────────────────────────────── */
+        /* --s: size · positions from the request: bottom 10vw/10vh,
+           middle 7vw + vertically centred, top 10vw/10vh */
+        .pf-bub { position: absolute; z-index: 1; width: var(--s); height: var(--s);
+          animation: pf-bub-float var(--dur) ease-in-out var(--delay) infinite alternate; }
+        @keyframes pf-bub-float { from { transform: translateY(calc(var(--amp) * -1)); } to { transform: translateY(var(--amp)); } }
+        .pf-bub--bottom { --s: clamp(150px, 15vw, 260px); bottom: 10vh; }
+        .pf-bub--middle { --s: clamp(90px, 8.5vw, 150px); top: calc(50% - var(--s) / 2); }
+        .pf-bub--top    { --s: clamp(110px, 10.5vw, 180px); top: 10vh; }
+        .pf-bub--l.pf-bub--bottom, .pf-bub--l.pf-bub--top { left: 10vw; }
+        .pf-bub--r.pf-bub--bottom, .pf-bub--r.pf-bub--top { right: 10vw; }
+        .pf-bub--l.pf-bub--middle { left: 7vw; }
+        .pf-bub--r.pf-bub--middle { right: 7vw; }
+        .pf-bub:hover { z-index: 2; } /* its pill goes over neighbours */
+
+        .pf-bub-img { position: relative; z-index: 1; display: block; width: 100%; height: 100%;
+          border-radius: 9999px; overflow: hidden; }
+
+        /* Pill: starts at the bubble's centre (hidden behind it) and opens
+           towards the screen centre; clip-path keeps the rounded ends */
+        .pf-bub-pill { position: absolute; top: 50%; transform: translateY(-50%);
+          pointer-events: none; white-space: nowrap; border-radius: 9999px;
+          background: rgba(20, 20, 26, 0.82); backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          transition: clip-path 0.75s cubic-bezier(0.16, 1, 0.3, 1); }
+        .pf-bub--l .pf-bub-pill { left: 50%; padding: 14px 26px 14px calc(var(--s) / 2 + 22px);
+          clip-path: inset(0 100% 0 0 round 9999px); }
+        .pf-bub--r .pf-bub-pill { right: 50%; padding: 14px calc(var(--s) / 2 + 22px) 14px 26px;
+          clip-path: inset(0 0 0 100% round 9999px); }
+        .pf-bub:hover .pf-bub-pill, .pf-bub:focus-within .pf-bub-pill { clip-path: inset(0 0 0 0 round 9999px); }
+        .pf-bub-pill-in { display: flex; align-items: center; gap: 14px; opacity: 0;
+          transform: translateX(var(--pill-shift, -10px));
+          transition: opacity 0.4s ease-out, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .pf-bub--r .pf-bub-pill-in { --pill-shift: 10px; }
+        .pf-bub:hover .pf-bub-pill-in, .pf-bub:focus-within .pf-bub-pill-in {
+          opacity: 1; transform: none; transition-delay: 0.15s; }
+
+        @media (max-width: 767px) {
+          .pf-bub--middle { display: none; }
+          .pf-bub--bottom { --s: 30vw; bottom: 8vh; }
+          .pf-bub--top    { --s: 22vw; top: 12vh; }
+          .pf-bub--l.pf-bub--bottom, .pf-bub--l.pf-bub--top { left: 6vw; }
+          .pf-bub--r.pf-bub--bottom, .pf-bub--r.pf-bub--top { right: 6vw; }
+        }
+        @media (prefers-reduced-motion: reduce) { .pf-bub { animation: none; } }
+
         .pf-grid-bg {
           position: absolute; inset: 0; pointer-events: none; z-index: 0;
           background-image:
@@ -1875,8 +2103,12 @@ export default function PortfolioPage() {
 
       <div className="pf-page">
         <Navbar />
-        <PortfolioHero />
+        <PortfolioHeroBubbles />
+        {/* <PortfolioHeroCarousel /> */}
+        {/* <PortfolioHero /> */}
         <ScrollIndicator />
+        {/* Target of the hero's "See all works" button */}
+        <div id="pf-work" />
         <FeaturedReel />
         <ProjectGrid />
         {/* <ApproachStrip /> */}

@@ -1,7 +1,8 @@
 "use client";
-import { useEffect, useRef, useState, Suspense, useMemo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { useGLTF, Environment, useAnimations } from "@react-three/drei";
+import { useEffect, useLayoutEffect, useRef, useState, Suspense, useMemo } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useGLTF, Environment, useAnimations, OrbitControls, Bounds, Center } from "@react-three/drei";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 import { lazy } from "react";
 import { gsap } from "gsap";
@@ -21,6 +22,8 @@ import ScrollIndicator from "../components/ui/ScrollIndicator";
 import FAQ_Section from "../components/ui/FAQ";
 import Link from "next/link";
 import StickyOverviewPC from "../components/StickyOverviewPC";
+import FAQ_Sectionlight from "@/components/ui/FAQLight";
+import CTASection from "@/components/CTASection";
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
@@ -252,6 +255,96 @@ function HeroModel({ mouse }) {
     <group ref={group}>
       <primitive object={cloned} />
     </group>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   3D — PUZZLE CUBE (Solutions hero)
+──────────────────────────────────────────────────────────────────────────── */
+const CUBE_GLB = "/3d/neon-cube-loop-xray-off.glb"; // previous: "/3d/puzzle-cube.glb"
+const CUBE_ANIM_SPEED = 1; // playback speed of the solve / scramble animation
+const CUBE_AUTO_ROTATE = 0.6; // slow spin while nobody is dragging (0 = off)
+const CUBE_MARGIN = 1.5; // space around the cube inside its row (1 = touching the edges)
+// Neon glow: the model's emissive colour is pushed above 1 and the bloom pass
+// spreads anything brighter than GLOW_THRESHOLD into a glow.
+const NEON_INTENSITY = 4; // brightness of the neon edges
+const GLOW_STRENGTH = 1; // how strong the glow is
+const GLOW_RADIUS = 0.75; // how far the glow spreads (0–1)
+const GLOW_THRESHOLD = 0.8; // only parts brighter than this glow
+const HERO_BG = "#050508";
+
+function PuzzleCube() {
+  const group = useRef();
+  const { scene, animations } = useGLTF(CUBE_GLB);
+  const { actions, names } = useAnimations(animations, group);
+
+  // Make the emissive (neon) material bright enough to bloom
+  useEffect(() => {
+    scene.traverse((o) => {
+      if (!o.isMesh) return;
+      const mats = Array.isArray(o.material) ? o.material : [o.material];
+      mats.forEach((m) => {
+        if (!m.emissive) return;
+        m.emissiveIntensity = NEON_INTENSITY;
+        m.toneMapped = false; // keep it above 1, otherwise there's nothing to bloom
+      });
+    });
+  }, [scene]);
+
+  useEffect(() => {
+    names.forEach((name) => {
+      const a = actions[name];
+      if (!a) return;
+      a.timeScale = CUBE_ANIM_SPEED;
+      a.play();
+    });
+  }, [actions, names]);
+
+  return (
+    <group ref={group}>
+      <primitive object={scene} />
+    </group>
+  );
+}
+
+// Grab-and-drag rotation. On touch screens only sideways drags rotate, so
+// swiping up/down still scrolls the page.
+function CubeControls() {
+  const ref = useRef();
+  const [touch, setTouch] = useState(false);
+
+  useEffect(() => {
+    setTouch(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
+
+  useEffect(() => {
+    const el = ref.current?.domElement;
+    if (!el) return;
+    el.style.touchAction = touch ? "pan-y" : "none";
+    el.style.cursor = "grab";
+    const down = () => (el.style.cursor = "grabbing");
+    const up = () => (el.style.cursor = "grab");
+    el.addEventListener("pointerdown", down);
+    window.addEventListener("pointerup", up);
+    return () => {
+      el.removeEventListener("pointerdown", down);
+      window.removeEventListener("pointerup", up);
+    };
+  }, [touch]);
+
+  return (
+    <OrbitControls
+      ref={ref}
+      makeDefault
+      enableZoom={false}
+      enablePan={false}
+      enableDamping
+      dampingFactor={0.08}
+      rotateSpeed={0.8}
+      autoRotate={CUBE_AUTO_ROTATE > 0}
+      autoRotateSpeed={CUBE_AUTO_ROTATE}
+      {...(touch ? { minPolarAngle: Math.PI / 2.6, maxPolarAngle: Math.PI / 2.6 } : {})}
+    />
   );
 }
 
@@ -680,6 +773,162 @@ const HOW_STEPS = [
 /* ─────────────────────────────────────────────────────────────────────────────
    1. HERO
 ──────────────────────────────────────────────────────────────────────────── */
+const ROW1_VH = 40; // caption row height
+const ROW2_VH = 70; // cube row height
+
+// The canvas spans both rows; this moves the picture down so the cube sits in
+// the middle of row 2 (instead of the middle of the whole canvas).
+function ShiftView() {
+  const { camera, size } = useThree();
+  useLayoutEffect(() => {
+    const total = ROW1_VH + ROW2_VH;
+    const shift = (ROW1_VH + ROW2_VH / 2) / total - 0.5; // fraction of the canvas height
+    camera.setViewOffset(size.width, size.height, 0, -size.height * shift, size.width, size.height);
+    camera.updateProjectionMatrix();
+    return () => {
+      camera.clearViewOffset();
+      camera.updateProjectionMatrix();
+    };
+  }, [camera, size]);
+  return null;
+}
+
+// Word in the caption that cycles through `words` every CYCLE_MS.
+// Its width eases between the words' widths, so the centred line glides
+// instead of jumping; the words crossfade with a small rise.
+const CYCLE_MS = 3000;
+const CYCLE_EASE = "0.7s cubic-bezier(0.65, 0, 0.35, 1)";
+
+function WordCycle({ words }) {
+  const wordRefs = useRef([]);
+  const [widths, setWidths] = useState(null);
+  const [active, setActive] = useState(0);
+  const [prev, setPrev] = useState(null);
+
+  // Measure every word (again when the font size changes with the screen)
+  useEffect(() => {
+    const measure = () => setWidths(wordRefs.current.map((el) => el?.offsetWidth ?? 0));
+    measure();
+    const ro = new ResizeObserver(measure);
+    wordRefs.current.forEach((el) => el && ro.observe(el));
+    return () => ro.disconnect();
+  }, [words]);
+
+  useEffect(() => {
+    if (!window.matchMedia("(prefers-reduced-motion: no-preference)").matches) return;
+    const id = setInterval(() => {
+      setActive((a) => {
+        setPrev(a);
+        return (a + 1) % words.length;
+      });
+    }, CYCLE_MS);
+    return () => clearInterval(id);
+  }, [words.length]);
+
+  return (
+    <span
+      className="relative inline-block whitespace-nowrap"
+      style={{ width: widths ? widths[active] : "auto", transition: widths ? `width ${CYCLE_EASE}` : "none" }}
+    >
+      {/* Invisible copy in the flow: keeps the line's baseline and height */}
+      <span className="invisible">{words[0]}</span>
+      {words.map((w, i) => {
+        const on = i === active;
+        // incoming rises from below, outgoing leaves upward
+        const y = on ? "0" : i === prev ? "-0.35em" : "0.35em";
+        return (
+          <span
+            key={w}
+            ref={(el) => (wordRefs.current[i] = el)}
+            aria-hidden={!on}
+            className="absolute left-1/2 top-0"
+            style={{
+              opacity: on ? 1 : 0,
+              filter: on ? "blur(0)" : "blur(4px)",
+              transform: `translate(-50%, ${y})`,
+              // no slide back to the start position after leaving
+              transition: on || i === prev ? `opacity ${CYCLE_EASE}, transform ${CYCLE_EASE}, filter ${CYCLE_EASE}` : "none",
+            }}
+          >
+            {w}
+          </span>
+        );
+      })}
+    </span>
+  );
+}
+
+// Two rows: the caption (50vh), then the draggable 3D cube (70vh).
+function SolHeroCube() {
+  const { wrapRef, frameloop, mounted } = usePausableHeroCanvas();
+
+  return (
+    <section className="relative" style={{ background: HERO_BG }} data-navbar="light">
+      {/* Film grain over the whole hero; click-through so the cube can still be dragged */}
+      <div
+        aria-hidden="true"
+        className="sl-hero-grain pointer-events-none absolute inset-0 z-10"
+        style={{ backgroundImage: grain }}
+      />
+      {/* Row 1: caption. Sits above the canvas (z-[1]), so dragging only
+          works on the cube's row while the glow still shows behind the text. */}
+      <div
+        className="relative z-[1] flex items-end justify-center px-[5vw] pb-6 pt-[32px]"
+        style={{ height: `${ROW1_VH}vh` }}
+      >
+        {/* Fixed line break on md+ (instead of max-w), so the second line only
+            grows/shrinks with the cycling word and never re-wraps mid-animation */}
+        <h1 className="text-center text-[clamp(40px,4vw,66px)] font-light leading-[1.1] tracking-[-0.01em] text-white">
+          The right solution for
+          <br className="hidden md:block" /> every <WordCycle words={["hard", "impossible"]} /> problem.
+        </h1>
+      </div>
+
+      {/* Row 2: empty spacer that gives the cube its 70vh; clicks pass through to the canvas */}
+      <div className="pointer-events-none" style={{ height: `${ROW2_VH}vh` }} />
+
+      {/* The canvas covers BOTH rows so the glow can bleed up into row 1;
+          ShiftView moves the cube down into row 2.
+          [&_canvas]: undo the site-wide `canvas { position: fixed; inset: 0 }`
+          rule in index.css, so the canvas stays inside this section */}
+      <div
+        ref={wrapRef}
+        className="absolute inset-0 overflow-hidden [&_canvas]:!relative [&_canvas]:!inset-auto [&_canvas]:!z-auto"
+      >
+        {mounted && (
+          <Canvas
+            frameloop={frameloop}
+            dpr={[1, 1.75]}
+            camera={{ position: [3, 2.2, 5], fov: 35 }}
+            gl={{ antialias: false, powerPreference: "high-performance" }}
+          >
+            {/* Solid background (same as the section): the glow needs something
+                to draw on; on a transparent canvas it would be cut away */}
+            <color attach="background" args={[HERO_BG]} />
+            <ambientLight intensity={0.6} />
+            <directionalLight position={[4, 6, 5]} intensity={1.6} />
+            <EffectComposer multisampling={4}>
+              <Bloom mipmapBlur intensity={GLOW_STRENGTH} radius={GLOW_RADIUS} luminanceThreshold={GLOW_THRESHOLD} luminanceSmoothing={0.2} />
+            </EffectComposer>
+            <Suspense fallback={null}>
+              {/* Bounds fits the cube to the canvas (and again on resize); the
+                  margin is scaled so the cube is sized to row 2, not both rows */}
+              <Bounds fit clip observe margin={CUBE_MARGIN * ((ROW1_VH + ROW2_VH) / ROW2_VH)}>
+                <Center>
+                  <PuzzleCube />
+                </Center>
+              </Bounds>
+            </Suspense>
+            <CubeControls />
+            <ShiftView />
+          </Canvas>
+        )}
+      </div>
+    </section>
+  );
+}
+
+// Previous hero (big heading + blue highlight + Lottie), not used
 function SolHero() {
   const heroImgRef = useRef(null);
   const heroRef = useRef();
@@ -1463,7 +1712,7 @@ function DeepDive() {
                   muted
                   playsInline
                   preload="metadata"
-                  src="/videos/rocket.mp4"
+                  src="/videos/wave.mp4"
                   aria-hidden="true"
                 />
               </div>
@@ -2152,6 +2401,9 @@ export default function SolutionsPage() {
         .sl-title{font-size:clamp(32px,4.5vw,64px);font-weight:500;line-height:1.05;color:#fcfcf7;margin:0;}
         .sl-section-head{margin-bottom:64px;}.sl-white-head{margin-bottom:64px;}
         .sl-sub-dark{font-weight:300;font-size:clamp(14px,1.1vw,16px);line-height:1.72;color:rgba(252,252,247,.6);max-width:50ch;margin:16px 0 0;}
+        .sl-hero-grain{opacity:0.14;mix-blend-mode:overlay;background-size:200px 200px;animation:sl-grain-shift 0.9s steps(4) infinite;}
+        @keyframes sl-grain-shift{0%{background-position:0 0}25%{background-position:-60px 40px}50%{background-position:50px -70px}75%{background-position:-30px -50px}100%{background-position:0 0}}
+        @media (prefers-reduced-motion: reduce){.sl-hero-grain{animation:none}}
         .sl-hero{position:relative;height:100vh;padding-top:40px;padding-bottom:70px; overflow:hidden}
         .sl-hero-ghost{position:absolute;bottom:5%;right:3vw;font-weight:700;font-size:clamp(80px,14vw,200px);line-height:1;letter-spacing:-0.05em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,0.04);pointer-events:none;z-index:0;user-select:none;}
         .sl-hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 460px;gap:0 5vw;align-items:center;padding:30px 7vw 40px;}
@@ -2347,7 +2599,8 @@ export default function SolutionsPage() {
         style={{ background: "#050508", color: "#fcfcf7", minHeight: "100vh" }}
       >
         <Navbar />
-        <SolHero />
+        <SolHeroCube />
+        {/* <SolHero /> */}
         <ScrollIndicator />
         <SolOverview />
         {/* <SolOverviewpc /> old desktop layout, replaced by the shared home-page one */}
@@ -2355,8 +2608,8 @@ export default function SolutionsPage() {
         {/* <CaseStudiesnew /> */}
 
         <DeepDive />
-        <FAQ_Section />
-        <SolCTA />
+        <FAQ_Sectionlight />
+        <CTASection />
         <Footer />
       </div>
     </>
