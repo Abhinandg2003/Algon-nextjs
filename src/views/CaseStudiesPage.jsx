@@ -224,7 +224,7 @@ function CaseStudiesHeroBanner() {
   }, []);
 
   return (
-    <section ref={sectionRef} data-navbar="light" className="relative h-[55vh] overflow-hidden bg-[#050508]">
+    <section ref={sectionRef} data-navbar="light" className="relative h-[30vh] overflow-hidden bg-[#050508] md:h-[55vh]">
       {/* The browser plays the first source it supports: WebM, then the MP4
           fallback (older Safari / iOS). The still image shows until it plays. */}
       <video

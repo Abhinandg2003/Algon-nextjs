@@ -105,7 +105,7 @@ export default function FAQ_Sectionlight() {
         .sl-faq-light-inner{position:relative;z-index:1;}
         .sl-faq-light-layout{display:grid;grid-template-columns:1fr 1.6fr;gap:0 8vw;align-items:start;}
         .sl-faq-light-head{position:sticky;top:100px;}
-        .sl-faq-light-title{font-size:clamp(32px,4.5vw,64px);font-weight:500;line-height:1.05;color:#050508;margin:0;}
+        .sl-faq-light-title{font-size:clamp(32px,4.5vw,64px);font-weight:400;line-height:1.05;color:#050508;margin:0;}
         .sl-faq-light-sub{font-weight:300;font-size:clamp(14px,1.1vw,16px);line-height:1.72;color:rgba(5,5,8,.65);max-width:50ch;margin:16px 0 0;}
         .sl-faq-light-list{display:flex;flex-direction:column;}
         .sl-faq-light-item{border-bottom:1px solid rgba(5,5,8,.1);padding:24px 0;cursor:pointer;transition:background 0.2s;}

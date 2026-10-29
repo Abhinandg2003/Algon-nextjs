@@ -776,20 +776,24 @@ const HOW_STEPS = [
 const ROW1_VH = 40; // caption row height
 const ROW2_VH = 70; // cube row height
 
+// Phones only (desktop uses CUBE_MARGIN and sits centred in row 2)
+const CUBE_MARGIN_MOBILE = 1.3; // smaller = bigger cube
+const CUBE_LIFT_MOBILE = 0.07; // how far up from row 2's centre, as a fraction of the canvas height
+
 // The canvas spans both rows; this moves the picture down so the cube sits in
-// the middle of row 2 (instead of the middle of the whole canvas).
-function ShiftView() {
+// the middle of row 2 (instead of the middle of the whole canvas), minus `lift`.
+function ShiftView({ lift = 0 }) {
   const { camera, size } = useThree();
   useLayoutEffect(() => {
     const total = ROW1_VH + ROW2_VH;
-    const shift = (ROW1_VH + ROW2_VH / 2) / total - 0.5; // fraction of the canvas height
+    const shift = (ROW1_VH + ROW2_VH / 2) / total - 0.5 - lift; // fraction of the canvas height
     camera.setViewOffset(size.width, size.height, 0, -size.height * shift, size.width, size.height);
     camera.updateProjectionMatrix();
     return () => {
       camera.clearViewOffset();
       camera.updateProjectionMatrix();
     };
-  }, [camera, size]);
+  }, [camera, size, lift]);
   return null;
 }
 
@@ -861,6 +865,15 @@ function WordCycle({ words }) {
 // Two rows: the caption (50vh), then the draggable 3D cube (70vh).
 function SolHeroCube() {
   const { wrapRef, frameloop, mounted } = usePausableHeroCanvas();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   return (
     <section className="relative" style={{ background: HERO_BG }} data-navbar="light">
@@ -879,8 +892,13 @@ function SolHeroCube() {
         {/* Fixed line break on md+ (instead of max-w), so the second line only
             grows/shrinks with the cycling word and never re-wraps mid-animation */}
         <h1 className="text-center text-[clamp(40px,4vw,66px)] font-light leading-[1.1] tracking-[-0.01em] text-white">
+          {/* Desktop: "The right solution for / every hard problem."
+              Phones:  "The right solution for every / hard / problem." —
+              the cycling word gets its own line, so nothing re-wraps */}
           The right solution for
-          <br className="hidden md:block" /> every <WordCycle words={["hard", "impossible"]} /> problem.
+          <br className="hidden md:block" /> every
+          <br className="md:hidden" /> <WordCycle words={["hard", "impossible"]} />
+          <br className="md:hidden" /> problem.
         </h1>
       </div>
 
@@ -913,14 +931,21 @@ function SolHeroCube() {
             <Suspense fallback={null}>
               {/* Bounds fits the cube to the canvas (and again on resize); the
                   margin is scaled so the cube is sized to row 2, not both rows */}
-              <Bounds fit clip observe margin={CUBE_MARGIN * ((ROW1_VH + ROW2_VH) / ROW2_VH)}>
+              {/* key: refit from scratch when switching between phone and desktop sizing */}
+              <Bounds
+                key={isMobile ? "m" : "d"}
+                fit
+                clip
+                observe
+                margin={(isMobile ? CUBE_MARGIN_MOBILE : CUBE_MARGIN) * ((ROW1_VH + ROW2_VH) / ROW2_VH)}
+              >
                 <Center>
                   <PuzzleCube />
                 </Center>
               </Bounds>
             </Suspense>
             <CubeControls />
-            <ShiftView />
+            <ShiftView lift={isMobile ? CUBE_LIFT_MOBILE : 0} />
           </Canvas>
         )}
       </div>
@@ -1707,7 +1732,7 @@ function DeepDive() {
               <div className="sl-dd-lottie">
                 <video
                   ref={videoRef}
-                  className="rounded-full p-20"
+                  className="rounded-full p-0 md:p-20"
                   loop
                   muted
                   playsInline
@@ -1719,7 +1744,7 @@ function DeepDive() {
             </div>
           </div>
         </div>
-        <div className="sl-dd-counter">
+        <div className="sl-dd-counter !hidden !md:block">
           <span style={{ color: sol.accent }}>
             {String(active + 1).padStart(2, "0")}
           </span>
@@ -2455,9 +2480,9 @@ export default function SolutionsPage() {
         .sl-dd-panel{position:absolute;top:0;left:0;right:0;will-change:opacity,transform;}
         .sl-dd-lottie{position:relative;opacity:100;width:100%;height:100%;display:flex;align-items:center;justify-content:center; margin-top:0px;}
         .sl-dd-lottie svg{width:300px;height:300px;}
-        .sl-dd-title{font-size:clamp(40px,3vw,46px);font-weight:400;letter-spacing:-0.03em;color:#050508;margin:0 0 10px;line-height:1.1;}
-        .sl-dd-title2{font-size:clamp(40px,3vw,46px);font-weight:500;letter-spacing:-0.03em;color:#050508;margin:0 0 10px;line-height:1.1;}
-        .sl-dd-desc{font-size:clamp(18px,1.1vw,16px);font-weight:400;line-height:1.75;color:rgba(5,5,8,1);max-width:46ch;margin:0 0 24px;}
+        .sl-dd-title{font-size:clamp(35px,3vw,46px);font-weight:400;letter-spacing:-0.03em;color:#050508;margin:50px 0 10px 0px;line-height:1.1;}
+        .sl-dd-title2{font-size:clamp(35px,3vw,46px);font-weight:500;letter-spacing:-0.03em;color:#050508;margin:0 0 10px;line-height:1.1;}
+        .sl-dd-desc{font-size:clamp(18px,1.1vw,16px);font-weight:400;line-height:1.45;color:rgba(5,5,8,1);max-width:46ch;margin:0 0 24px;}
         .sl-dd-points{list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:8px;}
         .sl-dd-point{font-size:15px;color:rgba(5,5,8,0.8);font-weight:300;display:flex;align-items:center;gap:8px;}
         .sl-dd-check{font-size:14px;}
@@ -2577,7 +2602,7 @@ export default function SolutionsPage() {
           .sl-cs-grid{grid-template-columns:1fr;}
         }
         @media(max-width:640px){
-                .sl-dd-lottie{margin-top:50px;}
+                .sl-dd-lottie{margin-top:0px;}
 
           .sl-dd-dots{opacity:0;}
           .cs2-section{padding:72px 5vw 90px;}

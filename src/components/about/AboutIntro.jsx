@@ -120,7 +120,10 @@ export function AboutHeroMinimal() {
         {/* <p className="text-[18px]  text-white md:col-span-1 md:pt-3">About Algon</p> */}
         <div className="md:col-span-4">
           <h1 className=" text-[clamp(40px,4.4vw,60px)] font-extralight text-center leading-[1.05] tracking-[-0.02em]">
-            We build <SwapWord word="thoughtful" /> systems, <br /> refining every detail for people who use them.
+            {/* Phones: "thoughtful" gets its own line, so its width change never re-wraps the text */}
+            We build
+            <br className="md:hidden" /> <SwapWord word="thoughtful" />
+            <br className="md:hidden" /> systems, <br /> refining every detail for people who use them.
           </h1>
           {/* <p className="mt-6 max-w-[76ch] font-light text-[clamp(15px,1.2vw,18px)] leading-[1.7] text-white">
             Founded in 2023 in Kochi, India, Algon builds hospital systems, AI automation and dedicated

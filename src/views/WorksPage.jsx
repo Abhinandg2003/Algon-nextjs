@@ -2097,7 +2097,7 @@ export default function PortfolioPage() {
         }
     .pf-panel-left {
           display: flex; flex-direction: column;
-          padding-top: 10vw;
+          padding-top: 0vw;
         }
     .pf-reel-progress {
           position: absolute; left: 50%; top: 95%;
