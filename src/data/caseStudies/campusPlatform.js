@@ -10,6 +10,7 @@ const campusPlatform = [
   /* ── Part 1 — AI teacher agents ─────────────────────────────────────────── */
   {
     id: "campus-ai-teacher-agents",
+    href: "https://visat.in/", // live site: shows the ↗ button on the detail page
     series: { ...SERIES, part: 1 },
     title: "Campus Platform — AI Teacher Agents",
     tagline: "One AI teaching assistant per department, grounded in that department's own material.",
@@ -88,6 +89,7 @@ const campusPlatform = [
   /* ── Part 2 — 360° virtual tour ─────────────────────────────────────────── */
   {
     id: "campus-360-virtual-tour",
+    href: "https://visat.in/", // live site: shows the ↗ button on the detail page
     series: { ...SERIES, part: 2 },
     title: "Campus Platform — 360° Virtual Tour",
     tagline: "Walk the campus from a phone: linked 360° panoramas with hotspot navigation.",
@@ -163,6 +165,7 @@ const campusPlatform = [
   /* ── Part 3 — CMS + SEO platform ────────────────────────────────────────── */
   {
     id: "campus-cms-seo-platform",
+    href: "https://visat.in/", // live site: shows the ↗ button on the detail page
     series: { ...SERIES, part: 3 },
     title: "Campus Platform — CMS & SEO",
     tagline: "A structured, multi-department CMS with search visibility built into every page.",

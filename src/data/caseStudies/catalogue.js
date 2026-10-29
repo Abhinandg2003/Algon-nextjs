@@ -18,6 +18,7 @@ const catalogue = [
   /* ── Part 1 ─────────────────────────────────────────────────────────── */
   {
     id: "product-catalogue-cms",
+    href: "https://drisyamarble.com/", // live site: shows the ↗ button on the detail page
     series: { ...SERIES, part: 1 },
     title: "Catalogue Platform — Structured Product Catalogue",
     tagline: "A normalised, CMS-managed catalogue of 50+ surfaces and fittings that buyers can filter, compare and enquire on.",
@@ -133,6 +134,7 @@ const catalogue = [
   /* ── Part 2 ─────────────────────────────────────────────────────────── */
   {
     id: "catalogue-content-ops-analytics",
+    href: "https://drisyamarble.com/", // live site: shows the ↗ button on the detail page
     series: { ...SERIES, part: 2 },
     title: "Catalogue Platform — Content Operations & Measurement",
     tagline: "Editor workflows, event tracking and technical SEO that keep the catalogue current, measurable and findable.",
@@ -152,7 +154,7 @@ const catalogue = [
     accent: "#298dff",
     thumbnail: `${G}/common.webp`,
     heroImage: `${G}/mockup.webp`,
-    mockup: `${G}/hero.webp`,
+    mockup: `${G}/mockup.webp`, // detail-page hero, same as the first study
     commonImg: `${G}/thumbnail.webp`,
     gallery: [`${G}/8.webp`, `${G}/9.webp`, `${G}/10.webp`, `${G}/11.webp`, `${G}/12.webp`],
     overview:

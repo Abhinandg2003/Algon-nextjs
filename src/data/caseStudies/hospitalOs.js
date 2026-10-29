@@ -103,6 +103,7 @@ const hospitalOs = [
     id: "hospital-os-ipd-pharmacy-lab",
     series: { ...SERIES, part: 2 },
     ...shared,
+    thumbnail: `${IMG}/service-2.webp`, // own card image on the case studies page
     title: "Hospital OS — Inpatient, Pharmacy & Laboratory",
     tagline: "Admissions, beds, ward rounds, dispensing and lab results, all moving on the same patient record.",
     services: [
@@ -168,6 +169,7 @@ const hospitalOs = [
     id: "hospital-os-billing-admin-analytics",
     series: { ...SERIES, part: 3 },
     ...shared,
+    thumbnail: `${IMG}/service-4.webp`, // own card image on the case studies page
     title: "Hospital OS — Billing, Admin & Analytics",
     tagline: "Charges captured where care happens, access controlled by role, and the whole hospital on one dashboard.",
     services: [
@@ -236,6 +238,7 @@ const hospitalOs = [
     id: "hospital-os-patient-portal-ai",
     series: { ...SERIES, part: 4 },
     ...shared,
+    thumbnail: `${IMG}/service-6.webp`, // own card image on the case studies page
     title: "Hospital OS — Patient Portal & AI",
     tagline: "A calm public front door with 24/7 booking, wired straight into the hospital's own system, plus AI where it saves clinicians time.",
     services: [

@@ -891,7 +891,7 @@ function SolHeroCube() {
       >
         {/* Fixed line break on md+ (instead of max-w), so the second line only
             grows/shrinks with the cycling word and never re-wraps mid-animation */}
-        <h1 className="text-center text-[clamp(40px,4vw,66px)] font-light leading-[1.1] tracking-[-0.01em] text-white">
+        <h1 className="text-center text-[clamp(40px,4vw,70px)] font-extralight leading-[1.1] tracking-[-0.01em] text-white">
           {/* Desktop: "The right solution for / every hard problem."
               Phones:  "The right solution for every / hard / problem." —
               the cycling word gets its own line, so nothing re-wraps */}

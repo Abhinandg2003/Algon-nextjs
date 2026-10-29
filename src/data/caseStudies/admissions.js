@@ -9,6 +9,7 @@ const admissions = [
   /* ── Part 1: AI admissions assistant ─────────────────────────────────── */
   {
     id: "admissions-ai-assistant",
+    href: "https://desirestudyabroad.com/", // live site: shows the ↗ button on the detail page
     series: { ...SERIES, part: 1 },
     title: "Admissions Platform — AI Admissions Assistant",
     tagline: "An LLM-powered assistant that answers student questions from approved content and turns conversations into qualified enquiries.",
@@ -99,6 +100,7 @@ const admissions = [
   /* ── Part 2: Follow-up automation + 4-day website launch ─────────────── */
   {
     id: "admissions-follow-up-automation",
+    href: "https://desirestudyabroad.com/", // live site: shows the ↗ button on the detail page
     series: { ...SERIES, part: 2 },
     title: "Admissions Platform — Follow-up Automation & Website Launch",
     tagline: "Event-driven follow-ups that replaced about four hours a day of manual chasing, on a website launched in four days.",
@@ -120,7 +122,7 @@ const admissions = [
 
     thumbnail: `${IMG}/mockup.webp`,
     heroImage: `${IMG}/hero.webp`,
-    mockup: `${IMG}/common.webp`,
+    mockup: `${IMG}/mockup.webp`, // detail-page hero, same as the first study
     commonImg: `${IMG}/thumbnail.webp`,
     gallery: [`${IMG}/2.webp`, `${IMG}/4.webp`, `${IMG}/6.webp`, `${IMG}/9.webp`],
 

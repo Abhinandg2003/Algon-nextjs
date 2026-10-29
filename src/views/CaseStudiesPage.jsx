@@ -138,6 +138,12 @@ function PortfolioCTA() {
   );
 }
 
+// If a .webp image fails to load, try the .jpg with the same name (once)
+const webpToJpg = (e) => {
+  const img = e.currentTarget;
+  if (img.src.endsWith(".webp")) img.src = img.src.replace(/\.webp$/, ".jpg");
+};
+
 /* ─── HERO (banner) ──────────────────────────────────────────────────────── */
 // 55vh banner image; the heading sits on top of it, left-aligned, vertically
 // centred (below the 72px navbar).
@@ -251,10 +257,14 @@ function CaseStudiesHeroBanner() {
         className="absolute inset-0 h-full w-full object-cover"
       />
       */}
-      <div className="absolute inset-0 z-10 flex items-center pl-[5vw] pr-[5vw] pt-[72px] md:pl-[10vw]">
+      {/* Heading styled like the service-page banner hero (.svp-hero-banner-content
+          + .svp-h1 in servicepage.css): bottom-left, same side padding,
+          weight, size and spacing */}
+      <div className="absolute inset-0 z-10 flex items-end">
+        <div className="mx-auto w-full max-w-[1600px] px-[clamp(20px,7vw,112px)] pb-[clamp(32px,5vw,72px)]">
         <h1
           ref={h1Ref}
-          className="max-w-[16ch] text-[clamp(40px,4.5vw,70px)] font-light leading-[1.1] tracking-[-0.01em] text-white"
+          className="m-0 max-w-[18ch] text-[clamp(32px,4.5vw,66px)] font-extralight leading-[1.02] tracking-[-0.03em] text-white [overflow-wrap:break-word] [text-wrap:balance]"
         >
           Projects that{" "}
           {/* "moved": wrapper stays put (measured), repel layer dodges the
@@ -266,6 +276,7 @@ function CaseStudiesHeroBanner() {
           </span>{" "}
           the needle.
         </h1>
+        </div>
       </div>
     </section>
   );
@@ -490,7 +501,7 @@ function ProjectCard({ study }) {
       onMouseLeave={onLeave}
     >
       <div className="cs-card-img-wrap">
-        <img ref={imgRef} src={study.thumbnail} alt={`${study.title} — ${study.category} case study`} className="cs-card-img" loading="lazy" decoding="async" />
+        <img ref={imgRef} src={study.thumbnail} alt={`${study.title} — ${study.category} case study`} className="cs-card-img" loading="lazy" decoding="async" onError={webpToJpg} />
 
       </div>
 

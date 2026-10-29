@@ -7,6 +7,7 @@ const webBuilds = [
   /* ── 1. Real-estate lead website ─────────────────────────────────────── */
   {
     id: "real-estate-lead-website",
+    href: "https://www.unityheights.org/", // live site: shows the ↗ button on the detail page
     title: "A Portfolio Website Engineered as a Sales Tool",
     tagline: "A responsive project portfolio with structured enquiry capture and search foundations, shipped in one week.",
     category: "Web & SaaS · Lead Capture Website",
@@ -94,6 +95,7 @@ const webBuilds = [
   /* ── 2. Fashion commerce storefront ──────────────────────────────────── */
   {
     id: "fashion-commerce-storefront",
+    href: "https://www.thesneek.com/", // live site: shows the ↗ button on the detail page
     title: "A Commerce Storefront Built to Scale From Day One",
     tagline: "Shopify theme engineering, collection architecture and analytics foundations for a fashion label launching online.",
     category: "Web & SaaS · Commerce Storefront",
@@ -179,6 +181,7 @@ const webBuilds = [
   /* ── 3. Furniture mobile-first website ───────────────────────────────── */
   {
     id: "furniture-mobile-first-website",
+    href: "https://www.corewood.in/", // live site: shows the ↗ button on the detail page
     title: "A Mobile-first Website, Built and Live in Three Days",
     tagline: "A fast, mobile-optimised site with clear calls to action and local search foundations for a furniture maker.",
     category: "Web & SaaS · Mobile-first Website",
@@ -259,6 +262,7 @@ const webBuilds = [
   /* ── 4. Interiors conversion tracking ────────────────────────────────── */
   {
     id: "interiors-conversion-tracking",
+    href: "https://qotinteriors.com/", // live site: shows the ↗ button on the detail page
     title: "Conversion Engineering and Lead Measurement for a Luxury Studio",
     tagline: "UI/UX optimisation, sharper calls to action, rebuilt forms and cost-per-lead tracking that made every enquiry measurable.",
     category: "Web & SaaS · Conversion Optimisation",

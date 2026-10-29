@@ -294,6 +294,11 @@ function DetailHero({ study }) {
           alt={`${study.title} — ${study.category}`}
           className="csd-hero-img"
           fetchPriority="high"
+          onError={(e) => {
+            // .webp failed: try the .jpg with the same name (once)
+            const img = e.currentTarget;
+            if (img.src.endsWith(".webp")) img.src = img.src.replace(/\.webp$/, ".jpg");
+          }}
         />
         <div ref={overlayRef} className="csd-hero-overlay" />
       </div>
@@ -485,7 +490,7 @@ function Overview({ study }) {
           <div className="csd-overview-left">
 
             <h2 style={{
-            fontWeight: 400,
+            fontWeight: 300,
             fontSize: "clamp(46px, 6vw, 76px)",
             color: "#0f0f0f",
             letterSpacing: "-0.035em",
@@ -558,7 +563,7 @@ function ProblemSection({ study }) {
           <div className="csd-problem-left">
             {/* <span className="ab-eyebrow csd-reveal">The Problem</span> */}
             <h2 style={{
-            fontWeight: 400,
+            fontWeight: 300,
             fontSize: "clamp(46px, 6vw, 76px)",
             color: "#0f0f0f",
             letterSpacing: "-0.035em",
@@ -655,7 +660,7 @@ function StrategySection({ study }) {
         <div className="csd-strategy-head">
           {/* <span className="ab-eyebrow" style={{ color: "rgba(5,5,8,.35)" }}>Strategy</span> */}
           <h2 style={{
-            fontWeight: 400,
+            fontWeight: 300,
             fontSize: "clamp(46px, 6vw, 76px)",
             color: "#0f0f0f",
             letterSpacing: "-0.035em",
@@ -800,7 +805,7 @@ function ExecutionSection({ study }) {
       <div className="csd-section-inner">
         <div className="csd-exec-head">
           <h2 style={{
-            fontWeight: 400,
+            fontWeight: 300,
             fontSize: "clamp(46px, 6vw, 76px)",
             color: "#0f0f0f",
             letterSpacing: "-0.035em",
@@ -949,7 +954,7 @@ function GallerySection({ study }) {
         </div> */}
         <div className="csd-gallery-header">
           <h2 style={{
-            fontWeight: 400,
+            fontWeight: 300,
             fontSize: "clamp(46px, 6vw, 76px)",
             color: "#0f0f0f",
             letterSpacing: "-0.035em",
@@ -1156,7 +1161,7 @@ function ResultsSection({ study }) {
         <div className="csd-results-layout">
           <div className="csd-results-head">
              <h2 style={{
-            fontWeight: 400,
+            fontWeight: 300,
             fontSize: "clamp(46px, 6vw, 76px)",
             color: "#0f0f0f",
             letterSpacing: "-0.035em",
@@ -1401,12 +1406,12 @@ export default function CaseStudyDetailPage() {
         .csd-back:hover{color:rgba(255,255,255,.8);}
         .csd-hero-title-wrap{margin-bottom:40px;}
         .csd-hero-h1 {
-          font-weight:400;font-size:clamp(32px,6vw,100px);line-height:.95;
+          font-weight:300;font-size:clamp(32px,5vw,80px);line-height:.95;
           letter-spacing:-.04em;color:#fff;
         }
         .csd-hero-tagline {
         font-family:Displayfont;
-          font-size:clamp(14px,1.3vw,23px);font-weight:400;
+          font-size:clamp(14px,1.3vw,23px);font-weight:300;
           color:rgba(255,255,255,.5);margin-left:2vw;max-width:50ch;
         }
         .csd-meta-row {
@@ -1422,7 +1427,7 @@ export default function CaseStudyDetailPage() {
           display:block;font-size:20px;
           color:rgba(255,255,255,.8);margin-bottom:6px;font-weight:300;   letter-spacing:.14em;      }
         .csd-meta-val {
-          font-size:25px;font-weight:300;color:rgba(255,255,255,.8);font-weight:400; 
+          font-size:25px;font-weight:300;color:rgba(255,255,255,.8);font-weight:300; 
         }
         .csd-service-pill {
           font-size:9px;letter-spacing:.14em;text-transform:uppercase;
@@ -1476,7 +1481,7 @@ export default function CaseStudyDetailPage() {
         .csd-counter-val {
           display:flex;align-items:baseline;gap:1px;font-family:Displayfont;
           font-size:clamp(36px,3.5vw,52px);letter-spacing:-.04em;line-height:1;
-          margin-bottom:8px;font-weight:500;
+          margin-bottom:8px;font-weight:400;
         }
         .csd-counter-label {
         font-family:Displayfont;
@@ -1523,7 +1528,7 @@ export default function CaseStudyDetailPage() {
           border:1px solid;width:28px;height:28px;flex-shrink:0;
           display:flex;align-items:center;justify-content:center;margin-top:2px;
         }
-        .csd-pillar-title {font-family:Displayfont; font-size:20px;font-weight:400;color:#050508;margin:0 0 6px;letter-spacing:-.01em; }
+        .csd-pillar-title {font-family:Displayfont; font-size:20px;font-weight:300;color:#050508;margin:0 0 6px;letter-spacing:-.01em; }
         .csd-pillar-text { font-size:17px;color:rgba(5,5,8,1);line-height:1.65;margin:0; font-weight:200}
         .csd-pillar-line { position:absolute;bottom:0;left:0;right:0;height:1px;opacity:0;transition:opacity .3s; }
 
@@ -1552,7 +1557,7 @@ export default function CaseStudyDetailPage() {
           margin-bottom:10px;font-family:Displayfont;
         }
         .csd-exec-title {
-          font-size:clamp(22px,2.2vw,25px);font-weight:400;color:#050508;
+          font-size:clamp(22px,2.2vw,25px);font-weight:300;color:#050508;
           letter-spacing:-.025em;margin:0 0 14px;
         }
         .csd-exec-desc {
@@ -1751,7 +1756,7 @@ export default function CaseStudyDetailPage() {
         }
         .csd-cta-next-link:hover { padding-left:20px; }
         .csd-cta-next-title {
-          font-size:clamp(26px,5vw,60px);font-weight:400;color:#050508;
+          font-size:clamp(26px,5vw,60px);font-weight:300;color:#050508;
           letter-spacing:-.04em;line-height:.95;margin:0;
           transition:color .3s;font-family:Displayfont;
         }
